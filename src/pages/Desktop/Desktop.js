@@ -6,7 +6,7 @@ import Bottombar from "../Bottombar/Bottombar";
 const Desktop = () => {
 	return (
 		<div
-			className="flex flex-col h-screen bg-no-repeat bg-cover bg-center"
+			className="flex flex-col bg-no-repeat bg-cover bg-center h-max"
 			style={{ backgroundImage: `url(${image})` }}
 		>
 			<Topbar />
