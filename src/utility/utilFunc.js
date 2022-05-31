@@ -19,3 +19,21 @@ export function getMonthName(dateStr, locale) {
 		month: "long",
 	});
 }
+
+export function createArray(toFill, startSkip, endSkip) {
+	const arr = [];
+	if (startSkip > 0) {
+		for (let i = 0; i < startSkip; i++) {
+			arr.push("\u00a0");
+		}
+	}
+	for (let i = 0; i < toFill; i++) {
+		arr.push(i + 1);
+	}
+	if (endSkip > 0) {
+		for (let i = 0; i < endSkip; i++) {
+			arr.push("\u00a0");
+		}
+	}
+	return arr;
+}
