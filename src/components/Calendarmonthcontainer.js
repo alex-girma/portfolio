@@ -1,5 +1,4 @@
 import { createArray, getDayName, getMonthName } from "../utility/utilFunc";
-import { todoDates } from "../variables/Vars";
 
 const Calendarmonthcontainer = ({ month, currYear, maxDay }) => {
 	const date = `${month}/01/${currYear}`;
@@ -64,13 +63,6 @@ const Calendarmonthcontainer = ({ month, currYear, maxDay }) => {
 								? "text-green-400 font-semibold scale-105"
 								: "")
 						}
-						onClick={() => {
-							todoDates.length = 0;
-							todoDates.push(day);
-							todoDates.push(month);
-							todoDates.push(currYear);
-							console.log(todoDates);
-						}}
 					>
 						{day}
 					</p>
