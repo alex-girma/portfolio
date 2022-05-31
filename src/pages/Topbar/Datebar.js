@@ -4,9 +4,15 @@ import { getDate } from "../../utility/utilFunc";
 const Datebar = () => {
 	const [time, setTime] = useState(new Date());
 	const locale = navigator.language;
-	const handelClick = () => {
+	const handelClickClose = () => {
 		const ele = document.getElementById("calendar");
 		ele.classList.toggle("hidden");
+		for (let i = 0; i < 12; i++) {
+			const calmonth = document.getElementById(`calendar__${i + 1}`);
+			calmonth.classList.remove("hidden");
+			calmonth.classList.remove("col-start-1");
+			calmonth.classList.remove("col-end-4");
+		}
 	};
 
 	useEffect(() => {
@@ -18,7 +24,7 @@ const Datebar = () => {
 		<div className="flex-1 text-sm text-gray-100 flex flex-col items-end pr-2 pt-1 pb-1 cursor-default">
 			<div
 				className="hover:bg-[#19151549] flex items-end space-x-1 pl-2 pr-2 rounded-md transition duration-500"
-				onClick={handelClick}
+				onClick={handelClickClose}
 			>
 				<p className="">{getDate(time, locale)},</p>
 				<p className="">
