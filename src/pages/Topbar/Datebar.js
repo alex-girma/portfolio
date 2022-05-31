@@ -13,6 +13,8 @@ const Datebar = () => {
 			calmonth.classList.remove("col-start-1");
 			calmonth.classList.remove("col-end-4");
 		}
+		const todo = document.getElementById("todo");
+		todo.classList.add("hidden");
 	};
 
 	useEffect(() => {

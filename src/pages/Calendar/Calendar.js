@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Calendarmonthcontainer from "../../components/Calendarmonthcontainer";
+import Todo from "../Todo/Todo";
 
 const Calendar = () => {
 	const maxDay = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -11,6 +12,8 @@ const Calendar = () => {
 			calmonth.classList.remove("col-start-1");
 			calmonth.classList.remove("col-end-4");
 		}
+		const todo = document.getElementById("todo");
+		todo.classList.add("hidden");
 	};
 	return (
 		<div
@@ -20,6 +23,7 @@ const Calendar = () => {
 			<input
 				className="text-center font-semibold text-slate-200 w-full appearance-none focus:outline-none rounded-t-md bg-slate-900 bg-opacity-50 cursor-default"
 				value={currYear}
+				placeholder={currYear}
 				onChange={(e) => {
 					setCurrYear(e.target.value);
 				}}
@@ -39,6 +43,7 @@ const Calendar = () => {
 						/>
 					);
 				})}
+				<Todo />
 			</div>
 		</div>
 	);
