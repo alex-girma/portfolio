@@ -11,11 +11,11 @@ const Calendarmonthcontainer = ({ month, currYear, maxDay }) => {
 		42 - maxDay - weekDays.indexOf(currYearDay)
 	);
 
-	// const days = new Array(Number(maxDay)).fill(null);
-	// const skips = new Array(weekDays.indexOf(currYearDay)).fill(null);
 	return (
-		<div className="grid grid-cols-7 grid-rows-8 place-items-center bg-slate-200  text-xs  rounded-sm">
-			<p className="col-start-1 col-span-7 row-start-1 row-span-1">{getMonthName(date, locale)}</p>
+		<div className="grid grid-cols-7 grid-rows-8 place-items-center text-xs text-slate-200 rounded-sm border border-slate-400 hover:bg-[#72707049] shadow-md shadow-slate-800 hover:shadow-md hover:shadow-slate-700 transition duration-300">
+			<p className="col-start-1 col-span-7 row-start-1 row-span-1 font-semibold">
+				{getMonthName(date, locale)}
+			</p>
 			<p>Mo</p>
 			<p>Tu</p>
 			<p>We</p>
