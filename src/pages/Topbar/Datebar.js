@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { resetCalendarLayout } from "../../utility/functions";
+import { resetCalendarLayoutClickedDatebar } from "../../utility/functions";
 import { getDate } from "../../utility/utilFunc";
 
 const Datebar = () => {
 	const [time, setTime] = useState(new Date());
 	const locale = navigator.language;
 	const handelClick = () => {
-		resetCalendarLayout();
+		resetCalendarLayoutClickedDatebar();
 	};
 
 	useEffect(() => {

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Calendarmonthcontainer from "../../components/Calendarmonthcontainer";
-import { goToClickedMonth } from "../../utility/functions";
+import { resetCalendarLayoutClickedInput } from "../../utility/functions";
 import Todo from "../Todo/Todo";
 
 const Calendar = () => {
@@ -9,7 +9,7 @@ const Calendar = () => {
 	const [selectedMonth, setSelectedMonth] = useState("");
 	const [selectedDay, setSelectedDay] = useState("");
 	const handleClick = () => {
-		goToClickedMonth();
+		resetCalendarLayoutClickedInput();
 	};
 	return (
 		<div
@@ -29,13 +29,13 @@ const Calendar = () => {
 				onClick={handleClick}
 			/>
 			<div className=" grid grid-cols-3 grid-rows-4 gap-2 p-2 ">
-				{daysInMonth.map((days, ind) => {
+				{daysInMonth.map((val, ind) => {
 					return (
 						<Calendarmonthcontainer
-							key={ind * days}
+							key={ind * val}
 							month={ind + 1}
 							currYear={currYear}
-							maxDay={days}
+							maxDay={val}
 						/>
 					);
 				})}
