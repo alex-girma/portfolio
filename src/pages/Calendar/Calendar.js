@@ -1,9 +1,9 @@
 import Calendarmonthcontainer from "../../components/Calendarmonthcontainer";
 
 const Calendar = () => {
-	let currYear = "2021";
+	let currYear = "2022";
 	return (
-		<div className="col-start-3 col-span-2 row-start-1 row-span-3 bg-black bg-opacity-40 backdrop-blur-3xl rounded-md mt-2">
+		<div className="col-start-3 col-span-2 row-start-1 row-span-3 bg-black bg-opacity-40 backdrop-blur-3xl rounded-md mt-2 w-1/3 justify-center">
 			<div className="text-center">{currYear}</div>
 			<div className=" grid grid-cols-3 grid-rows-4 gap-2 p-2">
 				<Calendarmonthcontainer month="01" currYear={currYear} maxDay="31" />
