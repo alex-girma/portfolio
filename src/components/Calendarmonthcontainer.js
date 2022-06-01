@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { goToClickedMonth } from "../utility/functions";
 import { createArray, getDayName, getMonthName } from "../utility/utilFunc";
 
@@ -11,7 +12,7 @@ const Calendarmonthcontainer = ({ month, currYear, maxDay }) => {
 		weekDays.indexOf(currYearDay),
 		42 - maxDay - weekDays.indexOf(currYearDay)
 	);
-
+	const [test, setTest] = useState("text-green-400 font-semibold");
 	const handelClick = () => {
 		goToClickedMonth(month);
 	};
@@ -22,7 +23,7 @@ const Calendarmonthcontainer = ({ month, currYear, maxDay }) => {
 			className={
 				"grid grid-cols-7 grid-rows-8 place-items-center text-xs text-slate-200 rounded-sm border border-slate-400 hover:bg-[#72707049] shadow-md shadow-slate-800 hover:shadow-md hover:shadow-slate-700 hover:scale-105 transition duration-300 " +
 				(month === new Date().getMonth() + 1 && currYear === new Date().getFullYear()
-					? " border-green-400 scale-105"
+					? " border-green-400 "
 					: "")
 			}
 			onClick={handelClick}
@@ -47,7 +48,7 @@ const Calendarmonthcontainer = ({ month, currYear, maxDay }) => {
 							(day === new Date().getDate() &&
 							month === new Date().getMonth() + 1 &&
 							currYear === new Date().getFullYear()
-								? "text-green-400 font-semibold scale-105"
+								? test
 								: "")
 						}
 					>

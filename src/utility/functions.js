@@ -25,13 +25,9 @@ export const goToClickedMonth = (month) => {
 		len[i].classList.add("hidden");
 	}
 	ele.classList.remove("hidden");
-	ele.classList.add("col-start-1");
-	ele.classList.add("col-end-4");
+	ele.classList.add("col-start-1", "col-end-4");
 
 	const todo = document.getElementById("todo");
 	todo.classList.remove("hidden");
-	todo.classList.add("col-start-1");
-	todo.classList.add("col-end-4");
-	todo.classList.add("row-start-2");
-	todo.classList.add("row-end-5");
+	todo.classList.add("col-start-1", "col-end-4", "row-start-2", "row-end-5");
 };
