@@ -8,9 +8,6 @@ const Calendar = () => {
 	const [currYear, setCurrYear] = useState(new Date().getFullYear());
 	const [selectedMonth, setSelectedMonth] = useState("");
 	const [selectedDay, setSelectedDay] = useState("");
-	const handleClick = () => {
-		resetCalendarLayoutClickedInput();
-	};
 	return (
 		<div
 			id="calendar"
@@ -26,7 +23,7 @@ const Calendar = () => {
 				onBlur={(e) => {
 					setCurrYear(e.target.value);
 				}}
-				onClick={handleClick}
+				onClick={resetCalendarLayoutClickedInput}
 			/>
 			<div className=" grid grid-cols-3 grid-rows-4 gap-2 p-2 ">
 				{daysInMonth.map((val, ind) => {
