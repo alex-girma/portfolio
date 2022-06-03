@@ -3,7 +3,6 @@ import { goToClickedMonth } from "../utility/functions";
 import { createArray, getDayName, getMonthName } from "../utility/utilFunc";
 
 const Calendarmonthcontainer = ({ month, currYear, maxDay }) => {
-	const date = `${month}/01/${currYear}`; // to get month names for the given language
 	const locale = navigator.language;
 	const currYearDay = getDayName(date, "en-EN").slice(0, 2);
 	const weekDays = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
