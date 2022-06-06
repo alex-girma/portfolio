@@ -1,7 +1,8 @@
 const NewToDo = ({ toDos, setToDos }) => {
 	const handelSubmit = (e) => {
 		e.preventDefault();
-		setToDos([...toDos, e.target.firstChild.value]);
+		setToDos([...toDos, { val: e.target.firstChild.value, done: false }]);
+		e.target.firstChild.value = "";
 	};
 	return (
 		<>
