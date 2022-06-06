@@ -1,7 +1,7 @@
 import { goToClickedMonth } from "../utility/functions";
 import { createArray, getDayName, getMonthName } from "../utility/utilFunc";
 
-const Calendarmonthcontainer = ({ month, year, maxDay }) => {
+const Calendarmonthcontainer = ({ month, year, maxDay, today }) => {
 	const date = `${month}/01/${year}`; // to get month names for the given language
 	const locale = navigator.language;
 	const currYearDay = getDayName(date, "en-EN").slice(0, 2);
@@ -19,7 +19,8 @@ const Calendarmonthcontainer = ({ month, year, maxDay }) => {
 		<div
 			id={`calendar__${month}`}
 			className={
-				"grid grid-cols-7 grid-rows-8 place-items-center text-xs text-slate-200 rounded-sm border border-slate-400 hover:bg-[#72707049] shadow-md shadow-slate-800 hover:shadow-md hover:shadow-slate-700 hover:scale-105 transition duration-300 "
+				"grid grid-cols-7 grid-rows-8 place-items-center text-xs text-slate-200 rounded-sm border border-slate-400 hover:bg-[#72707049] shadow-md shadow-slate-800 hover:shadow-md hover:shadow-slate-700 hover:scale-105 transition duration-300 " +
+				(month === today.getMonth() + 1 && year === today.getFullYear() ? "border-blue-400" : "")
 			}
 			onClick={handelClick}
 		>
@@ -35,7 +36,21 @@ const Calendarmonthcontainer = ({ month, year, maxDay }) => {
 			<p key={month + "Su"}>Su</p>
 
 			{fillDays.map((day, ind) => {
-				return <p key={month + ind}>{day}</p>;
+				return (
+					<p
+						key={month + ind}
+						className={
+							"" +
+							(day === today.getDate() &&
+							month === today.getMonth() + 1 &&
+							year === today.getFullYear()
+								? "text-blue-400 font-semibold scale-125"
+								: "")
+						}
+					>
+						{day}
+					</p>
+				);
 			})}
 		</div>
 	);

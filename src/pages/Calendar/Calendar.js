@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Calendarmonthcontainer from "../../components/Calendarmonthcontainer";
-import { resetCalendarLayoutClickedInput } from "../../utility/functions";
+import { resetCalendarLayoutClickedYear } from "../../utility/functions";
 import Todo from "../Todo/Todo";
 
 const Calendar = () => {
@@ -14,18 +14,18 @@ const Calendar = () => {
 		>
 			{/* changed input field to div with button to remove rendering on every key stoke and improve performance */}
 			<div
-				className="text-center font-semibold text-white w-full appearance-none focus:outline-none rounded-t-md bg-blue-600 bg-opacity-50 cursor-default"
-				onClick={resetCalendarLayoutClickedInput}
+				className="text-center font-semibold text-white w-full appearance-none focus:outline-none rounded-t-md bg-blue-400 bg-opacity-50 cursor-default"
+				onClick={resetCalendarLayoutClickedYear}
 			>
 				<button
-					className="bg-blue-500 hover:bg-blue-700 text-white font-bold py px-4 rounded m-1 mr-6"
+					className="bg-blue-400 hover:bg-blue-500 text-white font-bold py px-4 rounded m-1 mr-6 transition duration-200"
 					onClick={() => setYear(year - 1)}
 				>
 					-
 				</button>
 				{year}
 				<button
-					className="bg-blue-500 hover:bg-blue-700 text-white font-bold py px-4 rounded m-1 ml-6"
+					className="bg-blue-400 hover:bg-blue-500 text-white font-bold py px-4 rounded m-1 ml-6 transition duration-200"
 					onClick={() => setYear(year + 1)}
 				>
 					+
@@ -39,7 +39,7 @@ const Calendar = () => {
 							month={ind + 1}
 							year={year}
 							maxDay={val}
-							onChange={console.log("month")}
+							today={today}
 						/>
 					);
 				})}

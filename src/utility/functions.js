@@ -9,7 +9,7 @@ export const resetCalendarLayoutClickedDatebar = () => {
 	todo.classList.add("hidden");
 };
 
-export const resetCalendarLayoutClickedInput = () => {
+export const resetCalendarLayoutClickedYear = () => {
 	for (let i = 0; i < 12; i++) {
 		const calendarMonth = document.getElementById(`calendar__${i + 1}`);
 		calendarMonth.classList.remove("hidden", "col-start-1", "col-end-4");
