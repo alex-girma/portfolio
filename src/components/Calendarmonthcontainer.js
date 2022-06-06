@@ -1,7 +1,7 @@
 import { goToClickedMonth } from "../utility/functions";
 import { createArray, getDayName, getMonthName } from "../utility/utilFunc";
 
-const Calendarmonthcontainer = ({ month, year, maxDay, today }) => {
+const Calendarmonthcontainer = ({ month, year, maxDay, today, setSelectedDate }) => {
 	const date = `${month}/01/${year}`; // to get month names for the given language
 	const locale = navigator.language;
 	const currYearDay = getDayName(date, "en-EN").slice(0, 2);
@@ -47,6 +47,7 @@ const Calendarmonthcontainer = ({ month, year, maxDay, today }) => {
 								? "text-blue-400 font-semibold scale-125"
 								: "")
 						}
+						onClick={(e) => setSelectedDate(month + "/" + e.target.textContent + "/" + year)}
 					>
 						{day}
 					</p>

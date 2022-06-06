@@ -7,6 +7,9 @@ const Calendar = () => {
 	const daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 	const today = new Date();
 	const [year, setYear] = useState(today.getFullYear());
+	const [selectedDate, setSelectedDate] = useState(
+		`${today.getMonth()}/${today.getDate()}/${today.getFullYear()}`
+	);
 	return (
 		<div
 			id="calendar"
@@ -40,10 +43,14 @@ const Calendar = () => {
 							year={year}
 							maxDay={val}
 							today={today}
+							setSelectedDate={setSelectedDate}
 						/>
 					);
 				})}
-				<Todo />
+				<Todo
+					selectedDate={selectedDate}
+					today={`${today.getMonth()}/${today.getDate()}/${today.getFullYear()}`}
+				/>
 			</div>
 		</div>
 	);

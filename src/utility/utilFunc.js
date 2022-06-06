@@ -1,4 +1,5 @@
 export function getDate(dateStr, locale) {
+	if (isNaN(Date.parse(dateStr))) return;
 	let date = new Date(dateStr);
 	return date.toLocaleDateString([locale, "en-EN"], {
 		weekday: "long",
