@@ -5,9 +5,8 @@ import Todo from "../Todo/Todo";
 
 const Calendar = () => {
 	const daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-	const [currYear, setCurrYear] = useState(new Date().getFullYear());
-	const [selectedMonth, setSelectedMonth] = useState("");
-	const [selectedDay, setSelectedDay] = useState("");
+	const today = new Date();
+	const [year, setYear] = useState(today.getFullYear());
 	return (
 		<div
 			id="calendar"
@@ -15,25 +14,20 @@ const Calendar = () => {
 		>
 			<input
 				className="text-center font-semibold text-slate-200 w-full appearance-none focus:outline-none rounded-t-md bg-green-600 bg-opacity-50 cursor-default"
-				value={currYear}
-				placeholder={currYear}
+				value={year}
+				placeholder={year}
 				onChange={(e) => {
-					setCurrYear(e.target.value);
+					setYear(e.target.value);
 				}}
 				onBlur={(e) => {
-					setCurrYear(e.target.value);
+					setYear(e.target.value);
 				}}
 				onClick={resetCalendarLayoutClickedInput}
 			/>
 			<div className=" grid grid-cols-3 grid-rows-4 gap-2 p-2 ">
 				{daysInMonth.map((val, ind) => {
 					return (
-						<Calendarmonthcontainer
-							key={ind * val}
-							month={ind + 1}
-							currYear={currYear}
-							maxDay={val}
-						/>
+						<Calendarmonthcontainer key={ind * val} month={ind + 1} year={year} maxDay={val} />
 					);
 				})}
 				<Todo />
