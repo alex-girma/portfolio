@@ -49,7 +49,7 @@ const Calendar = () => {
 				})}
 				<Todo
 					selectedDate={selectedDate}
-					today={`${today.getMonth()}/${today.getDate()}/${today.getFullYear()}`}
+					today={`${today.getMonth() + 1}/${today.getDate()}/${today.getFullYear()}`}
 				/>
 			</div>
 		</div>

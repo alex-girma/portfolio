@@ -44,7 +44,7 @@ const Calendarmonthcontainer = ({ month, year, maxDay, today, setSelectedDate })
 							(day === today.getDate() &&
 							month === today.getMonth() + 1 &&
 							year === today.getFullYear()
-								? "text-blue-400 font-semibold scale-125"
+								? "text-blue-400 font-extrabold "
 								: "")
 						}
 						onClick={(e) => setSelectedDate(month + "/" + e.target.textContent + "/" + year)}
