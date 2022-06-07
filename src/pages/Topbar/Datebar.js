@@ -21,8 +21,8 @@ const Datebar = () => {
 				className="hover:bg-[#19151549] flex items-end space-x-1 pl-2 pr-2 rounded-md transition duration-500"
 				onClick={handelClick}
 			>
-				<p className="">{getDate(time, locale)},</p>
-				<p className="">
+				<p>{getDate(time, locale)},</p>
+				<p>
 					{`${time.getHours()}`.padStart(2, 0)}:{`${time.getMinutes()}`.padStart(2, 0)}
 				</p>
 			</div>
