@@ -12,7 +12,7 @@ const Todo = ({ selectedDate, today }) => {
 			<p className="text-center pb-4 text-slate-200">
 				{getDate(selectedDate, "en-EN") || getDate(today, "en-EN")}
 			</p>
-			<NewToDo toDos={toDos} setToDos={setToDos} selectedDate={selectedDate} />
+			<NewToDo toDos={toDos} setToDos={setToDos} />
 			{toDos.map((todo, ind) => {
 				return (
 					<ToDoList

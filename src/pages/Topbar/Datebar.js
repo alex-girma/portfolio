@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
-import { resetCalendarLayoutClickedDatebar } from "../../utility/functions";
+import { toggleHiddenWindows, resetCalendarLayout } from "../../utility/functions";
 import { getDate } from "../../utility/utilFunc";
 
 const Datebar = () => {
 	const [time, setTime] = useState(new Date());
 	const locale = navigator.language;
 	const handelClick = () => {
-		resetCalendarLayoutClickedDatebar();
+		toggleHiddenWindows("calendar__window");
+		resetCalendarLayout();
 	};
 
 	useEffect(() => {

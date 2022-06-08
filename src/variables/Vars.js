@@ -1,1 +1,1 @@
-export const todoDates = []; // day/month/year
+export const weatherCache = []; // day/month/year

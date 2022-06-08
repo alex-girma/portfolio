@@ -1,15 +1,9 @@
-export const resetCalendarLayoutClickedDatebar = () => {
-	const ele = document.getElementById("calendar");
+export const toggleHiddenWindows = (id) => {
+	const ele = document.getElementById(id);
 	ele.classList.toggle("hidden");
-	for (let i = 0; i < 12; i++) {
-		const calendarMonth = document.getElementById(`calendar__${i + 1}`);
-		calendarMonth.classList.remove("hidden", "col-start-1", "col-end-4");
-	}
-	const todo = document.getElementById("todo");
-	todo.classList.add("hidden");
 };
 
-export const resetCalendarLayoutClickedYear = () => {
+export const resetCalendarLayout = () => {
 	for (let i = 0; i < 12; i++) {
 		const calendarMonth = document.getElementById(`calendar__${i + 1}`);
 		calendarMonth.classList.remove("hidden", "col-start-1", "col-end-4");
