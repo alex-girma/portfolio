@@ -39,7 +39,7 @@ const Weatherbar = () => {
 	if (isLoading) return <div></div>;
 	return (
 		<div
-			className="flex-1 flex items-center text-sm text-blue-300 hover:bg-[#19151549] rounded pl-2 cursor-default"
+			className=" flex items-center text-sm text-blue-300 hover:bg-[#19151549] rounded ml-2 px-2 cursor-default"
 			onClick={handleClick}
 		>
 			<div className="flex">
