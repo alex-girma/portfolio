@@ -15,7 +15,6 @@ const Weather = () => {
 			id="weather__window"
 			className="bg-cyan-500 bg-opacity-50 backdrop-blur-3xl rounded-md mt-2 w-1/3 cursor-default shadow-lg hidden"
 		>
-			{console.log(forCast)}
 			<div className="flex items-center justify-center border-b-2 mb-3">
 				<div>
 					<img
