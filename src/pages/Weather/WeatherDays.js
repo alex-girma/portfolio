@@ -4,8 +4,12 @@ const WeatherDays = ({ day, comment, maxTemp, minTemp, iconURL }) => {
 			<img src={iconURL} alt={comment} className="w-9 h-9 place-self-center" />
 			<p className="text-xs place-self-center">{day}</p>
 			<div className="flex  place-content-between text-xs">
-				<p>{maxTemp}⬆</p>
-				<p>{minTemp}⬇</p>
+				<p>
+					{maxTemp} <span className="text-blue-500">⬆</span>
+				</p>
+				<p>
+					{minTemp} <span className="text-blue-500">⬇</span>
+				</p>
 			</div>
 		</div>
 	);
