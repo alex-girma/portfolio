@@ -14,5 +14,3 @@ const WeatherDays = ({ day, comment, maxTemp, minTemp, iconURL }) => {
 		</div>
 	);
 };
-
-export default WeatherDays;
