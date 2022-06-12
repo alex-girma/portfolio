@@ -3,7 +3,7 @@ import { getDate } from "../../utility/utilFunc";
 import NewToDo from "./NewToDo";
 import ToDoList from "./ToDoList";
 
-//TODO: ability to add todos for other days and show them when date selected. highlight date that have todos
+//TODO: ability to add todos for other days and show them when date selected. highlight date that have todos. edit todos. storage
 const Todo = ({ selectedDate, today }) => {
 	const [toDos, setToDos] = useState([]);
 

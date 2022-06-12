@@ -3,26 +3,32 @@ import { toggleHiddenWindows } from "../../utility/functions";
 
 const Weatherbar = () => {
 	const [weather, setWeather] = useState({});
+	const [fetchday, setFetchDay] = useState(new Date().getDate());
 	const [isLoading, setIsLoading] = useState(true);
-	const [lat, setLat] = useState("");
-	const [lon, setLon] = useState("");
-
-	//TODO: Using slow but free weather api without api key req. not to push into github. change when server deployed
 	useEffect(() => {
+		if (fetchday < new Date().getDate()) {
+			navigator.geolocation.getCurrentPosition((position) => {
+				const lat = position.coords.latitude;
+				const long = position.coords.longitude;
+				requestWeather(lat, long);
+				setFetchDay(new Date().getDate());
+			});
+		}
 		if (localStorage.getItem("fetchedWeather")) {
 			setIsLoading(false);
 			return setWeather(JSON.parse(localStorage.getItem("fetchedWeather")));
 		}
-		requestWeather();
-		async function setPositionState(pos) {
-			setLat(pos.coords.latitude);
-			setLon(pos.coords.longitude);
-		}
-		async function requestWeather() {
+		navigator.geolocation.getCurrentPosition((position) => {
+			const lat = position.coords.latitude;
+			const long = position.coords.longitude;
+			requestWeather(lat, long);
+			setFetchDay(new Date().getDate());
+		});
+
+		async function requestWeather(lat, long) {
 			try {
-				await navigator.geolocation.getCurrentPosition(setPositionState);
-				const pos = `${lat},${lon}`;
-				const res = await fetch(`https://weatherdbi.herokuapp.com/data/weather/${pos}`);
+				const url = `https://weatherdbi.herokuapp.com/data/weather/${lat},${long}`;
+				const res = await fetch(`${url}`);
 				const json = await res.json();
 				setWeather(json);
 				setIsLoading(false);
@@ -31,7 +37,7 @@ const Weatherbar = () => {
 				console.error(error);
 			}
 		}
-	}, [lat, lon]);
+	}, [fetchday]);
 
 	const handleClick = () => {
 		toggleHiddenWindows("weather__window");
@@ -39,7 +45,7 @@ const Weatherbar = () => {
 	if (isLoading) return <div></div>;
 	return (
 		<div
-			className=" flex items-center text-sm text-blue-300 hover:bg-[#19151549] rounded ml-2 px-2 cursor-default"
+			className="flex items-center text-sm text-blue-300 hover:bg-[#19151549] rounded ml-2 px-2 cursor-default"
 			onClick={handleClick}
 		>
 			<div className="flex">

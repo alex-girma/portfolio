@@ -1,15 +1,9 @@
-import { useEffect, useState } from "react";
 import WeatherDays from "./WeatherDays";
 
 const Weather = () => {
-	const [forCast, setForCast] = useState({});
-	const [isLoading, setIsLoading] = useState(true);
+	const forCast = JSON.parse(localStorage.getItem("fetchedWeather")) || {};
 
-	useEffect(() => {
-		setIsLoading(false);
-		setForCast(JSON.parse(localStorage.getItem("fetchedWeather")));
-	}, []);
-	if (isLoading) return <div></div>;
+	if (Object.keys(forCast).length === 0) return <div id="weather__window"></div>;
 	return (
 		<div
 			id="weather__window"
@@ -32,7 +26,7 @@ const Weather = () => {
 				</div>
 			</div>
 			<div className="flex place-content-between mb-3">
-				{forCast.next_days.slice(0, 7).map((val, ind) => (
+				{forCast.next_days.slice(1, 8).map((val, ind) => (
 					<WeatherDays
 						key={val.max_temp + val.day + ind}
 						day={val.day}
