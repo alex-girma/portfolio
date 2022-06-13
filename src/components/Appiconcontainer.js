@@ -1,6 +1,9 @@
 const Appiconcontainer = ({ name, icon }) => {
 	return (
-		<div className="hover:bg-[#807f7f49] p-2 rounded-md transition duration-500 cursor-default">
+		<div
+			id={name}
+			className="hover:bg-[#807f7f49] p-2 rounded-md transition duration-500 cursor-default"
+		>
 			<img src={icon} alt={name} className="w-8 h-8" />
 		</div>
 	);
