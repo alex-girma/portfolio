@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { toggleHiddenWindows } from "../../utility/functions";
 
 const Weatherbar = () => {
-	// TODO: fetching weather twice for Weatherbar.js and Weather.js change it
+	// TODO: change fetching weather twice for Weatherbar.js and Weather.js
 	const [weather, setWeather] = useState({});
 	const [fetchday, setFetchDay] = useState(new Date().getDate());
 	const [isLoading, setIsLoading] = useState(true);
