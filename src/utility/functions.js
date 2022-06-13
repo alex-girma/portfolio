@@ -1,5 +1,6 @@
 export const toggleHiddenWindows = (id) => {
 	const ele = document.getElementById(id);
+	if (ele === null) return;
 	ele.classList.toggle("hidden");
 };
 
@@ -14,6 +15,8 @@ export const resetCalendarLayout = () => {
 
 export const goToClickedMonth = (month) => {
 	const ele = document.getElementById(`calendar__${month}`);
+	if (ele === null) return;
+
 	const len = ele.parentElement.childNodes;
 	for (let i = 0; i < len.length; i++) {
 		len[i].classList.add("hidden");
@@ -22,6 +25,8 @@ export const goToClickedMonth = (month) => {
 	ele.classList.add("col-start-1", "col-end-4");
 
 	const todo = document.getElementById("todo");
+	if (todo === null) return;
+
 	todo.classList.remove("hidden");
 	todo.classList.add("col-start-1", "col-end-4", "row-start-2", "row-end-5");
 };
