@@ -2,19 +2,10 @@ import { useEffect, useState } from "react";
 import { toggleHiddenWindows } from "../../utility/functions";
 
 const Weatherbar = () => {
-	// TODO: change fetching weather twice for Weatherbar.js and Weather.js. Maybe fetch weather from parent component and apss as props.
+	// TODO: change fetching weather twice for Weatherbar.js and Weather.js. Maybe fetch weather from parent component and apss as props. fetch weather once per day
 	const [weather, setWeather] = useState({});
-	const [fetchday, setFetchDay] = useState(new Date().getDate());
 	const [isLoading, setIsLoading] = useState(true);
 	useEffect(() => {
-		if (fetchday < new Date().getDate()) {
-			navigator.geolocation.getCurrentPosition((position) => {
-				const lat = position.coords.latitude;
-				const long = position.coords.longitude;
-				requestWeather(lat, long);
-				setFetchDay(new Date().getDate());
-			});
-		}
 		if (localStorage.getItem("fetchedWeather")) {
 			setIsLoading(false);
 			return setWeather(JSON.parse(localStorage.getItem("fetchedWeather")));
@@ -23,7 +14,6 @@ const Weatherbar = () => {
 			const lat = position.coords.latitude;
 			const long = position.coords.longitude;
 			requestWeather(lat, long);
-			setFetchDay(new Date().getDate());
 		});
 
 		async function requestWeather(lat, long) {
@@ -38,7 +28,7 @@ const Weatherbar = () => {
 				console.error(error);
 			}
 		}
-	}, [fetchday]);
+	}, []);
 
 	const handleClick = () => {
 		toggleHiddenWindows("weather__window");

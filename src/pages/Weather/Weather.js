@@ -5,17 +5,9 @@ const Weather = () => {
 	// TODO: change fetching weather twice for Weatherbar.js and Weather.js. Maybe fetch weather from parent component and apss as props.
 	//const forCast = JSON.parse(localStorage.getItem("fetchedWeather")) || {};
 	const [weather, setWeather] = useState({});
-	const [fetchday, setFetchDay] = useState(new Date().getDate());
+
 	const [isLoading, setIsLoading] = useState(true);
 	useEffect(() => {
-		if (fetchday < new Date().getDate()) {
-			navigator.geolocation.getCurrentPosition((position) => {
-				const lat = position.coords.latitude;
-				const long = position.coords.longitude;
-				requestWeather(lat, long);
-				setFetchDay(new Date().getDate());
-			});
-		}
 		if (localStorage.getItem("fetchedWeather")) {
 			setIsLoading(false);
 			return setWeather(JSON.parse(localStorage.getItem("fetchedWeather")));
@@ -24,7 +16,6 @@ const Weather = () => {
 			const lat = position.coords.latitude;
 			const long = position.coords.longitude;
 			requestWeather(lat, long);
-			setFetchDay(new Date().getDate());
 		});
 
 		async function requestWeather(lat, long) {
@@ -39,7 +30,7 @@ const Weather = () => {
 				console.error(error);
 			}
 		}
-	}, [fetchday]);
+	}, []);
 
 	if (isLoading) return <div id="weather__window"></div>;
 	return (
