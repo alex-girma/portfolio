@@ -1,7 +1,7 @@
-const Appiconcontainer = ({ name }) => {
+const Appiconcontainer = ({ name, icon }) => {
 	return (
-		<div className="hover:bg-[#72707049] p-2 rounded-md transition duration-500 cursor-default">
-			{name}
+		<div className="hover:bg-[#807f7f49] p-2 rounded-md transition duration-500 cursor-default">
+			<img src={icon} alt={name} className="w-8 h-8" />
 		</div>
 	);
 };
