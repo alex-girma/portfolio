@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import WeatherDays from "./WeatherDays";
 
 const Weather = () => {
-	// TODO: fetching weather twice for Weatherbar.js and Weather.js change it
+	// TODO: change fetching weather twice for Weatherbar.js and Weather.js. Maybe fetch weather from parent component and apss as props.
 	//const forCast = JSON.parse(localStorage.getItem("fetchedWeather")) || {};
 	const [weather, setWeather] = useState({});
 	const [fetchday, setFetchDay] = useState(new Date().getDate());
