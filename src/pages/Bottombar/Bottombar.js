@@ -16,10 +16,11 @@ import { toggleHiddenWindows } from "../../utility/functions";
 const Bottombar = () => {
 	const handleClick = (id) => {
 		toggleHiddenWindows(`${id}__window`);
+		//isAppRunning[id] = true;
 	};
 	return (
 		<div
-			className="text-gray-100 mb-4 bg-black bg-opacity-30 backdrop-blur-3xl flex-[1_1_5%] max-h-12 flex items-center self-center space-x-1 rounded-md p-2"
+			className="text-gray-100 mb-2 bg-black bg-opacity-30 backdrop-blur-3xl flex-[1_1_5%] max-h-12 flex items-center self-center space-x-1 rounded-md p-2"
 			onClick={(e) => handleClick(e.target.parentNode.id)} // get the id from child clicked element. use to open and close window
 		>
 			<Appiconcontainer name={"commandline"} icon={commandline} />

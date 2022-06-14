@@ -3,6 +3,11 @@ export const toggleHiddenWindows = (id) => {
 	if (ele === null) return;
 	ele.classList.toggle("hidden");
 };
+export const toggleCSSValue = (id, val) => {
+	const ele = document.getElementById(id);
+	if (ele === null) return;
+	val.map((val) => ele.classList.toggle(val));
+};
 
 export const resetCalendarLayout = () => {
 	for (let i = 0; i < 12; i++) {

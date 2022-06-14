@@ -1,9 +1,12 @@
 const Appiconcontainer = ({ name, icon }) => {
-	//TODO: show if app is open
+	//TODO: add an indication if app is open and running
 	// const handleClick = (e) => {
-	// 	console.log(document.getElementById(`${name}__window`).classList);
-	// 	if (document.getElementById(`${name}__window`).classList.contains("hidden"))
-	// 		e.target.parentNode.childNodes[1].classList.toggle("invisible");
+	// 	const ele = document.getElementById(`${name}__window`);
+	// 	if (ele === null || ele === undefined) return;
+	// 	if (isAppRunning[name]) {
+	// 		return e.currentTarget.childNodes[1].classList.toggle("invisible");
+	// 	}
+	// 	e.currentTarget.childNodes[1].classList.toggle("invisible");
 	// };
 	const handleClickMouseOver = (e) => {
 		const ele = e.currentTarget.childNodes[2].classList;

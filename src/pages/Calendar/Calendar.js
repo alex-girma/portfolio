@@ -15,7 +15,7 @@ const Calendar = () => {
 			id="calendar__window"
 			className=" bg-black bg-opacity-50 backdrop-blur-3xl rounded-md mt-2 w-1/3 cursor-default shadow-lg hidden"
 		>
-			{/* changed input field to div with button to remove rendering on every key stoke and improve performance */}
+			{/* changed input field to a div with button to remove rendering on every key stoke and improve performance */}
 			<div
 				className="text-center font-semibold text-white w-full appearance-none focus:outline-none rounded-t-md bg-blue-400 bg-opacity-50 cursor-default"
 				onClick={resetCalendarLayout}

@@ -108,7 +108,7 @@ const Calculator = () => {
 				></p>
 				<p
 					id="calculator__curr"
-					className="w-full col-span-full bg-orange-50 text-right pr-4 h-12 text-2xl font-semibold text-gray-600"
+					className="w-full col-span-full bg-orange-50 text-right pr-4 h-12 text-3xl font-semibold text-gray-600"
 				>
 					0
 				</p>
