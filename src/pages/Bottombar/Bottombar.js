@@ -4,7 +4,7 @@ import calendar from "../../assets/003-timetable.png";
 import clock from "../../assets/004-clock.png";
 import todo from "../../assets/005-checklist.png";
 import commandline from "../../assets/006-command.png";
-import nasa from "../../assets/007-planet.png";
+import planets from "../../assets/007-planet.png";
 import weather from "../../assets/008-cloudy.png";
 import calories from "../../assets/009-kcal.png";
 import spellit from "../../assets/010-spelling-bee.png";
@@ -20,7 +20,7 @@ const Bottombar = () => {
 	return (
 		<div
 			className="text-gray-100 mb-4 bg-black bg-opacity-30 backdrop-blur-3xl flex-[1_1_5%] max-h-12 flex items-center self-center space-x-1 rounded-md p-2"
-			onClick={(e) => handleClick(e.target.parentNode.id)}
+			onClick={(e) => handleClick(e.target.parentNode.id)} // get the id from child clicked element. use to open and close window
 		>
 			<Appiconcontainer name={"commandline"} icon={commandline} />
 			<Appiconcontainer name={"spellit"} icon={spellit} />
@@ -30,7 +30,7 @@ const Bottombar = () => {
 			<Appiconcontainer name={"calendar"} icon={calendar} />
 			<Appiconcontainer name={"clock"} icon={clock} />
 			<Appiconcontainer name={"todo"} icon={todo} />
-			<Appiconcontainer name={"nasa"} icon={nasa} />
+			<Appiconcontainer name={"planets"} icon={planets} />
 			<Appiconcontainer name={"weather"} icon={weather} />
 			<Appiconcontainer name={"calories"} icon={calories} />
 			<Appiconcontainer name={"calculator"} icon={calculator} />
