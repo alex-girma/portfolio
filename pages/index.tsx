@@ -5,7 +5,9 @@ import type { NextPageWithLayout } from './_app';
 const Home: NextPageWithLayout = () => {
   return (
     <>
-      <h1>Welcome to my Portfolio</h1>
+      <h1 className="font-normal text-xl">
+        Welcome to my <span className=" text-red-600 underline">Portfolio</span>
+      </h1>
     </>
   );
 };

@@ -1,10 +1,10 @@
 import Link from 'next/link';
 
-interface BottombarProps {}
+interface BottomBarProps {}
 
-const BottombarLayout: React.FC<BottombarProps> = () => {
+const BottomBarLayout: React.FC<BottomBarProps> = () => {
   return (
-    <nav>
+    <nav className="flex justify-center gap-x-2">
       <Link href="/calendar">Calendar</Link>
       <Link href="/weather">Weather</Link>
       <Link href="/clock">Clock</Link>
@@ -12,4 +12,4 @@ const BottombarLayout: React.FC<BottombarProps> = () => {
   );
 };
 
-export default BottombarLayout;
+export default BottomBarLayout;

@@ -1,6 +1,6 @@
 import Head from 'next/head';
-import BottombarLayout from '../bottombar/BottomBar';
-import TopbarLayout from '../topbar/TopBar';
+import BottomBarLayout from '../bottombar/BottomBar';
+import TopBarLayout from '../topbar/TopBar';
 
 interface HomeLayoutProps {
   children: React.ReactNode;
@@ -8,13 +8,14 @@ interface HomeLayoutProps {
 
 const HomeLayout: React.FC<HomeLayoutProps> = ({ children }) => {
   return (
-    <div className="flex h-screen flex-col  justify-between">
+    <div className="flex h-screen flex-col justify-between mb-52">
       <Head>
-        <title>Portfolio</title>
+        <title>Home</title>
       </Head>
-      <TopbarLayout />
-      <main className="flex justify-center">{children}</main>
-      <BottombarLayout />
+      <TopBarLayout />
+      <main className="flex justify-center mt-48">{children}</main>
+      <BottomBarLayout />
+      <div className="mb-60"></div>
     </div>
   );
 };
