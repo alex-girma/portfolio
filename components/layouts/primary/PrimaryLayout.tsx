@@ -10,7 +10,7 @@ const PrimaryLayout: React.FC<PrimaryLayoutProps> = ({ children }) => {
   return (
     <div className="flex h-screen flex-col justify-between">
       <Head>
-        <title>Layouts Example</title>
+        <title>Portfolio</title>
       </Head>
       <TopBarLayout />
       <main className="flex justify-center ">{children}</main>
