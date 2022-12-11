@@ -8,14 +8,14 @@ interface HomeLayoutProps {
 
 const HomeLayout: React.FC<HomeLayoutProps> = ({ children }) => {
   return (
-    <>
+    <div className="flex h-screen flex-col  justify-between">
       <Head>
         <title>Portfolio</title>
       </Head>
       <TopbarLayout />
-      <main>{children}</main>
+      <main className="flex justify-center">{children}</main>
       <BottombarLayout />
-    </>
+    </div>
   );
 };
 

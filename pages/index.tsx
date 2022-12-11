@@ -4,9 +4,9 @@ import type { NextPageWithLayout } from './_app';
 
 const Home: NextPageWithLayout = () => {
   return (
-    <section className="bg-gradient-to-r from-cyan-500 to-blue-500">
-      <h2>Home</h2>
-    </section>
+    <>
+      <h1>Welcome to my Portfolio</h1>
+    </>
   );
 };
 
