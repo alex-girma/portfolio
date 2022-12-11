@@ -1,6 +1,11 @@
+import { useEffect } from 'react';
 import type { NextPageWithLayout } from './_app';
 
 const Clock: NextPageWithLayout = () => {
+  // useEffect(() => {
+  //   const data = fetch(`/api/hello`);
+  //   console.log(data);
+  // }, []);
   return (
     <div id="Test">
       <h1 className="font-normal text-xl">
