@@ -1,17 +1,18 @@
 import Link from 'next/link';
+import CalendarTopBar from '../../calendar/CalendarTopBar';
 import ClockTopBar from '../../clock/ClockTopBar';
 import WeatherTopBar from '../../weather/WeatherTopBar';
 
-interface TopBarProps {}
-
-const TopBarLayout: React.FC<TopBarProps> = () => {
+const TopBarLayout: React.FC = () => {
   return (
-    <nav className="flex justify-center gap-x-12 text-xs border-b-2 ">
-      <Link href="/calendar">Calendar</Link>
-      <Link href="/weather">
+    <nav className="flex justify-center text-xs ">
+      <Link href="/calendar" className="bg-orange-500 px-6 py-1">
+        <CalendarTopBar />
+      </Link>
+      <Link href="/weather" className="bg-orange-500 px-10 py-1">
         <WeatherTopBar />
       </Link>
-      <Link href="/clock">
+      <Link href="/clock" className="bg-orange-500 px-6 py-1">
         <ClockTopBar />
       </Link>
     </nav>

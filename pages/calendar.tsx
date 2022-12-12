@@ -1,13 +1,13 @@
 import type { NextPageWithLayout } from './_app';
 
-const Weather: NextPageWithLayout = () => {
+const Calendar: NextPageWithLayout = () => {
   return (
     <div id="Test">
       <h1 className="font-normal text-xl">
-        Welcome to my <span className=" text-red-600 underline">Weather</span>
+        Welcome to my <span className=" text-red-600 underline">Calendar</span>
       </h1>
     </div>
   );
 };
 
-export default Weather;
+export default Calendar;

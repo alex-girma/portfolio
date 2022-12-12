@@ -1,18 +1,18 @@
 import { useEffect, useState } from 'react';
 
-const ClockTopBar: React.FC = () => {
-  const [time, setTime] = useState('');
+const CalendarTopBar: React.FC = () => {
+  const [date, setDate] = useState('');
 
   useEffect(() => {
     const locale = navigator.language ?? 'en-US';
     const timer = setTimeout(
-      () => setTime(new Date().toLocaleTimeString(locale, { hour12: false })),
+      () => setDate(new Date().toLocaleDateString(locale)),
       1000
     );
     return () => clearTimeout(timer);
   });
 
-  return <div>{time}</div>;
+  return <div>{date}</div>;
 };
 
-export default ClockTopBar;
+export default CalendarTopBar;

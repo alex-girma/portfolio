@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import type { NextPageWithLayout } from './_app';
 
 const Clock: NextPageWithLayout = () => {
