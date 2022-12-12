@@ -1,19 +1,43 @@
 import { useEffect, useState } from 'react';
+import {
+  getDaysInMonth,
+  getMonthNames,
+  getWeekdayNames,
+} from '../utility/functions';
+import CalendarMonth from './CalendarMonth';
 
 const CalendarApp: React.FC = () => {
-  const [monthNames, setMonthNames] = useState([]);
+  const [monthNames, setMonthNames] = useState<string[]>([]);
+  const [weekdayNames, setWeekdayNames] = useState<string[]>([]);
+  const [daysInMonth, setDaysInMonth] = useState<number[]>([]);
+  const [year, setYear] = useState<number>(2022);
 
   useEffect(() => {
     const locale = navigator.language ?? 'en-US';
-    // get name of each month depending on the language of the user
-    const months: any = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((month) =>
-      new Intl.DateTimeFormat(locale, { month: 'long' }).format(
-        new Date(2022, month, 1)
-      )
-    );
-    setMonthNames(months);
+
+    setMonthNames(getMonthNames(locale));
+
+    setWeekdayNames(getWeekdayNames(locale));
+
+    setDaysInMonth(getDaysInMonth(locale));
   }, []);
-  return <div>{monthNames[0]}</div>;
+
+  return (
+    <div className="grid grid-cols-6 grid-rows-3 gap-3 text-xs uppercase">
+      {monthNames.map((monthName, index) => {
+        return (
+          <CalendarMonth
+            key={monthName + index}
+            monthName={monthName}
+            index={index}
+            weekdays={weekdayNames}
+            daysInMonth={daysInMonth[index]}
+            year={year} /* prop for corresponding month */
+          />
+        );
+      })}
+    </div>
+  );
 };
 
 export default CalendarApp;
