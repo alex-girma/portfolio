@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react';
 
-const CalendarTopBar: React.FC = () => {
+const CalendarAppTopBar: React.FC = () => {
   const [date, setDate] = useState('');
 
   useEffect(() => {
     const locale = navigator.language ?? 'en-US';
-    const timer = setTimeout(
-      () => setDate(new Date().toLocaleDateString(locale)),
-      1000
+    const timer = setTimeout(() =>
+      setDate(new Date().toLocaleDateString(locale))
     );
     return () => clearTimeout(timer);
   });
@@ -15,4 +14,4 @@ const CalendarTopBar: React.FC = () => {
   return <div>{date}</div>;
 };
 
-export default CalendarTopBar;
+export default CalendarAppTopBar;

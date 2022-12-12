@@ -13,7 +13,7 @@ const PrimaryLayout: React.FC<PrimaryLayoutProps> = ({ children }) => {
         <title>Portfolio</title>
       </Head>
       <TopBarLayout />
-      <main className="flex justify-center ">{children}</main>
+      <main className="flex justify-center">{children}</main>
       <BottomBarLayout />
     </div>
   );

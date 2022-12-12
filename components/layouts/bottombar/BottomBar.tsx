@@ -1,6 +1,6 @@
 // import Link from 'next/link';
 
-import AppIconCreator from '../../utility/AppIconCreator';
+import AppIconCreator from './AppIconCreator';
 
 const BottomBarLayout: React.FC = () => {
   const apps = [

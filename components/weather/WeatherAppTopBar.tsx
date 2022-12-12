@@ -12,7 +12,7 @@ interface WeatherProps {
   };
 }
 
-const WeatherTopBar: React.FC = () => {
+const WeatherAppTopBar: React.FC = () => {
   const [weather, setWeather] = useState<WeatherProps>({});
 
   useEffect(() => {
@@ -51,4 +51,4 @@ const WeatherTopBar: React.FC = () => {
   );
 };
 
-export default WeatherTopBar;
+export default WeatherAppTopBar;

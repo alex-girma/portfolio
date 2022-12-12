@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import CalendarTopBar from '../../calendar/CalendarTopBar';
-import ClockTopBar from '../../clock/ClockTopBar';
-import WeatherTopBar from '../../weather/WeatherTopBar';
+import CalendarAppTopBar from '../../calendar/CalendarAppTopBar';
+import ClockAppTopBar from '../../clock/ClockAppTopBar';
+import WeatherAppTopBar from '../../weather/WeatherAppTopBar';
 
 const TopBarLayout: React.FC = () => {
   return (
@@ -11,13 +11,13 @@ const TopBarLayout: React.FC = () => {
         aria-label="Calendar"
         className="link rounded-bl-md"
       >
-        <CalendarTopBar />
+        <CalendarAppTopBar />
       </Link>
       <Link href="/weather" aria-label="Weather" className="link">
-        <WeatherTopBar />
+        <WeatherAppTopBar />
       </Link>
       <Link href="/clock" aria-label="Clock" className="link rounded-br-md">
-        <ClockTopBar />
+        <ClockAppTopBar />
       </Link>
     </nav>
   );
