@@ -19,3 +19,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Tailwind */
+
+@layer components {
+  .link {
+    @apply bg-orange-500 px-6 py-1 hover:bg-red-500 duration-150;
+  }
+}
+@layer components {
+  .appcreatorlink {
+    @apply px-3 grow-0 shrink-0  border-x-2 text-white bg-orange-500 hover:bg-red-500 duration-150 rounded-md;
+  }
+}

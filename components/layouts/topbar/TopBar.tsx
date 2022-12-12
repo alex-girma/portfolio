@@ -9,22 +9,14 @@ const TopBarLayout: React.FC = () => {
       <Link
         href="/calendar"
         aria-label="Calendar"
-        className="bg-orange-500 px-6 py-1 hover:bg-red-500 duration-150 rounded-bl-md"
+        className="link rounded-bl-md"
       >
         <CalendarTopBar />
       </Link>
-      <Link
-        href="/weather"
-        aria-label="Weather"
-        className="bg-orange-500 px-10 py-1 hover:bg-red-500 duration-150"
-      >
+      <Link href="/weather" aria-label="Weather" className="link">
         <WeatherTopBar />
       </Link>
-      <Link
-        href="/clock"
-        aria-label="Clock"
-        className="bg-orange-500 px-6 py-1 hover:bg-red-500 duration-150 rounded-br-md"
-      >
+      <Link href="/clock" aria-label="Clock" className="link rounded-br-md">
         <ClockTopBar />
       </Link>
     </nav>

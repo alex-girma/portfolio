@@ -11,10 +11,7 @@ const AppIconCreator: React.FC<AppIconCreatorProps> = ({ name, route }) => {
   const secondHalf = name.substring(name.length / 2);
 
   return (
-    <Link
-      href={route}
-      className="px-3 grow-0 shrink-0 basis-1/24 border-x-2 text-white bg-orange-500 hover:bg-red-500 duration-150 rounded-md"
-    >
+    <Link href={route} className="appcreatorlink">
       <p className="border-b-2 border-white">{firstHalf}</p>
       <p className="border-t-0 border-white">{secondHalf}</p>
     </Link>
