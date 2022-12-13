@@ -1,5 +1,6 @@
-import { Dispatch, SetStateAction, useState } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import TodoApp from '../todo/TodoApp';
+import TodoList from '../todo/TodoList';
 import { createMonthArray, toIntlDateFormat } from '../utility/functions';
 import CalendarWeekContainer from './CalendarWeekContainer';
 
@@ -41,7 +42,7 @@ const CalendarMonthContainer: React.FC<CalendarMonthContainerProps> = ({
     const date = new Date(year, month - 1, day).toISOString();
     setTodoDate(toIntlDateFormat(locale, date));
   };
-
+  console.log('before');
   return (
     <div
       className={
@@ -86,7 +87,7 @@ const CalendarMonthContainer: React.FC<CalendarMonthContainerProps> = ({
                 '' +
                 (index === 0 && day === today ? 'text-red-600 font-bold' : '')
               }
-              onClick={(e) => handleClickDay(e)}
+              onClick={handleClickDay}
             >
               {day}
             </button>
@@ -95,12 +96,12 @@ const CalendarMonthContainer: React.FC<CalendarMonthContainerProps> = ({
       </div>
       {index === 0 ? (
         <div className="pt-4">
-          <TodoApp />
+          <TodoApp todoList={todoList} setTodoList={setTodoList} />
           <div className="pb-2 flex justify-center underline ">
             <p>{todoDate}</p>
           </div>
           {todoList.map((todo) => {
-            return <div key={todo}> {todo} </div>;
+            return <TodoList key={todo} todo={todo} />;
           })}
         </div>
       ) : (
