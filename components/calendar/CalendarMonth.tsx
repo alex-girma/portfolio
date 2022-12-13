@@ -34,9 +34,19 @@ const CalendarMonth: React.FC<CalendarMonthProps> = ({
     >
       {index === 0 ? (
         <div className="flex justify-center pb-20 gap-2 text-xl">
-          <button onClick={() => handleClick(-1)}>-</button>
+          <button
+            className=" px-4 text-xs h-7 hover:bg-gray-100"
+            onClick={() => handleClick(-1)}
+          >
+            -
+          </button>
           <p>{year}</p>
-          <button onClick={() => handleClick(+1)}>+</button>
+          <button
+            className=" px-4 text-xs h-7 hover:bg-gray-100"
+            onClick={() => handleClick(+1)}
+          >
+            +
+          </button>
         </div>
       ) : (
         ''

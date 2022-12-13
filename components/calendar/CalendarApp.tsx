@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import AppWindowWrapper from '../utility/AppWindowWrapper';
 import {
   getDaysInMonth,
   getMonthNames,
@@ -24,22 +25,24 @@ const CalendarApp: React.FC = () => {
   }, [locale]);
 
   return (
-    <div className="grid grid-cols-6 grid-rows-3 gap-2 text-xxs uppercase">
-      {monthNames.map((monthName, index) => {
-        return (
-          <CalendarMonth
-            key={monthName + index}
-            monthName={monthName}
-            index={index}
-            weekdays={weekdayNames}
-            daysInMonth={daysInMonth[index]}
-            year={year} /* prop for corresponding month */
-            setYear={setYear}
-            locale={locale}
-          />
-        );
-      })}
-    </div>
+    <AppWindowWrapper>
+      <div className="grid grid-cols-6 grid-rows-3 gap-2 text-xxs uppercase">
+        {monthNames.map((monthName, index) => {
+          return (
+            <CalendarMonth
+              key={monthName + index}
+              monthName={monthName}
+              index={index}
+              weekdays={weekdayNames}
+              daysInMonth={daysInMonth[index]}
+              year={year} /* prop for corresponding month */
+              setYear={setYear}
+              locale={locale}
+            />
+          );
+        })}
+      </div>
+    </AppWindowWrapper>
   );
 };
 
