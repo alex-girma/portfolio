@@ -6,6 +6,7 @@ interface CalendarMonthProps {
   weekdays: string[];
   daysInMonth: number;
   year: number;
+  locale: string;
 }
 
 const CalendarMonth: React.FC<CalendarMonthProps> = ({
@@ -14,13 +15,14 @@ const CalendarMonth: React.FC<CalendarMonthProps> = ({
   weekdays,
   daysInMonth,
   year,
+  locale,
 }) => {
-  const daysPerMonthArray = createMonthArray(daysInMonth, monthName, year);
+  const daysPerMonthArray = createMonthArray(daysInMonth, index, year, locale);
 
   return (
     <div
       className={
-        'px-6 pt-24 border-2 border-orange-100 ' +
+        'px-4 pt-20 border-2 border-orange-100 ' +
         (index === 0 ? ' col-span-2 row-span-3 bg-stone-200' : '')
       }
     >
@@ -28,18 +30,18 @@ const CalendarMonth: React.FC<CalendarMonthProps> = ({
         {monthName}
       </div>
       <div className="flex gap-1 justify-around text-xxxs">
-        {weekdays.map((day) => {
+        {weekdays.map((day, index) => {
           return (
             <div
               key={day}
-              className={'' + (day === 'Sun' ? 'text-orange-700' : '')}
+              className={'' + (index === 0 ? 'text-orange-700' : '')}
             >
               {day}
             </div>
           );
         })}
       </div>
-      <div className="grid grid-cols-7 grid-rows-6 place-items-center">
+      <div className="grid grid-cols-7 grid-rows-6 place-items-center text-xxxs">
         {daysPerMonthArray.map((day, index) => {
           return <div key={monthName + day + index}>{day}</div>;
         })}

@@ -33,7 +33,8 @@ export const getWeekdayNames = (locale: string) => {
   return weekdayNames;
 };
 
-export const getDaysInMonth = (locale: string) => {
+// how many days in a given month
+export const getDaysInMonth = () => {
   const currMonth = new Date().getMonth() + 1;
   const currYear = new Date().getFullYear();
   // get name of each month depending on user language
@@ -57,15 +58,17 @@ export const getDaysInMonth = (locale: string) => {
 
 export const createMonthArray = (
   days: number,
-  monthName: string,
-  year: number
+  index: number,
+  year: number,
+  locale: string
 ) => {
-  const weekdayNames = getWeekdayNames('en-US');
-  const month = getMonthNumberFromName(monthName);
-  const date = new Date(year, month, 1);
-  const weekday = date.toLocaleDateString('en-US', {
+  const weekdayNames = getWeekdayNames(locale);
+
+  if (index === 0) index = 12;
+  const date = new Date(year, index - 1, 1).toISOString();
+  const weekday = new Intl.DateTimeFormat(locale, {
     weekday: 'short',
-  });
+  }).format(new Date(date)); // random day which starts with sunday. 1.10.2022
 
   const test = weekdayNames.indexOf(weekday);
 
@@ -80,5 +83,9 @@ export const createMonthArray = (
 };
 
 const getMonthNumberFromName = (monthName: string) => {
-  return new Date(`${monthName} 1, 2022`).getMonth();
+  const t = new Date(`${monthName} 1, 2022 01:00:00`);
+  console.log('test: ', t.toLocaleString('en-US'));
+  const test = t.getMonth();
+  console.log(monthName, t, test);
+  return test;
 };
