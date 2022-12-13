@@ -34,6 +34,7 @@ const CalendarApp: React.FC = () => {
             weekdays={weekdayNames}
             daysInMonth={daysInMonth[index]}
             year={year} /* prop for corresponding month */
+            setYear={setYear}
             locale={locale}
           />
         );
