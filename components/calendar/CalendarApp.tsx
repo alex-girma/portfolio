@@ -6,7 +6,7 @@ import {
   getWeekdayNames,
   toIntlDateFormat,
 } from '../utility/functions';
-import CalendarMonth from './CalendarMonth';
+import CalendarMonthContainer from './CalendarMonthContainer';
 
 const CalendarApp: React.FC = () => {
   const [monthNames, setMonthNames] = useState<string[]>([]);
@@ -33,7 +33,7 @@ const CalendarApp: React.FC = () => {
       <div className="grid grid-cols-6 grid-rows-3 gap-2 text-xxs uppercase cursor-default">
         {monthNames.map((monthName, index) => {
           return (
-            <CalendarMonth
+            <CalendarMonthContainer
               key={monthName + index}
               monthName={monthName}
               index={index}

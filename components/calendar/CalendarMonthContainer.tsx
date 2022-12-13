@@ -1,8 +1,9 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import TodoApp from '../todo/TodoApp';
 import { createMonthArray, toIntlDateFormat } from '../utility/functions';
+import CalendarWeekContainer from './CalendarWeekContainer';
 
-interface CalendarMonthProps {
+interface CalendarMonthContainerProps {
   monthName: string;
   index: number;
   weekdays: string[];
@@ -14,7 +15,7 @@ interface CalendarMonthProps {
   setTodoDate: Dispatch<SetStateAction<string>>;
 }
 
-const CalendarMonth: React.FC<CalendarMonthProps> = ({
+const CalendarMonthContainer: React.FC<CalendarMonthContainerProps> = ({
   monthName,
   index,
   weekdays,
@@ -71,15 +72,8 @@ const CalendarMonth: React.FC<CalendarMonthProps> = ({
         {monthName}
       </div>
       <div className="flex gap-1 justify-around text-xxxs">
-        {weekdays.map((day, index) => {
-          return (
-            <div
-              key={day}
-              className={'' + (index === 0 ? 'text-orange-700' : '')}
-            >
-              {day}
-            </div>
-          );
+        {weekdays.map((day, ind) => {
+          return <CalendarWeekContainer day={day} ind={ind} key={day} />;
         })}
       </div>
       <div className="grid grid-cols-7 grid-rows-6 place-items-center text-xxs">
@@ -116,4 +110,4 @@ const CalendarMonth: React.FC<CalendarMonthProps> = ({
   );
 };
 
-export default CalendarMonth;
+export default CalendarMonthContainer;
