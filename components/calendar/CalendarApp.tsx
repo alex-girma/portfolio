@@ -23,7 +23,7 @@ const CalendarApp: React.FC = () => {
   }, []);
 
   return (
-    <div className="grid grid-cols-6 grid-rows-3 gap-3 text-xs uppercase">
+    <div className="grid grid-cols-6 grid-rows-3 gap-2 text-xxs uppercase">
       {monthNames.map((monthName, index) => {
         return (
           <CalendarMonth

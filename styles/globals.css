@@ -32,3 +32,7 @@ code {
     @apply px-3 grow-0 shrink-0  border-x-2 text-white bg-orange-500 hover:bg-red-500 duration-150 rounded-md;
   }
 }
+
+.halfbg {
+  background: linear-gradient(0deg, rgb(255 237 213) 50%, rgb(135, 75, 56) 50%);
+}
