@@ -63,29 +63,22 @@ export const createMonthArray = (
   locale: string
 ) => {
   const weekdayNames = getWeekdayNames(locale);
-
-  if (index === 0) index = 12;
-  const date = new Date(year, index - 1, 1).toISOString();
+  // set current month to its correct index
+  if (index === 0) index = new Date().getMonth() + 1;
+  // converting to ISO for international purpose
+  const date = new Date(year, index - 1, 1).toISOString(); // random day which starts with sunday. 1.10.2022
   const weekday = new Intl.DateTimeFormat(locale, {
     weekday: 'short',
-  }).format(new Date(date)); // random day which starts with sunday. 1.10.2022
+  }).format(new Date(date));
 
-  const test = weekdayNames.indexOf(weekday);
+  const filler = weekdayNames.indexOf(weekday);
 
   const arr = [];
-  for (let i = 0; i < test; i++) {
+  for (let i = 0; i < filler; i++) {
     arr.push('\u00a0');
   }
   for (let i = 0; i < days; i++) {
     arr.push(i + 1);
   }
   return arr;
-};
-
-const getMonthNumberFromName = (monthName: string) => {
-  const t = new Date(`${monthName} 1, 2022 01:00:00`);
-  console.log('test: ', t.toLocaleString('en-US'));
-  const test = t.getMonth();
-  console.log(monthName, t, test);
-  return test;
 };
