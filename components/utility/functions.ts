@@ -66,7 +66,7 @@ export const createMonthArray = (
   // set current month to its correct index
   if (index === 0) index = new Date().getMonth() + 1;
   // converting to ISO for international purpose
-  const date = new Date(year, index - 1, 1).toISOString(); // random day which starts with sunday. 1.10.2022
+  const date = new Date(year, index - 1, 1).toISOString(); // random day which starts with sunday.
   const weekday = new Intl.DateTimeFormat(locale, {
     weekday: 'short',
   }).format(new Date(date));
@@ -81,4 +81,13 @@ export const createMonthArray = (
     arr.push(i + 1);
   }
   return arr;
+};
+
+export const toIntlDateFormat = (locale: string, date: any) => {
+  const intlDate = new Intl.DateTimeFormat(locale, {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  }).format(new Date(date));
+  return intlDate;
 };

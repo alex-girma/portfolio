@@ -13,6 +13,10 @@ const BottomBarLayout: React.FC = () => {
       route: '/calendar',
     },
     {
+      name: 'Todo',
+      route: '/calendar',
+    },
+    {
       name: 'Weather',
       route: '/weather',
     },

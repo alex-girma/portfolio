@@ -4,6 +4,7 @@ import {
   getDaysInMonth,
   getMonthNames,
   getWeekdayNames,
+  toIntlDateFormat,
 } from '../utility/functions';
 import CalendarMonth from './CalendarMonth';
 
@@ -11,8 +12,11 @@ const CalendarApp: React.FC = () => {
   const [monthNames, setMonthNames] = useState<string[]>([]);
   const [weekdayNames, setWeekdayNames] = useState<string[]>([]);
   const [daysInMonth, setDaysInMonth] = useState<number[]>([]);
-  const [year, setYear] = useState<number>(2022);
+  const [year, setYear] = useState<number>(new Date().getFullYear());
   const [locale, setLocale] = useState<string>('en-US');
+  const [todoDate, setTodoDate] = useState(
+    toIntlDateFormat(locale, new Date())
+  ); // todo date to display
 
   useEffect(() => {
     setLocale(navigator.language);
@@ -26,7 +30,7 @@ const CalendarApp: React.FC = () => {
 
   return (
     <AppWindowWrapper>
-      <div className="grid grid-cols-6 grid-rows-3 gap-2 text-xxs uppercase">
+      <div className="grid grid-cols-6 grid-rows-3 gap-2 text-xxs uppercase cursor-default">
         {monthNames.map((monthName, index) => {
           return (
             <CalendarMonth
@@ -38,6 +42,8 @@ const CalendarApp: React.FC = () => {
               year={year} /* prop for corresponding month */
               setYear={setYear}
               locale={locale}
+              todoDate={todoDate}
+              setTodoDate={setTodoDate}
             />
           );
         })}
