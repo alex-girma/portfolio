@@ -1,11 +1,10 @@
+import WeatherApp from '../components/weather/WeatherApp';
 import type { NextPageWithLayout } from './_app';
 
 const Weather: NextPageWithLayout = () => {
   return (
-    <div id="Test">
-      <h1 className="font-normal text-xl">
-        Welcome to my <span className=" text-red-600 underline">Weather</span>
-      </h1>
+    <div>
+      <WeatherApp />
     </div>
   );
 };

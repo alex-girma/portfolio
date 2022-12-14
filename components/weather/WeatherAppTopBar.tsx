@@ -1,19 +1,8 @@
 import { useEffect, useState } from 'react';
-
-interface WeatherProps {
-  name?: string;
-  main?: {
-    temp: number;
-  };
-  weather?: {
-    0: {
-      main: string;
-    };
-  };
-}
+import { WeatherAppProps } from './WeatherApp';
 
 const WeatherAppTopBar: React.FC = () => {
-  const [weather, setWeather] = useState<WeatherProps>({});
+  const [weather, setWeather] = useState<WeatherAppProps>({});
 
   useEffect(() => {
     if (sessionStorage.getItem('fetchedWeather')) {
@@ -44,8 +33,8 @@ const WeatherAppTopBar: React.FC = () => {
   }, []);
   return (
     <div className="flex gap-x-4">
-      <p>{weather.weather?.[0].main}</p>
-      <p>{weather.main?.temp}&#176;</p>
+      <p>{weather.weather?.[0].description}</p>
+      <p>{Math.round(weather.main?.temp)}&#176;</p>
       <p>{weather.name}</p>
     </div>
   );

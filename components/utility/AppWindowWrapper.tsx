@@ -21,7 +21,7 @@ const AppWindowWrapper: React.FC<AppWindowWrapperProps> = ({ children }) => {
           </Link>
         </div>
       </div>
-      <div className="border-2 p-1 border-red-800">{children}</div>
+      <div className="shadow rounded">{children}</div>
     </div>
   );
 };
