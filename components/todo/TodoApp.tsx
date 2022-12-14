@@ -1,22 +1,33 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { useState } from 'react';
 
 interface TodoAppProps {
+  allTodoList: any;
   todoList: string[];
-  setTodoList: Dispatch<SetStateAction<string[]>>;
+  todoListStatus: boolean[];
+  setAllTodoList: any;
 }
 
-const TodoApp: React.FC<TodoAppProps> = ({ todoList, setTodoList }) => {
+const TodoApp: React.FC<TodoAppProps> = ({
+  todoList,
+  todoListStatus,
+  allTodoList,
+  setAllTodoList,
+}) => {
   const [inputValue, setInputValue] = useState('');
 
   const handleSubmit = (e: React.FormEvent): void => {
     e.preventDefault();
-    setTodoList([...todoList, inputValue]);
+    const newTodoList = [...todoList, inputValue];
+    const newAllTodoList = { ...allTodoList };
+    const newTodoListStatus = [...todoListStatus, false];
+    newAllTodoList['15.12.2022'].todos = newTodoList;
+    newAllTodoList['15.12.2022'].status = newTodoListStatus;
+    setAllTodoList(newAllTodoList);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setInputValue(e.target.value);
   };
-  console.log(todoList);
 
   return (
     <form className="flex pb-2" onSubmit={handleSubmit}>

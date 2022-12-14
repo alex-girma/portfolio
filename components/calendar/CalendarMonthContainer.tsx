@@ -29,7 +29,16 @@ const CalendarMonthContainer: React.FC<CalendarMonthContainerProps> = ({
 }) => {
   const daysPerMonthArray = createMonthArray(daysInMonth, index, year, locale);
   const today = new Date().getDate();
-  const [todoList, setTodoList] = useState(['Milk', 'Egg', 'Bread']);
+  const [allTodoList, setAllTodoList] = useState({
+    '15.12.2022': {
+      todos: ['potato', 'chocolate', 'water'],
+      status: [true, false, true],
+    },
+    '29.12.2022': {
+      todos: ['Milk', 'Egg', 'Bread'],
+      status: [true, false, true],
+    },
+  });
 
   const handleClick = (val: number) => {
     setYear(year + val);
@@ -42,7 +51,6 @@ const CalendarMonthContainer: React.FC<CalendarMonthContainerProps> = ({
     const date = new Date(year, month - 1, day).toISOString();
     setTodoDate(toIntlDateFormat(locale, date));
   };
-  console.log('before');
   return (
     <div
       className={
@@ -96,12 +104,26 @@ const CalendarMonthContainer: React.FC<CalendarMonthContainerProps> = ({
       </div>
       {index === 0 ? (
         <div className="pt-4">
-          <TodoApp todoList={todoList} setTodoList={setTodoList} />
+          <TodoApp
+            allTodoList={allTodoList}
+            todoList={allTodoList['15.12.2022'].todos}
+            todoListStatus={allTodoList['15.12.2022'].status}
+            setAllTodoList={setAllTodoList}
+          />
           <div className="pb-2 flex justify-center underline ">
             <p>{todoDate}</p>
           </div>
-          {todoList.map((todo) => {
-            return <TodoList key={todo} todo={todo} />;
+
+          {allTodoList['15.12.2022'].todos.map((todo, ind) => {
+            return (
+              <TodoList
+                key={todo}
+                todo={todo}
+                ind={ind}
+                allTodoList={allTodoList}
+                setAllTodoList={setAllTodoList}
+              />
+            );
           })}
         </div>
       ) : (
