@@ -16,9 +16,9 @@ const WeatherAppTopBar: React.FC = () => {
   const [weather, setWeather] = useState<WeatherProps>({});
 
   useEffect(() => {
-    if (localStorage.getItem('fetchedWeather')) {
+    if (sessionStorage.getItem('fetchedWeather')) {
       return setWeather(
-        JSON.parse(localStorage.getItem('fetchedWeather') || '')
+        JSON.parse(sessionStorage.getItem('fetchedWeather') || '')
       );
     }
     navigator.geolocation.getCurrentPosition(
@@ -36,7 +36,7 @@ const WeatherAppTopBar: React.FC = () => {
         const data = await fetch(`/api/weather_api?lat=${lat}&lon=${lon}`);
         const json = await data.json();
         setWeather(json);
-        localStorage.setItem('fetchedWeather', JSON.stringify(json));
+        sessionStorage.setItem('fetchedWeather', JSON.stringify(json));
       } catch (error) {
         console.error(error);
       }
