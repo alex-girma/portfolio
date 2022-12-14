@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import TodoApp from '../todo/TodoApp';
 import TodoList from '../todo/TodoList';
 import { createMonthArray, toIntlDateFormat } from '../utility/functions';
@@ -28,29 +28,49 @@ const CalendarMonthContainer: React.FC<CalendarMonthContainerProps> = ({
   setTodoDate,
 }) => {
   const daysPerMonthArray = createMonthArray(daysInMonth, index, year, locale);
+  const currYear = new Date().getFullYear();
   const today = new Date().getDate();
-  const [allTodoList, setAllTodoList] = useState({
-    '15.12.2022': {
-      todos: ['potato', 'chocolate', 'water'],
-      status: [true, false, true],
-    },
-    '29.12.2022': {
-      todos: ['Milk', 'Egg', 'Bread'],
-      status: [true, false, true],
-    },
-  });
+  const [allTodoList, setAllTodoList] = useState(
+    //@ts-ignore
+    JSON.parse(localStorage.getItem('allTodoList')) || {}
+  );
 
   const handleClick = (val: number) => {
     setYear(year + val);
   };
 
   const handleClickDay = (e: any): void => {
-    let month = Number(e.target.value);
+    let month = Number(index);
     if (month === 0) month = new Date().getMonth() + 1;
     const day = Number(e.target.textContent);
     const date = new Date(year, month - 1, day).toISOString();
     setTodoDate(toIntlDateFormat(locale, date));
   };
+  useEffect(() => {
+    const temp = { ...allTodoList };
+    if (!(todoDate in allTodoList)) {
+      temp[todoDate] = {
+        todos: [],
+        status: [],
+      };
+    }
+    setAllTodoList(temp);
+    localStorage.setItem('allTodoList', JSON.stringify(temp));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [todoDate]);
+
+  const highlightTodoDays = (day: string | number) => {
+    let month = Number(index);
+    if (month === 0) month = new Date().getMonth() + 1;
+    const days = Number(day);
+    const date = new Date(year, month - 1, days).toISOString();
+    const test = toIntlDateFormat(locale, date);
+
+    if (test in allTodoList && allTodoList[test].todos.length)
+      return ' underline text-orange-600 ';
+    return;
+  };
+
   return (
     <div
       className={
@@ -90,10 +110,12 @@ const CalendarMonthContainer: React.FC<CalendarMonthContainerProps> = ({
           return (
             <button
               key={monthName + day + ind}
-              value={index}
               className={
                 '' +
-                (index === 0 && day === today ? 'text-red-600 font-bold' : '')
+                (index === 0 && day === today && currYear === year
+                  ? 'text-red-600 font-bold'
+                  : '') +
+                highlightTodoDays(day)
               }
               onClick={handleClickDay}
             >
@@ -106,25 +128,34 @@ const CalendarMonthContainer: React.FC<CalendarMonthContainerProps> = ({
         <div className="pt-4">
           <TodoApp
             allTodoList={allTodoList}
-            todoList={allTodoList['15.12.2022'].todos}
-            todoListStatus={allTodoList['15.12.2022'].status}
+            todoList={allTodoList[todoDate] ? allTodoList[todoDate].todos : []}
+            todoListStatus={
+              allTodoList[todoDate] ? allTodoList[todoDate].status : []
+            }
             setAllTodoList={setAllTodoList}
+            todoDate={todoDate}
           />
           <div className="pb-2 flex justify-center underline ">
             <p>{todoDate}</p>
           </div>
-
-          {allTodoList['15.12.2022'].todos.map((todo, ind) => {
-            return (
-              <TodoList
-                key={todo}
-                todo={todo}
-                ind={ind}
-                allTodoList={allTodoList}
-                setAllTodoList={setAllTodoList}
-              />
-            );
-          })}
+          {allTodoList[todoDate] ? (
+            <div>
+              {allTodoList[todoDate].todos.map((todo: string, ind: number) => {
+                return (
+                  <TodoList
+                    key={todo}
+                    todo={todo}
+                    ind={ind}
+                    allTodoList={allTodoList}
+                    setAllTodoList={setAllTodoList}
+                    todoDate={todoDate}
+                  />
+                );
+              })}
+            </div>
+          ) : (
+            <></>
+          )}
         </div>
       ) : (
         ''

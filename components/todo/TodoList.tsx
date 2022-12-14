@@ -3,6 +3,7 @@ interface TodoListProps {
   todo: string;
   ind: number;
   setAllTodoList: any;
+  todoDate: string;
 }
 
 const TodoList: React.FC<TodoListProps> = ({
@@ -10,23 +11,26 @@ const TodoList: React.FC<TodoListProps> = ({
   allTodoList,
   ind,
   setAllTodoList,
+  todoDate,
 }) => {
   const handleClickDone = (): void => {
     const newAllTodoList = { ...allTodoList };
-    newAllTodoList['15.12.2022'].status[ind] =
-      !allTodoList['15.12.2022'].status[ind];
+
+    newAllTodoList[todoDate].status[ind] = !allTodoList[todoDate].status[ind];
     setAllTodoList(newAllTodoList);
+    localStorage.setItem('allTodoList', JSON.stringify(newAllTodoList));
   };
   const handleClickRemove = (): void => {
     console.log(ind);
     const newAllTodoList = { ...allTodoList };
-    newAllTodoList['15.12.2022'].todos = newAllTodoList[
-      '15.12.2022'
-    ].todos.filter((todo: string, index: number) => index !== ind);
-    newAllTodoList['15.12.2022'].status = newAllTodoList[
-      '15.12.2022'
-    ].status.filter((status: boolean, index: number) => index !== ind);
+    newAllTodoList[todoDate].todos = newAllTodoList[todoDate].todos.filter(
+      (todo: string, index: number) => index !== ind
+    );
+    newAllTodoList[todoDate].status = newAllTodoList[todoDate].status.filter(
+      (status: boolean, index: number) => index !== ind
+    );
     setAllTodoList(newAllTodoList);
+    localStorage.setItem('allTodoList', JSON.stringify(newAllTodoList));
   };
 
   return (
@@ -34,7 +38,7 @@ const TodoList: React.FC<TodoListProps> = ({
       <div
         className={
           'w-full flex items-center my-2 ml-1 mr-2 text-inherit ' +
-          (allTodoList['15.12.2022'].status[ind] ? 'line-through' : '')
+          (allTodoList[todoDate].status[ind] ? 'line-through' : '')
         }
       >
         {todo}

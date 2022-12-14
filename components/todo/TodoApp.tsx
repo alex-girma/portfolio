@@ -5,6 +5,7 @@ interface TodoAppProps {
   todoList: string[];
   todoListStatus: boolean[];
   setAllTodoList: any;
+  todoDate: string;
 }
 
 const TodoApp: React.FC<TodoAppProps> = ({
@@ -12,6 +13,7 @@ const TodoApp: React.FC<TodoAppProps> = ({
   todoListStatus,
   allTodoList,
   setAllTodoList,
+  todoDate,
 }) => {
   const [inputValue, setInputValue] = useState('');
 
@@ -20,10 +22,15 @@ const TodoApp: React.FC<TodoAppProps> = ({
     const newTodoList = [...todoList, inputValue];
     const newAllTodoList = { ...allTodoList };
     const newTodoListStatus = [...todoListStatus, false];
-    newAllTodoList['15.12.2022'].todos = newTodoList;
-    newAllTodoList['15.12.2022'].status = newTodoListStatus;
+
+    newAllTodoList[todoDate].todos = newTodoList;
+
+    newAllTodoList[todoDate].status = newTodoListStatus;
     setAllTodoList(newAllTodoList);
+    setInputValue('');
   };
+
+  localStorage.setItem('allTodoList', JSON.stringify(allTodoList));
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setInputValue(e.target.value);

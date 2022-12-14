@@ -88,6 +88,8 @@ export const toIntlDateFormat = (locale: string, date: any) => {
     year: 'numeric',
     month: 'short',
     day: 'numeric',
-  }).format(new Date(date));
+  })
+    .format(new Date(date))
+    .toLocaleUpperCase();
   return intlDate;
 };
