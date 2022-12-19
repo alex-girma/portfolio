@@ -37,13 +37,13 @@ const WeatherApp: React.FC = () => {
         <div className="text-xs">{toIntlDateFormat(locale, new Date())}</div>
         <div className="flex items-end pt-10 pb-4 ">
           <div className="text-2xl font-bold ">
-            {Math.round(weather.main?.temp_min)}&#176;
+            {Math.round(weather.main?.temp_min)}
           </div>
-          <div className="text-5xl px-2 font-bold">
-            {Math.round(weather.main?.temp)}&#176;
+          <div className="text-5xl mx-6 font-bold">
+            {Math.round(weather.main?.temp)}
           </div>
           <div className="text-2xl font-bold">
-            {Math.round(weather.main?.temp_max)}&#176;
+            {Math.round(weather.main?.temp_max)}
           </div>
         </div>
       </div>

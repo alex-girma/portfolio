@@ -21,6 +21,10 @@ const BottomBarLayout: React.FC = () => {
       route: '/weather',
     },
     {
+      name: 'Calculator',
+      route: '/calculator',
+    },
+    {
       name: 'Clock',
       route: '/clock',
     },
