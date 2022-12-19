@@ -15,7 +15,6 @@ const AppWindowWrapper: React.FC<AppWindowWrapperProps> = ({ children }) => {
           <Link href={'/'}>
             <button className="px-4 text-xs h-7 hover:bg-gray-100">⚊</button>
           </Link>
-          <button className="px-4 text-xs h-7 hover:bg-gray-100">☐</button>
           <Link href={'/'}>
             <button className="px-4 text-xs h-7 hover:bg-red-600">✕</button>
           </Link>

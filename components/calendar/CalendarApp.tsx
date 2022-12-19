@@ -30,7 +30,7 @@ const CalendarApp: React.FC = () => {
 
   return (
     <AppWindowWrapper>
-      <div className="grid grid-cols-6 grid-rows-3 gap-2 text-xxs uppercase cursor-default">
+      <div className="grid grid-cols-6 grid-rows-3 gap-2 text-xxs uppercase cursor-default monthdiv">
         {monthNames.map((monthName, index) => {
           return (
             <CalendarMonthContainer

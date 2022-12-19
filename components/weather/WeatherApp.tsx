@@ -30,7 +30,7 @@ const WeatherApp: React.FC = () => {
   return (
     <AppWindowWrapper>
       <div className="flex flex-col items-center text-gray-600">
-        <div className="py-32 px-28 bg-neutral-200">
+        <div className="py-32 px-20 bg-neutral-200">
           {weather.weather?.[0].description}
         </div>
         <div className="py-1 font-bold">{weather.name}</div>

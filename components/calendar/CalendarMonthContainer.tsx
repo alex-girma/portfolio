@@ -74,8 +74,10 @@ const CalendarMonthContainer: React.FC<CalendarMonthContainerProps> = ({
   return (
     <div
       className={
-        'px-4 pt-16 border-2 border-orange-100 ' +
-        (index === 0 ? ' col-span-2 row-span-3 bg-stone-200' : '')
+        'px-4 pt-16 border-2 border-orange-100 hidden md:block' +
+        (index === 0
+          ? ' col-span-6 row-span-3 bg-stone-200 xs:block md:col-span-2 md:row-span-3 '
+          : '')
       }
     >
       {index === 0 ? (
