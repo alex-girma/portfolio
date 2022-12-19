@@ -1,4 +1,4 @@
-import CalculatorApp from '../components/caldulator/CalculatorApp';
+import CalculatorApp from '../components/calculator/CalculatorApp';
 import type { NextPageWithLayout } from './_app';
 
 const Calculator: NextPageWithLayout = () => {
