@@ -30,7 +30,7 @@ const BottomBarLayout: React.FC = () => {
     },
   ];
   return (
-    <footer className="flex justify-center text-xs pb-1">
+    <footer className="flex w-screen justify-center text-xs flex-wrap">
       {apps.map((app) => {
         return (
           <AppIconCreator name={app.name} route={app.route} key={app.name} />
