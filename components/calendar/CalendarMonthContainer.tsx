@@ -80,6 +80,7 @@ const CalendarMonthContainer: React.FC<CalendarMonthContainerProps> = ({
           ? ' col-span-6 row-span-3 bg-stone-200 xs:block md:col-span-2 md:row-span-3 '
           : '')
       }
+      onClick={handleClickDay}
     >
       {index === 0 ? (
         <div className="flex justify-center pb-12 gap-2 text-xl">
@@ -120,7 +121,6 @@ const CalendarMonthContainer: React.FC<CalendarMonthContainerProps> = ({
                   : '') +
                 highlightTodoDays(day)
               }
-              onClick={handleClickDay}
             >
               {day}
             </button>
