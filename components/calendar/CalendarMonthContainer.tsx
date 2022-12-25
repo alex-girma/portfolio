@@ -120,6 +120,7 @@ const CalendarMonthContainer: React.FC<CalendarMonthContainerProps> = ({
                   : '') +
                 highlightTodoDays(day)
               }
+              onClick={handleClickDay}
             >
               {day}
             </button>
