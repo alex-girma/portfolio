@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { WeatherAppProps } from './WeatherApp';
 
-const WeatherAppTopBar: React.FC = () => {
-  const [weather, setWeather] = useState<WeatherAppProps>({});
+const WeatherAppTopBar = () => {
+  const [weather, setWeather] = useState<WeatherAppProps>();
 
   useEffect(() => {
     // save to session storage to avoid fetching weather on refresh etc..
@@ -18,7 +18,7 @@ const WeatherAppTopBar: React.FC = () => {
         const lon = position.coords.longitude;
         requestWeather(lat, lon);
       },
-      // if osition declined set germany
+      // if position declined set germany
       function () {
         requestWeather(50, 8);
       }
@@ -36,9 +36,9 @@ const WeatherAppTopBar: React.FC = () => {
   }, []);
   return (
     <div className="flex gap-x-4">
-      <p>{weather.weather?.[0].description}</p>
-      <p>{String(Math.round(weather.main?.temp || 0))}&#176;</p>
-      <p>{weather.name}</p>
+      <p>{weather?.weather[0].description}</p>
+      <p>{String(Math.round(weather?.main.temp || 0))}&#176;</p>
+      <p>{weather?.name}</p>
     </div>
   );
 };

@@ -16,7 +16,44 @@ const CalculatorButtons: React.FC<Props> = ({
   curr,
 }) => {
   const handleClick = () => {
-    setCurr(digit);
+    // Guardes
+    if (digit === '±' && !curr.includes('-')) return setCurr('-' + curr);
+    if (digit === '±' && curr.includes('-')) return setCurr(curr.slice(1));
+    if (digit === 'c') return [setCurr('0'), setPrev('')];
+    if (digit === 'ce') return setCurr('0');
+    if (digit === 'del') return setCurr(curr.slice(0, -1));
+    // remove leading 0 when not decimal point
+    if (curr === '0' && digit !== '.') return setCurr('' + digit);
+    if (curr === '-0' && digit !== '.') return setCurr('-' + digit);
+    // allow only one .
+    if (curr.includes('.') && digit === '.') return setCurr(curr);
+    // Calculator
+    const calculate = (first: number, second: number, operation: string) => {
+      if (operation === '=') return first;
+      if (operation === '+') return first + second;
+      if (operation === '-') return first - second;
+      if (operation === 'x') return first * second;
+      if (operation === '÷') return first / second;
+    };
+    if (
+      digit === '+' ||
+      digit === '-' ||
+      digit === 'x' ||
+      digit === '÷' ||
+      digit === '='
+    ) {
+      setPrev(curr + digit);
+      setCurr('0');
+      if (prev === '') return;
+      const result = calculate(
+        Number(prev.slice(0, -1)),
+        Number(curr),
+        prev.slice(-1)
+      );
+      return setPrev(String(result) + digit);
+    }
+
+    if (digit !== '±') setCurr(curr + digit);
   };
   return (
     <button

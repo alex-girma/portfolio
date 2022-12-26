@@ -38,10 +38,10 @@ const CalculatorApp: React.FC = () => {
             {curr}
           </p>
           <div className="grid grid-cols-4 grid-rows-5 gap-1 mb-2">
-            {digits.map((digit, ind) => {
+            {digits.map((digit) => {
               return (
                 <CalculatorButtons
-                  key={ind}
+                  key={digit}
                   digit={digit}
                   setPrev={setPrev}
                   setCurr={setCurr}
