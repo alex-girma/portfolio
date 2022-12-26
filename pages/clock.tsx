@@ -1,13 +1,8 @@
+import ClockApp from '../components/clock/ClockApp';
 import type { NextPageWithLayout } from './_app';
 
 const Clock: NextPageWithLayout = () => {
-  return (
-    <div>
-      <h1 className="font-normal text-xl">
-        Welcome to my <span className=" text-red-600 underline">Clock</span>
-      </h1>
-    </div>
-  );
+  return <ClockApp />;
 };
 
 export default Clock;

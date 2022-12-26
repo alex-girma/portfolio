@@ -21,7 +21,6 @@ const TodoList: React.FC<TodoListProps> = ({
     localStorage.setItem('allTodoList', JSON.stringify(newAllTodoList));
   };
   const handleClickRemove = (): void => {
-    console.log(ind);
     const newAllTodoList = { ...allTodoList };
     newAllTodoList[todoDate].todos = newAllTodoList[todoDate].todos.filter(
       (todo: string, index: number) => index !== ind

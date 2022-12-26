@@ -19,6 +19,12 @@ module.exports = {
         xxxs: '0.55rem',
         xxs: '0.7rem',
       },
+      rotate: {
+        30: '300deg',
+        60: '330deg',
+        120: '30deg',
+        160: '60deg',
+      },
     },
   },
   plugins: [],

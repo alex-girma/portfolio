@@ -146,7 +146,7 @@ const CalendarMonthContainer: React.FC<CalendarMonthContainerProps> = ({
               {allTodoList[todoDate].todos.map((todo: string, ind: number) => {
                 return (
                   <TodoList
-                    key={todo}
+                    key={todo + ind}
                     todo={todo}
                     ind={ind}
                     allTodoList={allTodoList}
