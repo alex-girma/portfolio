@@ -10,7 +10,7 @@ const ClockAppTopBar: React.FC = () => {
       1000
     );
     return () => clearTimeout(timer);
-  });
+  }, [time]);
 
   return <div>{time}</div>;
 };

@@ -7,12 +7,22 @@ interface PrimaryLayoutProps {
 }
 
 const PrimaryLayout: React.FC<PrimaryLayoutProps> = ({ children }) => {
+  // this code solves a problem where the viewport of mobile devices is not really 100%. we need to check for window because no window ssr
+  // this will be executed on the client
   if (typeof window !== 'undefined') {
     let vh = window.innerHeight * 0.01;
+    // we create a root css property and use it to calculate the viewport od the device. used in css class mobile-h-screen
     document.documentElement.style.setProperty('--vh', `${vh}px`);
   }
+  // update viewport on resize. Not good because it triggers a repaint of the page. refactor if possible
+  if (typeof window !== 'undefined') {
+    window.addEventListener('resize', () => {
+      let vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    });
+  }
   return (
-    <div className="flex mob-h-screen flex-col justify-between">
+    <div className="flex mobile-h-screen flex-col justify-between">
       <Head>
         <title>Portfolio</title>
       </Head>

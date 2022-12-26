@@ -5,17 +5,20 @@ const WeatherAppTopBar: React.FC = () => {
   const [weather, setWeather] = useState<WeatherAppProps>({});
 
   useEffect(() => {
+    // save to session storage to avoid fetching weather on refresh etc..
     if (sessionStorage.getItem('fetchedWeather')) {
       return setWeather(
         JSON.parse(sessionStorage.getItem('fetchedWeather') || '')
       );
     }
     navigator.geolocation.getCurrentPosition(
+      // position allowed
       (position) => {
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
         requestWeather(lat, lon);
       },
+      // if osition declined set germany
       function () {
         requestWeather(50, 8);
       }
@@ -34,7 +37,7 @@ const WeatherAppTopBar: React.FC = () => {
   return (
     <div className="flex gap-x-4">
       <p>{weather.weather?.[0].description}</p>
-      <p>{Math.round(weather.main?.temp)}&#176;</p>
+      <p>{String(Math.round(weather.main?.temp || 0))}&#176;</p>
       <p>{weather.name}</p>
     </div>
   );

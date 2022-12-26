@@ -25,8 +25,7 @@ const WeatherApp: React.FC = () => {
     setWeather(JSON.parse(sessionStorage.getItem('fetchedWeather') || ''));
     setLocale(navigator.language);
   }, []);
-  console.log(weather);
-  if (!weather) return <div>Refresh Page please</div>;
+  if (!weather) return <div>Refresh the Page please</div>;
   return (
     <AppWindowWrapper>
       <div className="flex flex-col items-center text-gray-600">
@@ -37,13 +36,13 @@ const WeatherApp: React.FC = () => {
         <div className="text-xs">{toIntlDateFormat(locale, new Date())}</div>
         <div className="flex items-end pt-10 pb-4 ">
           <div className="text-2xl font-bold ">
-            {Math.round(weather.main?.temp_min)}
+            {String(Math.round(weather.main?.temp_min || 0))}
           </div>
           <div className="text-5xl mx-6 font-bold">
-            {Math.round(weather.main?.temp)}
+            {String(Math.round(weather.main?.temp || 0))}
           </div>
           <div className="text-2xl font-bold">
-            {Math.round(weather.main?.temp_max)}
+            {String(Math.round(weather.main?.temp_max || 0))}
           </div>
         </div>
       </div>
