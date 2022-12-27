@@ -15,6 +15,7 @@ const CalculatorButtons: React.FC<Props> = ({
   prev,
   curr,
 }) => {
+  const operator = ['+', '-', 'x', '÷', '='];
   const handleClick = () => {
     // Guardes
     if (digit === '±' && !curr.includes('-')) return setCurr('-' + curr);
@@ -22,11 +23,6 @@ const CalculatorButtons: React.FC<Props> = ({
     if (digit === 'c') return [setCurr('0'), setPrev('')];
     if (digit === 'ce') return setCurr('0');
     if (digit === 'del') return setCurr(curr.slice(0, -1));
-    // remove leading 0 when not decimal point
-    if (curr === '0' && digit !== '.') return setCurr('' + digit);
-    if (curr === '-0' && digit !== '.') return setCurr('-' + digit);
-    // allow only one .
-    if (curr.includes('.') && digit === '.') return setCurr(curr);
     // Calculator
     const calculate = (first: number, second: number, operation: string) => {
       if (operation === '=') return first;
@@ -35,13 +31,7 @@ const CalculatorButtons: React.FC<Props> = ({
       if (operation === 'x') return first * second;
       if (operation === '÷') return first / second;
     };
-    if (
-      digit === '+' ||
-      digit === '-' ||
-      digit === 'x' ||
-      digit === '÷' ||
-      digit === '='
-    ) {
+    if (operator.includes(digit)) {
       setPrev(curr + digit);
       setCurr('0');
       if (prev === '') return;
@@ -52,6 +42,11 @@ const CalculatorButtons: React.FC<Props> = ({
       );
       return setPrev(String(result) + digit);
     }
+    // remove leading 0 when not decimal point
+    if (curr === '0' && digit !== '.') return setCurr('' + digit);
+    if (curr === '-0' && digit !== '.') return setCurr('-' + digit);
+    // allow only one .
+    if (curr.includes('.') && digit === '.') return setCurr(curr);
 
     if (digit !== '±') setCurr(curr + digit);
   };
