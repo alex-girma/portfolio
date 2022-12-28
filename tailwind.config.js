@@ -26,6 +26,12 @@ module.exports = {
         120: '30deg',
         160: '60deg',
       },
+      width: {
+        62: '15.5rem',
+      },
+      height: {
+        62: '15.5rem',
+      },
     },
   },
   plugins: [],

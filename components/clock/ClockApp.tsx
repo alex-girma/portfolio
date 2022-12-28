@@ -26,7 +26,7 @@ const ClockApp = () => {
     <AppWindowWrapper>
       <div className="flex flex-col items-center gap-6 p-5">
         <div className="flex justify-center items-center bg-slate-300 w-64 h-64 rounded-full shadow-clock">
-          <div className="relative bg-slate-50 w-h-62 rounded-full">
+          <div className="relative bg-slate-50 w-62 h-62  rounded-full">
             <div className="absolute right-8 top-1/2 -translate-y-1/2 text-xxxs font-bold origin-left border-2 border-slate-300 p-0.5 shadow-inner">
               {toIntlDateFormat(locale, new Date())}
             </div>

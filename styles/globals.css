@@ -26,61 +26,36 @@ code {
   .link {
     @apply bg-orange-500 px-6 py-1 hover:bg-red-500 duration-150;
   }
-}
-@layer components {
   .appcreatorlink {
     @apply px-3 grow-0 shrink-0  border-x-2 text-white bg-orange-500 hover:bg-red-500 duration-150 rounded-md;
   }
-}
-@layer components {
   .absolute-l-t {
     @apply absolute left-1/2 top-1/2;
   }
-}
-
-@layer components {
   .translate-center {
     @apply -translate-x-1/2 -translate-y-1/2;
   }
-}
-@layer components {
   .position-hours {
     @apply -translate-x-1/2 -translate-y-1/2 font-bold text-gray-500 z-10;
   }
-}
-@layer components {
   .marks-3-6-9-12-container {
     @apply w-62 h-1 bg-transparent absolute-l-t -translate-x-1/2 -translate-y-1/2 rounded-full flex justify-between;
   }
-}
-@layer components {
   .marks-container {
     @apply w-62 h-0.5 bg-transparent absolute-l-t translate-center rounded-full flex justify-between;
   }
-}
-@layer components {
   .marks-3-6-9-12 {
     @apply w-3 h-full bg-slate-500 rounded-full shadow;
   }
-}
-@layer components {
   .marks {
     @apply w-2 h-full bg-slate-500;
   }
-}
-.w-h-62 {
-  width: 15.5rem;
-  height: 15.5rem;
 }
 
 .mobile-h-screen {
   /* equivalent to 100dvh in major browsers */
   height: 100vh; /* Fallback for browsers that do not support Custom Properties */
   height: calc(var(--vh, 1vh) * 100);
-}
-
-.w-62 {
-  width: 15.5rem;
 }
 
 /* Shadow */
