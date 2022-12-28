@@ -32,9 +32,6 @@ code {
   .absolute-l-t {
     @apply absolute left-1/2 top-1/2;
   }
-  .translate-center {
-    @apply -translate-x-1/2 -translate-y-1/2;
-  }
   .position-hours {
     @apply -translate-x-1/2 -translate-y-1/2 font-bold text-gray-500 z-10;
   }
@@ -42,7 +39,7 @@ code {
     @apply w-62 h-1 bg-transparent absolute-l-t -translate-x-1/2 -translate-y-1/2 rounded-full flex justify-between;
   }
   .marks-container {
-    @apply w-62 h-0.5 bg-transparent absolute-l-t translate-center rounded-full flex justify-between;
+    @apply w-62 h-0.5 bg-transparent absolute-l-t -translate-x-1/2 -translate-y-1/2 rounded-full flex justify-between;
   }
   .marks-3-6-9-12 {
     @apply w-3 h-full bg-slate-500 rounded-full shadow;
