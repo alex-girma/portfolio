@@ -4,56 +4,75 @@ import { toIntlDateFormat } from '../utility/functions';
 
 const ClockApp = () => {
   const [locale, setLocale] = useState<string>('en-US');
-
+  const [secondDeg, setSecondDeg] = useState(0);
+  const [minuteDeg, setMinuteDeg] = useState(0);
+  const [hourDeg, setHourDeg] = useState(0);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const now = new Date();
+      setSecondDeg((now.getSeconds() + 1) * 6);
+      setMinuteDeg(now.getMinutes() * 6);
+      setHourDeg(
+        now.getHours() * 30 +
+          ((30 / 60) * now.getMinutes() + (30 / 60 / 60) * now.getSeconds())
+      );
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [secondDeg]);
   useEffect(() => {
     setLocale(navigator.language);
   }, []);
   return (
     <AppWindowWrapper>
       <div className="flex flex-col items-center gap-6 p-5">
-        <div className="bg-slate-300 w-64 h-64 rounded-full flex justify-center items-center shadow2">
-          <div className="bg-slate-50 w-h-62 rounded-full relative">
+        <div className="flex justify-center items-center bg-slate-300 w-64 h-64 rounded-full shadow-clock">
+          <div className="relative bg-slate-50 w-h-62 rounded-full">
             <div className="absolute right-8 top-1/2 -translate-y-1/2 text-xxxs font-bold origin-left border-2 border-slate-300 p-0.5 shadow-inner">
               {toIntlDateFormat(locale, new Date())}
             </div>
-            <div className="w-16 h-1.5 bg-orange-500 absolute left-1/2 top-1/2  -translate-y-1/2 rotate-12 origin-left rounded-full shadow-hour z-10"></div>
-            <div className="w-20 h-1.5 bg-blue-500 absolute left-1/2 top-1/2  -translate-y-1/2  rotate-45 origin-left rounded-full shadow-min z-20"></div>
-            <div className="w-28 h-1 bg-red-500 absolute left-1/2 top-1/2 -translate-x-4 -translate-y-1/2 rotate-90 sec-t-origin rounded-full shadow-sec z-30"></div>
-            <div className="w-3 h-3 bg-slate-600 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full shadow z-40"></div>
+            <div
+              style={{ transform: `rotate(${hourDeg}deg)` }}
+              className="w-1.5 h-16 bg-orange-500 position-hands shadow-hour z-20"
+            ></div>
+            <div
+              style={{ transform: `rotate(${minuteDeg}deg)` }}
+              className="w-1.5 h-20 bg-blue-500 position-hands shadow-min z-30 duration-200 ease-out"
+            ></div>
+            <div
+              style={{ transform: ` rotate(${secondDeg}deg)` }}
+              className="w-1 h-28 bg-red-500 position-hands shadow-sec z-40 duration-100 ease-out"
+            ></div>
+            <div className="w-3 h-3 bg-slate-600 absolute-l-t translate-center rounded-full shadow z-50"></div>
 
-            <div className="absolute left-1/2 top-5 -translate-x-1/2 -translate-y-1/2 font-bold text-gray-500">
-              12
-            </div>
-            <div className="absolute right-3 top-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-gray-500">
-              3
-            </div>
-            <div className="absolute left-1/2 -bottom-1 -translate-x-1/2 -translate-y-1/2 font-bold text-gray-500">
-              6
-            </div>
-            <div className="absolute left-5 top-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-gray-500">
-              9
-            </div>
+            <div className="absolute left-1/2 top-5 position-hours">12</div>
+            <div className="absolute right-3 top-1/2 position-hours">3</div>
+            <div className="absolute left-1/2 -bottom-1 position-hours">6</div>
+            <div className="absolute left-5 top-1/2 position-hours">9</div>
 
-            <div className="w-3 h-1 bg-slate-500 absolute left-1/2 top-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full shadow rotate-90"></div>
-            <div className="w-62 h-0.5 bg-transparent absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rotate-30 rounded-full flex justify-between">
-              <div className="w-2 h-full bg-slate-500"></div>
-              <div className="w-2 h-full bg-slate-500"></div>
+            <div className="marks-3-6-9-12-container ">
+              <div className="marks-3-6-9-12"></div>
+              <div className="marks-3-6-9-12"></div>
             </div>
-            <div className="w-62 h-0.5 bg-transparent absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rotate-60 rounded-full flex justify-between">
-              <div className="w-2 h-full bg-slate-500"></div>
-              <div className="w-2 h-full bg-slate-500"></div>
+            <div className="marks-3-6-9-12-container  rotate-90">
+              <div className="marks-3-6-9-12"></div>
+              <div className="marks-3-6-9-12"></div>
             </div>
-            <div className="w-3 h-1 bg-slate-500 absolute top-1/2 -right-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full shadow "></div>
-            <div className="w-62 h-0.5 bg-transparent absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rotate-120 rounded-full flex justify-between">
-              <div className="w-2 h-full bg-slate-500"></div>
-              <div className="w-2 h-full bg-slate-500"></div>
+            <div className="marks-container rotate-30">
+              <div className="marks"></div>
+              <div className="marks"></div>
             </div>
-            <div className="w-62 h-0.5 bg-transparent absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rotate-160 rounded-full flex justify-between">
-              <div className="w-2 h-full bg-slate-500"></div>
-              <div className="w-2 h-full bg-slate-500"></div>
+            <div className="marks-container rotate-60">
+              <div className="marks"></div>
+              <div className="marks"></div>
             </div>
-            <div className="w-3 h-1 bg-slate-500 absolute left-1/2 bottom-0.5 -translate-x-1/2 -translate-y-1/2 rounded-full shadow rotate-90"></div>
-            <div className="w-3 h-1 bg-slate-500 absolute top-1/2 left-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full shadow "></div>
+            <div className="marks-container rotate-120">
+              <div className="marks"></div>
+              <div className="marks"></div>
+            </div>
+            <div className="marks-container rotate-160">
+              <div className="marks"></div>
+              <div className="marks"></div>
+            </div>
           </div>
         </div>
         <div className="">Time</div>

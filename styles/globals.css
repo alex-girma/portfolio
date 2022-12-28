@@ -32,19 +32,62 @@ code {
     @apply px-3 grow-0 shrink-0  border-x-2 text-white bg-orange-500 hover:bg-red-500 duration-150 rounded-md;
   }
 }
+@layer components {
+  .absolute-l-t {
+    @apply absolute left-1/2 top-1/2;
+  }
+}
+
+@layer components {
+  .translate-center {
+    @apply -translate-x-1/2 -translate-y-1/2;
+  }
+}
+@layer components {
+  .position-hours {
+    @apply -translate-x-1/2 -translate-y-1/2 font-bold text-gray-500 z-10;
+  }
+}
+@layer components {
+  .marks-3-6-9-12-container {
+    @apply w-62 h-1 bg-transparent absolute-l-t -translate-x-1/2 -translate-y-1/2 rounded-full flex justify-between;
+  }
+}
+@layer components {
+  .marks-container {
+    @apply w-62 h-0.5 bg-transparent absolute-l-t translate-center rounded-full flex justify-between;
+  }
+}
+@layer components {
+  .marks-3-6-9-12 {
+    @apply w-3 h-full bg-slate-500 rounded-full shadow;
+  }
+}
+@layer components {
+  .marks {
+    @apply w-2 h-full bg-slate-500;
+  }
+}
 .w-h-62 {
   width: 15.5rem;
   height: 15.5rem;
 }
 
-.halfbg {
-  background: linear-gradient(0deg, rgb(255 237 213) 50%, rgb(135, 75, 56) 50%);
+.mobile-h-screen {
+  /* equivalent to 100dvh in major browsers */
+  height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+  height: calc(var(--vh, 1vh) * 100);
 }
 
+.w-62 {
+  width: 15.5rem;
+}
+
+/* Shadow */
 .shadow {
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
-.shadow2 {
+.shadow-clock {
   box-shadow: rgba(0, 0, 0, 0.19) 0px 0px 20px, rgba(0, 0, 0, 0.23) 0px 0px 6px;
 }
 .shadow-hour {
@@ -59,22 +102,12 @@ code {
   box-shadow: rgba(190, 15, 50, 0.784) 0px 10px 20px,
     rgba(215, 35, 35, 0.253) 0px 6px 6px;
 }
-.shadowAll {
-  box-shadow: -4px -4px 10px rgba(219, 217, 217, 0.5),
-    inset 4px 4px 10px rgba(219, 217, 217, 0.5),
-    inset -4px -4px 10px rgba(219, 217, 217, 0.5),
-    4px 4px 10px rgba(219, 217, 217, 0.5);
-}
 
-.mobile-h-screen {
-  /* equivalent to 100dvh in major browsers */
-  height: 100vh; /* Fallback for browsers that do not support Custom Properties */
-  height: calc(var(--vh, 1vh) * 100);
-}
-
-.sec-t-origin {
-  transform-origin: 1rem;
-}
-.w-62 {
-  width: 15.5rem;
+.position-hands {
+  position: absolute;
+  left: 122px;
+  bottom: 50%;
+  transform: translateX(50%), translateY(-100%);
+  border-radius: 9999px;
+  transform-origin: bottom;
 }

@@ -20,6 +20,7 @@ module.exports = {
         xxs: '0.7rem',
       },
       rotate: {
+        270: '270deg',
         30: '300deg',
         60: '330deg',
         120: '30deg',
