@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import AppWindowWrapper from '../utility/AppWindowWrapper';
 import { toIntlDateFormat } from '../utility/functions';
 
@@ -7,6 +7,8 @@ const ClockApp = () => {
   const [second, setSecond] = useState(0);
   const [minute, setMinute] = useState(0);
   const [hour, setHour] = useState(0);
+  const alarmRef = useRef(null);
+  const stopwatchRef = useRef(null);
   useEffect(() => {
     const timer = setTimeout(() => {
       setSecond(new Date().getSeconds());
@@ -18,10 +20,18 @@ const ClockApp = () => {
   useEffect(() => {
     setLocale(navigator.language);
   }, [locale]);
+
+  const handleClickAlarm = () => {
+    alarmRef.current.classList.toggle('hidden');
+  };
+  const handleClickStopwatch = () => {
+    stopwatchRef.current.classList.toggle('hidden');
+  };
+
   return (
     <AppWindowWrapper>
       <div className="flex flex-col items-center gap-6 p-5">
-        <div className="flex justify-center items-center bg-slate-300 w-64 h-64 rounded-full shadow-clock">
+        <div className="flex justify-center items-center bg-slate-500 w-64 h-64 rounded-full shadow-clock">
           <div className="relative bg-slate-50 w-62 h-62  rounded-full">
             <div className="absolute right-8 top-1/2 -translate-y-1/2 text-xxxs font-bold origin-left border-2 border-slate-300 p-0.5 shadow-inner">
               {toIntlDateFormat(locale, new Date())}
@@ -75,13 +85,19 @@ const ClockApp = () => {
             </div>
           </div>
         </div>
-        <div className="flex gap-2 bg-slate-400 p-2 text-white">
+        <div className="flex gap-2 bg-slate-900 py-2 px-6 text-white shadow rounded">
           <p>
             {new Date()
               .toLocaleTimeString(locale, { hour: '2-digit', hour12: true })
-              .slice(0, 2)}
+              .slice(0, 2)}{' '}
+            :
           </p>
-          <p>{new Date().toLocaleTimeString(locale, { minute: '2-digit' })}</p>
+          <p>
+            {new Date()
+              .toLocaleTimeString(locale, { minute: '2-digit' })
+              .padStart(2, '0')}{' '}
+            :{' '}
+          </p>
           <p>
             {new Date().toLocaleTimeString(locale, { hour12: false }).slice(-2)}
           </p>
@@ -90,9 +106,27 @@ const ClockApp = () => {
           </p>
         </div>
         <div className="flex justify-between w-full">
-          <div>Alarm</div>
-          <div>Time</div>
-          <div>Stopwatch</div>
+          <div>
+            <button
+              onClick={handleClickAlarm}
+              className="shadow px-4 py-1 mr-2 rounded"
+            >
+              Alarm
+            </button>
+            <input type="checkbox"></input>
+          </div>
+          <button
+            onClick={handleClickStopwatch}
+            className="shadow px-4 py-1 rounded"
+          >
+            Stopwatch
+          </button>
+        </div>
+        <div ref={alarmRef} className="hidden">
+          Alarm
+        </div>
+        <div ref={stopwatchRef} className="hidden">
+          Stopwatch
         </div>
       </div>
     </AppWindowWrapper>
