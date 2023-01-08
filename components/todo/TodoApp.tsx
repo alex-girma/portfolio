@@ -40,6 +40,7 @@ const TodoApp: React.FC<TodoAppProps> = ({
     <form className="flex pb-2" onSubmit={handleSubmit}>
       <input
         type="text"
+        placeholder="todo..."
         autoFocus
         onChange={handleChange}
         value={inputValue}

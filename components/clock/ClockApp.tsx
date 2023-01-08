@@ -96,8 +96,30 @@ const ClockApp = () => {
             {new Date().toLocaleTimeString(locale, { hour12: true }).slice(-2)}
           </p>
         </div>
-        <div className="flex justify-center w-full">
-          <p>Alarms</p>
+        <div className="flex flex-col justify-center items-center w-full">
+          <p className="py-2">Alarms</p>
+          <form>
+            <input
+              placeholder="00"
+              className="appearance-none w-12 text-center bg-slate-50 text-gray-700 caret-orange-500 text-base border-gray-200 rounded focus:outline-none focus:bg-white focus:border-gray-200"
+            ></input>
+            :
+            <input
+              placeholder="00"
+              className="appearance-none w-12 text-center bg-slate-50 text-gray-700 caret-orange-500 text-base border-gray-200 rounded focus:outline-none focus:bg-white focus:border-gray-200"
+            ></input>
+            :
+            <input
+              placeholder="00"
+              className="appearance-none w-12 text-center bg-slate-50 text-gray-700 caret-orange-500 text-base border-gray-200 rounded focus:outline-none focus:bg-white focus:border-gray-200"
+            ></input>
+            <button
+              type="submit"
+              className="bg-orange-600 hover:bg-orange-500 text-white text-sm px-3 ml-2 rounded transition duration-200"
+            >
+              Add
+            </button>
+          </form>
         </div>
       </div>
     </AppWindowWrapper>
