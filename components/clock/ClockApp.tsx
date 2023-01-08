@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import AppWindowWrapper from '../utility/AppWindowWrapper';
 import { toIntlDateFormat } from '../utility/functions';
 
@@ -7,8 +7,6 @@ const ClockApp = () => {
   const [second, setSecond] = useState(0);
   const [minute, setMinute] = useState(0);
   const [hour, setHour] = useState(0);
-  const alarmRef = useRef(null);
-  const stopwatchRef = useRef(null);
   useEffect(() => {
     const timer = setTimeout(() => {
       setSecond(new Date().getSeconds());
@@ -20,13 +18,6 @@ const ClockApp = () => {
   useEffect(() => {
     setLocale(navigator.language);
   }, [locale]);
-
-  const handleClickAlarm = () => {
-    alarmRef.current.classList.toggle('hidden');
-  };
-  const handleClickStopwatch = () => {
-    stopwatchRef.current.classList.toggle('hidden');
-  };
 
   return (
     <AppWindowWrapper>
@@ -105,28 +96,8 @@ const ClockApp = () => {
             {new Date().toLocaleTimeString(locale, { hour12: true }).slice(-2)}
           </p>
         </div>
-        <div className="flex justify-between w-full">
-          <div>
-            <button
-              onClick={handleClickAlarm}
-              className="shadow px-4 py-1 mr-2 rounded"
-            >
-              Alarm
-            </button>
-            <input type="checkbox"></input>
-          </div>
-          <button
-            onClick={handleClickStopwatch}
-            className="shadow px-4 py-1 rounded"
-          >
-            Stopwatch
-          </button>
-        </div>
-        <div ref={alarmRef} className="hidden">
-          Alarm
-        </div>
-        <div ref={stopwatchRef} className="hidden">
-          Stopwatch
+        <div className="flex justify-center w-full">
+          <p>Alarms</p>
         </div>
       </div>
     </AppWindowWrapper>

@@ -9,7 +9,7 @@ interface Props {
 }
 
 const CalculatorButtons: React.FC<Props> = ({
-  digit,
+  digit, // pressed key
   setCurr,
   setPrev,
   prev,
