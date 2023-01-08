@@ -7,6 +7,7 @@ const ClockApp = () => {
   const [second, setSecond] = useState(0);
   const [minute, setMinute] = useState(0);
   const [hour, setHour] = useState(0);
+  const [alarms, setAlarms] = useState<string[]>([]);
   useEffect(() => {
     const timer = setTimeout(() => {
       setSecond(new Date().getSeconds());
@@ -19,6 +20,39 @@ const ClockApp = () => {
     setLocale(navigator.language);
   }, [locale]);
 
+  useEffect(() => {
+    if (!alarms.length) return;
+    const alarm = alarms[alarms.length - 1].replace(/\s/g, '');
+    const h = String(new Date().getHours()).padStart(2, '0');
+    const m = String(new Date().getMinutes()).padStart(2, '0');
+    const s = String(new Date().getSeconds()).padStart(2, '0');
+    const now = `${h}:${m}:${s}`;
+    const startAlarm =
+      new Date('1970-01-01T' + alarm).getTime() -
+      new Date('1970-01-01T' + now).getTime();
+
+    const alarmTimer = setTimeout(() => {}, startAlarm);
+    return () => clearTimeout(alarmTimer);
+  }, [alarms]);
+
+  const handleSubmit = (e: React.FormEvent): void => {
+    e.preventDefault();
+    if (
+      e.currentTarget.childNodes[0].value === '' ||
+      e.currentTarget.childNodes[2].value === '' ||
+      e.currentTarget.childNodes[4].value === ''
+    )
+      return;
+    const alarm = `${e.currentTarget.childNodes[0].value.padStart(
+      2,
+      '0'
+    )} : ${e.currentTarget.childNodes[2].value.padStart(
+      2,
+      '0'
+    )} : ${e.currentTarget.childNodes[4].value.padStart(2, '0')}`;
+    const temp = [...alarms, alarm];
+    setAlarms(temp);
+  };
   return (
     <AppWindowWrapper>
       <div className="flex flex-col items-center gap-6 p-5">
@@ -98,19 +132,28 @@ const ClockApp = () => {
         </div>
         <div className="flex flex-col justify-center items-center w-full">
           <p className="py-2">Alarms</p>
-          <form>
+          <form onSubmit={handleSubmit} className="pb-2">
             <input
               placeholder="00"
+              type="number"
+              min="0"
+              max="23"
               className="appearance-none w-12 text-center bg-slate-50 text-gray-700 caret-orange-500 text-base border-gray-200 rounded focus:outline-none focus:bg-white focus:border-gray-200"
             ></input>
             :
             <input
               placeholder="00"
+              type="number"
+              min="0"
+              max="59"
               className="appearance-none w-12 text-center bg-slate-50 text-gray-700 caret-orange-500 text-base border-gray-200 rounded focus:outline-none focus:bg-white focus:border-gray-200"
             ></input>
             :
             <input
               placeholder="00"
+              type="number"
+              min="0"
+              max="59"
               className="appearance-none w-12 text-center bg-slate-50 text-gray-700 caret-orange-500 text-base border-gray-200 rounded focus:outline-none focus:bg-white focus:border-gray-200"
             ></input>
             <button
@@ -120,6 +163,13 @@ const ClockApp = () => {
               Add
             </button>
           </form>
+          {alarms.map((alarm, ind) => {
+            return (
+              <div className="pb-2" key={alarm + ind}>
+                {alarm}
+              </div>
+            );
+          })}
         </div>
       </div>
     </AppWindowWrapper>
