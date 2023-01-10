@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import AppWindowWrapper from '../utility/AppWindowWrapper';
 import { toIntlDateFormat } from '../utility/functions';
 
+//TODO: add remove button for alarms
+
 const ClockApp = () => {
   const [locale, setLocale] = useState<string>('en-US');
   const [second, setSecond] = useState(0);
