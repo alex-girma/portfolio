@@ -9,7 +9,6 @@ const ClockApp = () => {
   const [second, setSecond] = useState(0);
   const [minute, setMinute] = useState(0);
   const [hour, setHour] = useState(0);
-  const [alarms, setAlarms] = useState<string[]>([]);
   useEffect(() => {
     const timer = setTimeout(() => {
       setSecond(new Date().getSeconds());
