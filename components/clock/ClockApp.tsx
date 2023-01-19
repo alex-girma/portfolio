@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AppWindowWrapper from '../utility/AppWindowWrapper';
 import { toIntlDateFormat } from '../utility/functions';
 
@@ -46,19 +46,14 @@ const ClockApp = () => {
 
   const handleSubmit = (e: React.FormEvent): void => {
     e.preventDefault();
-    if (
-      e.currentTarget.childNodes[0].value === '' ||
-      e.currentTarget.childNodes[2].value === '' ||
-      e.currentTarget.childNodes[4].value === ''
-    )
-      return;
-    const alarm = `${e.currentTarget.childNodes[0].value.padStart(
+    const h = e.currentTarget.childNodes[0] as HTMLInputElement;
+    const m = e.currentTarget.childNodes[2] as HTMLInputElement;
+    const s = e.currentTarget.childNodes[4] as HTMLInputElement;
+    if (h.value === '' || m.value === '' || s.value === '') return;
+    const alarm = `${h.value.padStart(2, '0')} : ${m.value.padStart(
       2,
       '0'
-    )} : ${e.currentTarget.childNodes[2].value.padStart(
-      2,
-      '0'
-    )} : ${e.currentTarget.childNodes[4].value.padStart(2, '0')}`;
+    )} : ${s.value.padStart(2, '0')}`;
     const tempAlarms = [...alarms, alarm];
     const tempBoolean = [...alarmBoolean, false];
     setAlarms(tempAlarms);
