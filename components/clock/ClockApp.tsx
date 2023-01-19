@@ -10,7 +10,7 @@ const ClockApp = () => {
   const [minute, setMinute] = useState(0);
   const [hour, setHour] = useState(0);
   const [alarms, setAlarms] = useState<string[]>([]);
-  const [alarmBorder, setAlarmBorder] = useState(false);
+  const [alarmBoolean, setAlarmBoolean] = useState<boolean[]>([]);
   useEffect(() => {
     const timer = setTimeout(() => {
       setSecond(new Date().getSeconds());
@@ -25,21 +25,24 @@ const ClockApp = () => {
 
   useEffect(() => {
     if (!alarms.length) return;
-    const alarm = alarms[alarms.length - 1].replace(/\s/g, '');
-    const h = String(new Date().getHours()).padStart(2, '0');
-    const m = String(new Date().getMinutes()).padStart(2, '0');
-    const s = String(new Date().getSeconds()).padStart(2, '0');
-    const now = `${h}:${m}:${s}`;
-    const startAlarm =
-      new Date('1970-01-01T' + alarm).getTime() -
-      new Date('1970-01-01T' + now).getTime();
-    if (startAlarm <= 0) return;
-
-    const alarmTimer = setTimeout(() => {
-      setAlarmBorder(true);
-    }, startAlarm);
-    return () => clearTimeout(alarmTimer);
-  }, [alarms]);
+    alarms.forEach((element, ind) => {
+      const alarm = alarms[ind].replace(/\s/g, '');
+      const h = String(new Date().getHours()).padStart(2, '0');
+      const m = String(new Date().getMinutes()).padStart(2, '0');
+      const s = String(new Date().getSeconds()).padStart(2, '0');
+      const now = `${h}:${m}:${s}`;
+      const startAlarm =
+        new Date('1970-01-01T' + alarm).getTime() -
+        new Date('1970-01-01T' + now).getTime();
+      if (startAlarm <= 0) return;
+      const alarmTimer = setTimeout(() => {
+        const tempBoolean = [...alarmBoolean];
+        tempBoolean[ind] = true;
+        setAlarmBoolean(tempBoolean);
+      }, startAlarm);
+      return () => clearTimeout(alarmTimer);
+    });
+  }, [alarms, alarmBoolean]);
 
   const handleSubmit = (e: React.FormEvent): void => {
     e.preventDefault();
@@ -56,15 +59,19 @@ const ClockApp = () => {
       2,
       '0'
     )} : ${e.currentTarget.childNodes[4].value.padStart(2, '0')}`;
-    const temp = [...alarms, alarm];
-    setAlarms(temp);
+    const tempAlarms = [...alarms, alarm];
+    const tempBoolean = [...alarmBoolean, false];
+    setAlarms(tempAlarms);
+    setAlarmBoolean(tempBoolean);
   };
 
   const handleDel = (ind: number) => {
-    const temp = [...alarms];
-    temp.splice(ind, 1);
-    setAlarms(temp);
-    setAlarmBorder(false);
+    const tempAlarms = [...alarms];
+    tempAlarms.splice(ind, 1);
+    const tempBoolean = [...alarmBoolean];
+    tempBoolean.splice(ind, 1);
+    setAlarms(tempAlarms);
+    setAlarmBoolean(tempBoolean);
   };
   return (
     <AppWindowWrapper>
@@ -184,7 +191,7 @@ const ClockApp = () => {
               >
                 <div
                   className={`border-b-4 border-transparent ${
-                    alarmBorder ? 'border1' : ''
+                    alarmBoolean[ind] ? 'border1' : ''
                   }`}
                 >
                   {alarm}
