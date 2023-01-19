@@ -10,6 +10,7 @@ const ClockApp = () => {
   const [minute, setMinute] = useState(0);
   const [hour, setHour] = useState(0);
   const [alarms, setAlarms] = useState<string[]>([]);
+  const [alarmBorder, setAlarmBorder] = useState(false);
   useEffect(() => {
     const timer = setTimeout(() => {
       setSecond(new Date().getSeconds());
@@ -35,7 +36,7 @@ const ClockApp = () => {
     if (startAlarm <= 0) return;
 
     const alarmTimer = setTimeout(() => {
-      console.log('alarm');
+      setAlarmBorder(true);
     }, startAlarm);
     return () => clearTimeout(alarmTimer);
   }, [alarms]);
@@ -61,8 +62,9 @@ const ClockApp = () => {
 
   const handleDel = (ind: number) => {
     const temp = [...alarms];
-    temp.splice(ind);
+    temp.splice(ind, 1);
     setAlarms(temp);
+    setAlarmBorder(false);
   };
   return (
     <AppWindowWrapper>
@@ -178,13 +180,19 @@ const ClockApp = () => {
             return (
               <div
                 key={alarm + ind}
-                className="flex flex-row justify-center items-center w-full pb-2"
+                className="flex flex-row justify-center items-center w-full pb-2 "
               >
-                <div className="pr-4">{alarm}</div>
+                <div
+                  className={`border-b-4 border-transparent ${
+                    alarmBorder ? 'border1' : ''
+                  }`}
+                >
+                  {alarm}
+                </div>
                 <button
                   onClick={() => handleDel(ind)}
                   type="submit"
-                  className="bg-orange-600 hover:bg-orange-500 text-white text-sm px-3 ml-2 rounded transition duration-200"
+                  className="bg-orange-600 hover:bg-orange-500 text-white text-sm px-3 ml-7 rounded transition duration-200 "
                 >
                   Del
                 </button>

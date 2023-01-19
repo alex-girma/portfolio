@@ -91,3 +91,26 @@ code {
   border-radius: 9999px;
   transform-origin: bottom;
 }
+
+.border1 {
+  position: relative;
+}
+
+.border1:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  border-bottom: solid 4px rgb(249 115 22);
+  animation: border_anim 1s ease-out infinite;
+}
+
+@keyframes border_anim {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
