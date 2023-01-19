@@ -32,8 +32,11 @@ const ClockApp = () => {
     const startAlarm =
       new Date('1970-01-01T' + alarm).getTime() -
       new Date('1970-01-01T' + now).getTime();
+    if (startAlarm <= 0) return;
 
-    const alarmTimer = setTimeout(() => {}, startAlarm);
+    const alarmTimer = setTimeout(() => {
+      console.log('alarm');
+    }, startAlarm);
     return () => clearTimeout(alarmTimer);
   }, [alarms]);
 
@@ -53,6 +56,12 @@ const ClockApp = () => {
       '0'
     )} : ${e.currentTarget.childNodes[4].value.padStart(2, '0')}`;
     const temp = [...alarms, alarm];
+    setAlarms(temp);
+  };
+
+  const handleDel = (ind: number) => {
+    const temp = [...alarms];
+    temp.splice(ind);
     setAlarms(temp);
   };
   return (
@@ -167,8 +176,18 @@ const ClockApp = () => {
           </form>
           {alarms.map((alarm, ind) => {
             return (
-              <div className="pb-2" key={alarm + ind}>
-                {alarm}
+              <div
+                key={alarm + ind}
+                className="flex flex-row justify-center items-center w-full pb-2"
+              >
+                <div className="pr-4">{alarm}</div>
+                <button
+                  onClick={() => handleDel(ind)}
+                  type="submit"
+                  className="bg-orange-600 hover:bg-orange-500 text-white text-sm px-3 ml-2 rounded transition duration-200"
+                >
+                  Del
+                </button>
               </div>
             );
           })}
