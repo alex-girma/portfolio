@@ -113,25 +113,36 @@ const CaloriesApp = () => {
             Calculate
           </button>
         </div>
-        <div className="flex justify-between">
-          <div>
-            <p>Loss Weight</p>
+        {calories ? (
+          <div className="flex justify-between">
+            <div>
+              <p>Loss Weight</p>
+              <div className="text-center">
+                <p>{Number(calories) - 250} kcal</p>
+                <p>{Number(calories) - 500} kcal</p>
+                <p>{Number(calories) - 1000} kcal</p>
+              </div>
+            </div>
             <div className="text-center">
-              <p>{Number(calories) + 250}</p>
-              <p>{Number(calories) + 500}</p>
-              <p>{Number(calories) + 1000}</p>
+              <p>{calories} kcal</p>
+              <div className="text-center">
+                <p>250g</p>
+                <p>500g</p>
+                <p>1000g</p>
+              </div>
+            </div>
+            <div>
+              <p>Gain Weight</p>
+              <div className="text-center">
+                <p>{Number(calories) + 250} kcal</p>
+                <p>{Number(calories) + 500} kcal</p>
+                <p>{Number(calories) + 1000} kcal</p>
+              </div>
             </div>
           </div>
-          <p>{calories}</p>
-          <div>
-            <p>Gain Weight</p>
-            <div className="text-center">
-              <p>{Number(calories) + 250}</p>
-              <p>{Number(calories) + 500}</p>
-              <p>{Number(calories) + 1000}</p>
-            </div>
-          </div>
-        </div>
+        ) : (
+          ''
+        )}
       </form>
     </AppWindowWrapper>
   );
