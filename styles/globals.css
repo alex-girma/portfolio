@@ -55,6 +55,9 @@ code {
   .marks {
     @apply w-2 h-full bg-slate-500;
   }
+  .calories-input {
+    @apply appearance-none bg-slate-50 text-gray-700 caret-orange-500 text-sm border-gray-200 rounded py-1 px-3 mb-2 mr-2 focus:outline-none focus:bg-white focus:border-gray-200;
+  }
 }
 
 .mobile-h-screen {

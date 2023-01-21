@@ -28,6 +28,10 @@ const BottomBarLayout: React.FC = () => {
       name: 'Clock',
       route: '/clock',
     },
+    {
+      name: 'Calories',
+      route: '/calories',
+    },
   ];
   return (
     <footer className="flex w-screen justify-center text-xs flex-wrap">
