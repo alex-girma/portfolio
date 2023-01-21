@@ -1,35 +1,96 @@
+import { useState } from 'react';
 import AppWindowWrapper from '../utility/AppWindowWrapper';
 
 const CaloriesApp = () => {
-  const handleSubmit = () => {
-    console.log('submited');
+  const [calories, setCalories] = useState('');
+  const [gender, setGender] = useState('');
+  const [activity, setActivity] = useState('sedentary_active');
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const age = (
+      e.currentTarget.childNodes[1].childNodes[1] as HTMLInputElement
+    ).value;
+    const height = (
+      e.currentTarget.childNodes[2].childNodes[1] as HTMLInputElement
+    ).value;
+    const weight = (
+      e.currentTarget.childNodes[3].childNodes[1] as HTMLInputElement
+    ).value;
+    if (age === '' || height === '' || weight === '') return;
+    // Male
+    if (gender === 'male') {
+      const calculateCal =
+        5 + 10 * Number(weight) + 6.25 * Number(height) - 5 * Number(age);
+      if (activity === 'sedentary_active')
+        setCalories(String(Math.round(calculateCal * 1.2)));
+      if (activity === 'light_active')
+        setCalories(String(Math.round(calculateCal * 1.375)));
+      if (activity === 'moderate_active')
+        setCalories(String(Math.round(calculateCal * 1.55)));
+      if (activity === 'active_active')
+        setCalories(String(Math.round(calculateCal * 1.725)));
+      if (activity === 'very_active')
+        setCalories(String(Math.round(calculateCal * 1.9)));
+    }
+    if (gender === 'female') {
+      const calculateCal =
+        10 * Number(weight) + 6.25 * Number(height) - 5 * Number(age) - 161;
+      if (activity === 'sedentary_active')
+        setCalories(String(Math.round(calculateCal * 1.2)));
+      if (activity === 'light_active')
+        setCalories(String(Math.round(calculateCal * 1.375)));
+      if (activity === 'moderate_active')
+        setCalories(String(Math.round(calculateCal * 1.55)));
+      if (activity === 'active_active')
+        setCalories(String(Math.round(calculateCal * 1.725)));
+      if (activity === 'very_active')
+        setCalories(String(Math.round(calculateCal * 1.9)));
+    }
+  };
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setGender(e.target.value);
+  };
+  const onSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setActivity(e.target.value);
   };
   return (
     <AppWindowWrapper>
-      <form className="m-4 pt-4 text-center" onSubmit={handleSubmit}>
+      <form className="m-4 pt-4" onSubmit={handleSubmit}>
         <div>
           <label>Gender: </label>
-          <input type="radio" name="gender" id="male" value="Male" />
+          <input
+            type="radio"
+            name="gender"
+            id="male"
+            value="male"
+            onChange={onChange}
+          />
           <label htmlFor="male"> male </label>
-          <input type="radio" name="gender" id="female" value="Female" />
+          <input
+            type="radio"
+            name="gender"
+            id="female"
+            value="female"
+            onChange={onChange}
+          />
           <label htmlFor="female"> female</label>
         </div>
         <div>
           <label>Age: </label>
-          <input type="text" className="calories-input" />
+          <input type="number" className="calories-input" />
         </div>
         <div>
           <label>Height: </label>
-          <input type="text" className="calories-input" placeholder="in cm" />
+          <input type="number" className="calories-input" placeholder="in cm" />
         </div>
         <div>
           <label>Weight: </label>
-          <input type="text" className="calories-input" placeholder="in kg" />
+          <input type="number" className="calories-input" placeholder="in kg" />
         </div>
         <div>
           <label htmlFor="activities">Activity: </label>
 
-          <select name="pets" id="activities">
+          <select name="pets" id="activities" onChange={onSelectChange}>
             <option value="sedentary_active">
               Sedentary (little or no exercise)
             </option>
@@ -47,15 +108,29 @@ const CaloriesApp = () => {
             </option>
           </select>
         </div>
-        <div>
-          <button className="bg-orange-600 hover:bg-orange-500 text-white text-md px-3  py-2 my-2 rounded transition duration-200  ">
+        <div className="text-center">
+          <button className="bg-orange-600 hover:bg-orange-500 text-white text-md px-3  py-2 my-3 rounded transition duration-200  ">
             Calculate
           </button>
         </div>
         <div className="flex justify-between">
-          <p>Loss Weight</p>
-          <p>Maintain Weight</p>
-          <p>Gain Weight</p>
+          <div>
+            <p>Loss Weight</p>
+            <div className="text-center">
+              <p>{Number(calories) + 250}</p>
+              <p>{Number(calories) + 500}</p>
+              <p>{Number(calories) + 1000}</p>
+            </div>
+          </div>
+          <p>{calories}</p>
+          <div>
+            <p>Gain Weight</p>
+            <div className="text-center">
+              <p>{Number(calories) + 250}</p>
+              <p>{Number(calories) + 500}</p>
+              <p>{Number(calories) + 1000}</p>
+            </div>
+          </div>
         </div>
       </form>
     </AppWindowWrapper>
