@@ -90,7 +90,12 @@ const CaloriesApp = () => {
         <div>
           <label htmlFor="activities">Activity: </label>
 
-          <select name="pets" id="activities" onChange={onSelectChange}>
+          <select
+            name="pets"
+            id="activities"
+            onChange={onSelectChange}
+            className="calories-input"
+          >
             <option value="sedentary_active">
               Sedentary (little or no exercise)
             </option>
