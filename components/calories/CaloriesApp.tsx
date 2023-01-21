@@ -55,7 +55,7 @@ const CaloriesApp = () => {
   };
   return (
     <AppWindowWrapper>
-      <form className="m-4 pt-4" onSubmit={handleSubmit}>
+      <form className="p-4" onSubmit={handleSubmit}>
         <div>
           <label>Gender: </label>
           <input
