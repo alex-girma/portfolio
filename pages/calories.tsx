@@ -1,8 +1,8 @@
 import CaloriesApp from '../components/calories/CaloriesApp';
 import type { NextPageWithLayout } from './_app';
 
-const Clock: NextPageWithLayout = () => {
+const Calories: NextPageWithLayout = () => {
   return <CaloriesApp />;
 };
 
-export default Clock;
+export default Calories;
