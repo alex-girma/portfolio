@@ -118,7 +118,7 @@ const CaloriesApp = () => {
             Calculate
           </button>
         </div>
-        {calories ? (
+        {calories && (
           <div className="flex justify-between">
             <div>
               <p>Loss Weight</p>
@@ -145,8 +145,6 @@ const CaloriesApp = () => {
               </div>
             </div>
           </div>
-        ) : (
-          ''
         )}
       </form>
     </AppWindowWrapper>
