@@ -5,7 +5,7 @@ const WeatherAppTopBar = () => {
   const [weather, setWeather] = useState<WeatherAppProps>();
 
   useEffect(() => {
-    // save to session storage to avoid fetching weather on refresh etc..
+    // save to session storage to avoid fetching weather on refresh etc...
     if (sessionStorage.getItem('fetchedWeather')) {
       return setWeather(
         JSON.parse(sessionStorage.getItem('fetchedWeather') || '')
