@@ -12,5 +12,5 @@ This is my Portfolio using [Next.js](https://nextjs.org/)
 - Todo App: Todo list.
 - Weather App: An app that shows weather depending on clients location. Uses [Openweather](https://openweathermap.org/)
 - Calculator App
-- Clock App: A clock App with alarm setting.
-- Calories Counter App: An App to count calories for maintaining, losing and gaining weight.
+- Clock App: A clock app with alarm setting.
+- Calories Counter App: An app to count calories for maintaining, losing and gaining weight.
