@@ -1,12 +1,18 @@
 import { useEffect, useState } from 'react';
 
 const ClockAppTopBar: React.FC = () => {
-  const [time, setTime] = useState('00:00:00');
+  const [time, setTime] = useState('');
 
   useEffect(() => {
-    const locale = navigator.language ?? 'en-US';
+    const locale = navigator.language;
+    const options: Intl.DateTimeFormatOptions = {
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+    };
+    if (time === '') setTime(new Date().toLocaleTimeString(locale, options));
     const timer = setTimeout(
-      () => setTime(new Date().toLocaleTimeString(locale, { hour12: false })),
+      () => setTime(new Date().toLocaleTimeString(locale, options)),
       1000
     );
     return () => clearTimeout(timer);

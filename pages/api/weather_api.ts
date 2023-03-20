@@ -12,7 +12,7 @@ export default async function handler(
 ) {
   const query = req.query;
   const data = await fetch(
-    `https://api.openweathermap.org/data/2.5/weather?lat=${query.lat}&lon=${query.lon}&units=metric&appid=${process.env.SECRET_KEY}`
+    `https://api.openweathermap.org/data/2.5/weather?lat=${query.lat}&lon=${query.lon}&lang=${query.lang}&units=metric&appid=${process.env.SECRET_KEY}`
   );
   const json = await data.json();
   res.status(200).json(json);

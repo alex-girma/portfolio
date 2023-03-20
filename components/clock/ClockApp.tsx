@@ -3,8 +3,6 @@ import React, { useEffect, useState } from 'react';
 import AppWindowWrapper from '../utility/AppWindowWrapper';
 import { toIntlDateFormat } from '../utility/functions';
 
-//TODO: add remove button for alarms
-
 const ClockApp = () => {
   const [locale, setLocale] = useState<string>('en-US');
   const [second, setSecond] = useState(new Date().getSeconds());
@@ -12,6 +10,7 @@ const ClockApp = () => {
   const [hour, setHour] = useState(new Date().getHours());
   const [alarms, setAlarms] = useState<string[]>([]);
   const [alarmBoolean, setAlarmBoolean] = useState<boolean[]>([]);
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setSecond(new Date().getSeconds());
@@ -94,7 +93,7 @@ const ClockApp = () => {
                 className="w-1.5 h-20 bg-blue-500 position-hands shadow-min z-30 ease-out"
               ></div>
               <div
-                style={{ transform: ` rotate(${second * 6}deg)` }}
+                style={{ transform: `rotate(${second * 6}deg)` }}
                 className="w-1 h-28 bg-red-500 position-hands shadow-sec z-40 ease-out"
               ></div>
               <div className="w-3 h-3 bg-slate-600 absolute-l-t -translate-x-1/2 -translate-y-1/2 rounded-full shadow z-50"></div>
@@ -135,7 +134,7 @@ const ClockApp = () => {
           <div className="flex gap-2 bg-slate-900 py-2 px-6 text-white shadow rounded">
             <p>
               {new Date()
-                .toLocaleTimeString(locale, { hour: '2-digit', hour12: true })
+                .toLocaleTimeString(locale, { hour: '2-digit', hour12: false })
                 .slice(0, 2)}{' '}
               :
             </p>

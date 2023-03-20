@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import AppWindowWrapper from '../utility/AppWindowWrapper';
 import { toIntlDateFormat } from '../utility/functions';
 
+//TODO: add refresh weather button
 export interface WeatherAppProps {
   name: string;
   main: {
