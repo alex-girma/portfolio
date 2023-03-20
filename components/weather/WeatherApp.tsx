@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import AppWindowWrapper from '../utility/AppWindowWrapper';
 import { toIntlDateFormat } from '../utility/functions';
@@ -12,7 +13,7 @@ export interface WeatherAppProps {
   };
   weather: {
     0: {
-      main: string;
+      icon: string;
       description: string;
     };
   };
@@ -33,7 +34,13 @@ const WeatherApp = () => {
   return (
     <AppWindowWrapper>
       <div className="flex flex-col items-center text-gray-600">
-        <div className="py-32 px-20 bg-neutral-200">
+        <div className="flex flex-col items-center py-28 px-20 bg-neutral-200">
+          <Image
+            src="https://openweathermap.org/img/wn/10d@2x.png"
+            alt="weather icon"
+            width={60}
+            height={60}
+          />
           {weather.weather[0].description}
         </div>
         <div className="py-1 font-bold">{weather.name}</div>
