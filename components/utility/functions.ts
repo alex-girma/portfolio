@@ -1,7 +1,7 @@
 export const getMonthNames = (locale: string) => {
   const currMonth = new Date().getMonth();
   // get name of each month depending on user language
-  const months: string[] = [
+  const monthNames: string[] = [
     currMonth,
     0,
     1,
@@ -20,7 +20,7 @@ export const getMonthNames = (locale: string) => {
       new Date(2022, month, 1)
     )
   );
-  return months;
+  return monthNames;
 };
 
 export const getWeekdayNames = (locale: string) => {
@@ -34,27 +34,27 @@ export const getWeekdayNames = (locale: string) => {
 };
 
 // how many days in a given month
-export const getDaysInMonth = () => {
-  const currMonth = new Date().getMonth() + 1;
-  const currYear = new Date().getFullYear();
-  // get name of each month depending on user language
-  const daysInMonths: number[] = [
-    currMonth,
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-    7,
-    8,
-    9,
-    10,
-    11,
-    12,
-  ].map((month) => new Date(currYear, month, 0).getDate());
-  return daysInMonths;
-};
+// export const getDaysInMonth = () => {
+//   const currMonth = new Date().getMonth() + 1;
+//   const currYear = new Date().getFullYear();
+//   // get name of each month depending on user language
+//   const daysInMonth: number[] = [
+//     currMonth,
+//     1,
+//     2,
+//     3,
+//     4,
+//     5,
+//     6,
+//     7,
+//     8,
+//     9,
+//     10,
+//     11,
+//     12,
+//   ].map((month) => new Date(currYear, month, 0).getDate());
+//   return daysInMonth;
+// };
 
 export const createMonthArray = (
   days: number,
@@ -83,6 +83,37 @@ export const createMonthArray = (
   return arr;
 };
 
+export const createDaysInMonthArray = (
+  locale: string,
+  index: number,
+  year: number
+) => {
+  // array to return
+  const daysInMonthArray: string[] = [];
+  // set current month to its correct index
+  if (index === 0) index = new Date().getMonth() + 1;
+  // get how many days the given month(index) has
+  const daysInMonth = getDays(year, index);
+
+  // converting to ISO for international purpose
+  const date = new Date(year, index - 1, 1).toISOString();
+  const weekday = new Intl.DateTimeFormat(locale, {
+    weekday: 'short',
+  }).format(new Date(date));
+  const weekdayNames = getWeekdayNames(locale);
+  // to fill the array with '' untill 1 weekday of the month
+  const filler = weekdayNames.indexOf(weekday);
+
+  for (let i = 0; i < filler; i++) {
+    daysInMonthArray.push('');
+  }
+
+  for (let i = 0; i < daysInMonth; i++) {
+    daysInMonthArray.push(String(i + 1));
+  }
+  return daysInMonthArray;
+};
+
 export const toIntlDateFormat = (locale: string, date: Date) => {
   const intlDate = new Intl.DateTimeFormat(locale, {
     year: 'numeric',
@@ -99,4 +130,8 @@ export const toIntlTimeFormat = (locale: string, time: Date) => {
     second: '2-digit',
   }).format(time);
   return intlDate;
+};
+
+const getDays = (year: number, month: number) => {
+  return new Date(year, month, 0).getDate();
 };

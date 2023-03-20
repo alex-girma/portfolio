@@ -3,10 +3,7 @@ interface CalendarWeekContainerProps {
   ind: number;
 }
 
-const CalendarWeekContainer: React.FC<CalendarWeekContainerProps> = ({
-  day,
-  ind,
-}) => {
+const CalendarWeekContainer = ({ day, ind }: CalendarWeekContainerProps) => {
   return <div className={'' + (ind === 0 ? 'text-orange-700' : '')}>{day}</div>;
 };
 
