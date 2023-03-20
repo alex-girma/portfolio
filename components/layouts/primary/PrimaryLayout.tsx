@@ -8,8 +8,8 @@ interface PrimaryLayoutProps {
 }
 
 const PrimaryLayout: React.FC<PrimaryLayoutProps> = ({ children }) => {
-  // // this code solves a problem where the viewport of mobile devices is not really 100%. we need to check for window because no window ssr
-  // // this will be executed on the client
+  // This code solves a problem where the viewport of mobile devices is not really 100%. we need to check for window because no window ssr
+  // This will be executed on the client. window and navigator are not defined on server. wrapp them inside useEffect to run them on the client side
   // if (typeof window !== 'undefined') {
   //   let vh = window.innerHeight * 0.01;
   //   // we create a root css property and use it to calculate the viewport od the device. used in css class mobile-h-screen

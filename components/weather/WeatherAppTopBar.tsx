@@ -13,22 +13,22 @@ const WeatherAppTopBar = () => {
     }
     navigator.geolocation.getCurrentPosition(
       // position allowed
-      (position) => {
-        const lat = position.coords.latitude;
-        const lon = position.coords.longitude;
-        requestWeather(lat, lon);
+      ({ coords }) => {
+        const { latitude, longitude } = coords;
+        requestWeather(latitude, longitude);
       },
-      // if position declined set germany
-      function () {
-        requestWeather(50, 8);
-      }
+      // if position declined by client set germany
+      () => requestWeather(50, 8)
     );
-    async function requestWeather(lat: number, lon: number) {
+    async function requestWeather(latitude: number, longitude: number) {
       try {
-        const data = await fetch(`/api/weather_api?lat=${lat}&lon=${lon}`);
-        const json = await data.json();
-        setWeather(json);
-        sessionStorage.setItem('fetchedWeather', JSON.stringify(json));
+        // forwarding an api call to the server to protect api key
+        const response = await fetch(
+          `/api/weather_api?lat=${latitude}&lon=${longitude}`
+        );
+        const data = await response.json();
+        setWeather(data);
+        sessionStorage.setItem('fetchedWeather', JSON.stringify(data));
       } catch (error) {
         console.error(error);
       }

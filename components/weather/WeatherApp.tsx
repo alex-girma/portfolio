@@ -22,6 +22,7 @@ const WeatherApp = () => {
   const [locale, setLocale] = useState<string>('en-US');
 
   useEffect(() => {
+    if (!sessionStorage.getItem('fetchedWeather')) return;
     setWeather(JSON.parse(sessionStorage.getItem('fetchedWeather') || ''));
     setLocale(navigator.language);
   }, []);
