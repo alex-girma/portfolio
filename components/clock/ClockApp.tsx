@@ -7,9 +7,9 @@ import { toIntlDateFormat } from '../utility/functions';
 
 const ClockApp = () => {
   const [locale, setLocale] = useState<string>('en-US');
-  const [second, setSecond] = useState(0);
-  const [minute, setMinute] = useState(0);
-  const [hour, setHour] = useState(0);
+  const [second, setSecond] = useState(new Date().getSeconds());
+  const [minute, setMinute] = useState(new Date().getMinutes());
+  const [hour, setHour] = useState(new Date().getHours());
   const [alarms, setAlarms] = useState<string[]>([]);
   const [alarmBoolean, setAlarmBoolean] = useState<boolean[]>([]);
   useEffect(() => {

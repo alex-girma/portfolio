@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import AppWindowWrapper from '../utility/AppWindowWrapper';
 import {
@@ -29,26 +30,31 @@ const CalendarApp: React.FC = () => {
   }, [locale]);
 
   return (
-    <AppWindowWrapper>
-      <div className="grid grid-cols-6 grid-rows-3 gap-2 text-xxs uppercase cursor-default monthdiv p-1">
-        {monthNames.map((monthName, index) => {
-          return (
-            <CalendarMonthContainer
-              key={monthName + index}
-              monthName={monthName}
-              index={index}
-              weekdays={weekdayNames}
-              daysInMonth={daysInMonth[index]}
-              year={year} /* prop for corresponding month */
-              setYear={setYear}
-              locale={locale}
-              todoDate={todoDate}
-              setTodoDate={setTodoDate}
-            />
-          );
-        })}
-      </div>
-    </AppWindowWrapper>
+    <>
+      <Head>
+        <title>Calendar</title>
+      </Head>
+      <AppWindowWrapper>
+        <div className="grid grid-cols-6 grid-rows-3 gap-2 text-xxs uppercase cursor-default monthdiv p-1">
+          {monthNames.map((monthName, index) => {
+            return (
+              <CalendarMonthContainer
+                key={monthName + index}
+                monthName={monthName}
+                index={index}
+                weekdays={weekdayNames}
+                daysInMonth={daysInMonth[index]}
+                year={year} /* prop for corresponding month */
+                setYear={setYear}
+                locale={locale}
+                todoDate={todoDate}
+                setTodoDate={setTodoDate}
+              />
+            );
+          })}
+        </div>
+      </AppWindowWrapper>
+    </>
   );
 };
 
