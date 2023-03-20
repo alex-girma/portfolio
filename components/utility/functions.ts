@@ -83,13 +83,20 @@ export const createMonthArray = (
   return arr;
 };
 
-export const toIntlDateFormat = (locale: string, date: any) => {
+export const toIntlDateFormat = (locale: string, date: Date) => {
   const intlDate = new Intl.DateTimeFormat(locale, {
     year: 'numeric',
     month: 'short',
     day: 'numeric',
-  })
-    .format(new Date(date))
-    .toLocaleUpperCase();
+  }).format(date);
+  return intlDate;
+};
+
+export const toIntlTimeFormat = (locale: string, time: Date) => {
+  const intlDate = new Intl.DateTimeFormat(locale, {
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+  }).format(time);
   return intlDate;
 };
