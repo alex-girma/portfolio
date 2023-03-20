@@ -26,6 +26,9 @@ const CalendarApp: React.FC = () => {
       <AppWindowWrapper>
         <CalendarYear year={year} setYear={setYear} />
         <div className="grid grid-cols-6 grid-rows-3 gap-2 text-xxs uppercase cursor-default monthdiv p-1">
+          <div className="col-span-6 row-span-3 bg-stone-200 xs:block md:col-span-2 md:row-span-3">
+            ToDo
+          </div>
           {monthNames.map((monthName, index) => {
             return (
               <CalendarMonthContainer

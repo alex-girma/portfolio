@@ -31,7 +31,8 @@ const CalendarMonthContainer = ({
 CalendarMonthContainerProps) => {
   const [weekdayNames, setWeekdayNames] = useState<string[]>([]);
   const [daysInMonthArray, setDaysInMonthArray] = useState<string[]>([]);
-
+  const currentMonth = new Date().getMonth();
+  const currentYear = new Date().getFullYear();
   useEffect(() => {
     setWeekdayNames(getWeekdayNames(locale));
     setDaysInMonthArray(createDaysInMonthArray(locale, index, year));
@@ -81,15 +82,15 @@ CalendarMonthContainerProps) => {
   // };
 
   return (
-    <div
-      className={
-        'px-4 pt-16 border-2 border-orange-100 hidden md:block' +
-        (index === 0
-          ? ' col-span-6 row-span-3 bg-stone-200 xs:block md:col-span-2 md:row-span-3 '
-          : '')
-      }
-    >
-      <div className="text-xl pb-1 text-orange-700 border-b-2 mb-1 border-orange-100">
+    <div className="px-4 pt-16 border-2 border-orange-100 hidden md:block">
+      <div
+        className={
+          'text-xl pb-1 text-orange-700 border-b-2 mb-1 border-orange-100' +
+          (index === currentMonth && year === currentYear
+            ? ' text-blue-500'
+            : '')
+        }
+      >
         {monthName}
       </div>
       <div className="flex gap-1 justify-around text-xxxs">
@@ -100,7 +101,12 @@ CalendarMonthContainerProps) => {
       <div className="grid grid-cols-7 grid-rows-6 place-items-center text-xxs">
         {daysInMonthArray.map((day, ind) => {
           return (
-            <CalendarDaysContainer key={monthName + day + ind} day={day} />
+            <CalendarDaysContainer
+              key={monthName + day + ind}
+              day={day}
+              index={index}
+              year={year}
+            />
           );
         })}
       </div>
