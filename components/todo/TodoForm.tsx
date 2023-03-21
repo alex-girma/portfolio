@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import { allTodoListProp } from './TodoApp';
+import { AllTodoListProp } from './TodoApp';
 
 export interface TodoFormProps {
   todoDate: string;
   highlightTodoDays: boolean;
-  allTodoList: allTodoListProp;
+  allTodoList: AllTodoListProp;
   setHighlightTodoDays: React.Dispatch<React.SetStateAction<boolean>>;
-  setAllTodoList: React.Dispatch<React.SetStateAction<allTodoListProp>>;
+  setAllTodoList: React.Dispatch<React.SetStateAction<AllTodoListProp>>;
 }
 
 const TodoForm = ({
@@ -20,7 +20,7 @@ const TodoForm = ({
 
   const handleSubmit = (e: React.FormEvent): void => {
     e.preventDefault();
-    const newTodoList: allTodoListProp[0] = {
+    const newTodoList: AllTodoListProp[0] = {
       todos: [],
       status: [],
     };

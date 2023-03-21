@@ -9,7 +9,6 @@ interface CalendarMonthContainerProps {
   locale: string;
   monthName: string;
   highlightTodoDays: boolean;
-
   setTodoDate: React.Dispatch<React.SetStateAction<string>>;
 }
 

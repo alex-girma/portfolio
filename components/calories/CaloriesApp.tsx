@@ -55,7 +55,7 @@ const CaloriesApp = () => {
   };
   return (
     <AppWindowWrapper>
-      <form className="p-4" onSubmit={handleSubmit}>
+      <form className="p-4 text-sm" onSubmit={handleSubmit}>
         <div>
           <label>Gender: </label>
           <input
@@ -113,7 +113,7 @@ const CaloriesApp = () => {
             </option>
           </select>
         </div>
-        <div className="text-center">
+        <div className="text-center pb-2">
           <button className="bg-orange-600 hover:bg-orange-500 text-white text-md px-3  py-2 my-3 rounded transition duration-200  ">
             Calculate
           </button>
@@ -122,6 +122,7 @@ const CaloriesApp = () => {
           <div className="flex justify-between">
             <div>
               <p>Loss Weight</p>
+              <br />
               <div className="text-center">
                 <p>{Number(calories) - 250} kcal</p>
                 <p>{Number(calories) - 500} kcal</p>
@@ -130,14 +131,16 @@ const CaloriesApp = () => {
             </div>
             <div className="text-center">
               <p>{calories} kcal</p>
+              <br />
               <div className="text-center">
-                <p>250g</p>
-                <p>500g</p>
-                <p>1000g</p>
+                <p>- 250g +</p>
+                <p>- 500g +</p>
+                <p>- 1000g +</p>
               </div>
             </div>
             <div>
               <p>Gain Weight</p>
+              <br />
               <div className="text-center">
                 <p>{Number(calories) + 250} kcal</p>
                 <p>{Number(calories) + 500} kcal</p>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { allTodoListProp } from '../todo/TodoApp';
+import { AllTodoListProp } from '../todo/TodoApp';
 import { toIntlDateFormat } from '../utility/functions';
 
 interface CalendarDaysContainerProps {
@@ -8,7 +8,6 @@ interface CalendarDaysContainerProps {
   index: number;
   locale: string;
   highlightTodoDays: boolean;
-
   setTodoDate: React.Dispatch<React.SetStateAction<string>>;
 }
 
@@ -23,7 +22,7 @@ const CalendarDaysContainer = ({
   const currentYear = new Date().getFullYear();
   const currentMonth = new Date().getMonth();
   const today = String(new Date().getDate());
-  const [alltodoList, setAllTotoList] = useState<allTodoListProp>({});
+  const [alltodoList, setAllTotoList] = useState<AllTodoListProp>({});
   const [testDate, setTestDate] = useState('');
   const date = `${index + 1}.${day}.${year}`;
 

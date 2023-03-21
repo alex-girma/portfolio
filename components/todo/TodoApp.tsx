@@ -3,7 +3,7 @@ import { useState } from 'react';
 import TodoForm from './TodoForm';
 import TodoList from './TodoList';
 
-export interface allTodoListProp {
+export interface AllTodoListProp {
   [key: string]: {
     todos: string[];
     status: boolean[];
@@ -20,7 +20,7 @@ const TodoApp = ({
   highlightTodoDays,
   setHighlightTodoDays,
 }: todoAppProps) => {
-  const [allTodoList, setAllTodoList] = useState<allTodoListProp>({});
+  const [allTodoList, setAllTodoList] = useState<AllTodoListProp>({});
   const todoLists = allTodoList[todoDate]?.todos || [];
 
   return (

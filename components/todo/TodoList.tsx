@@ -1,13 +1,13 @@
-import { allTodoListProp } from './TodoApp';
+import { AllTodoListProp } from './TodoApp';
 
 export interface TodoListProps {
   ind: number;
   todo: string;
   todoDate: string;
   highlightTodoDays: boolean;
-  allTodoList: allTodoListProp;
+  allTodoList: AllTodoListProp;
   setHighlightTodoDays: React.Dispatch<React.SetStateAction<boolean>>;
-  setAllTodoList: React.Dispatch<React.SetStateAction<allTodoListProp>>;
+  setAllTodoList: React.Dispatch<React.SetStateAction<AllTodoListProp>>;
 }
 
 const TodoList = ({
