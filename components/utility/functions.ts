@@ -27,7 +27,7 @@ export const createDaysInMonthArray = (
   // array to return
   const daysInMonthArray: string[] = [];
   // get how many days the given month(index) has
-  const daysInMonth = getDays(year, index);
+  const daysInMonth = getDays(year, index + 1);
 
   // converting to ISO for international purpose
   const date = new Date(year, index, 1).toISOString();

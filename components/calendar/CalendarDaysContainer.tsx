@@ -1,28 +1,35 @@
 import { useEffect, useState } from 'react';
+import { allTodoListProp } from '../todo/TodoApp';
+import { toIntlDateFormat } from '../utility/functions';
 
 interface CalendarDaysContainerProps {
   day: string;
-  index: number;
   year: number;
-  todoDate: string;
-  setTodoDate: any;
+  index: number;
+  locale: string;
+  highlightTodoDays: boolean;
+
+  setTodoDate: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const CalendarDaysContainer = ({
   day,
-  index,
   year,
+  index,
+  locale,
   setTodoDate,
-  todoDate,
+  highlightTodoDays,
 }: CalendarDaysContainerProps) => {
   const currentYear = new Date().getFullYear();
   const currentMonth = new Date().getMonth();
   const today = String(new Date().getDate());
-  const [alltodoList, setAllTotoList] = useState({});
+  const [alltodoList, setAllTotoList] = useState<allTodoListProp>({});
+  const [testDate, setTestDate] = useState('');
   const date = `${index + 1}.${day}.${year}`;
 
   const handleClickedDay = () => {
-    setTodoDate(date);
+    setTestDate(toIntlDateFormat(locale, new Date(date)));
+    setTodoDate(toIntlDateFormat(locale, new Date(date)));
   };
 
   const getTodoListFromStorage = () => {
@@ -31,18 +38,11 @@ const CalendarDaysContainer = ({
     return setAllTotoList(List);
   };
 
-  // const highlightTodoDays = () => {
-  //   if (!localStorage.getItem('allTodoList')) return;
-  //   const allTodoList = JSON.parse(localStorage.getItem('allTodoList') || '');
-  //   const date = `${index + 1}.${day}.${year}`;
-  //   if (date in allTodoList && allTodoList[date].todos.length)
-  //     return ' underline text-blue-600 ';
-  // };
   useEffect(() => {
     getTodoListFromStorage();
-  }, [todoDate]);
+  }, [highlightTodoDays]);
 
-  const highlightTodoDays = alltodoList[date] ? ' text-red-600 ' : '';
+  const highlight = alltodoList[testDate] ? ' text-red-600 ' : '';
 
   const highlightCurrDayClass =
     index === currentMonth && day === today && currentYear === year
@@ -52,7 +52,7 @@ const CalendarDaysContainer = ({
   return (
     <button
       onClick={handleClickedDay}
-      className={highlightCurrDayClass + highlightTodoDays}
+      className={highlightCurrDayClass + highlight}
     >
       {day}
     </button>

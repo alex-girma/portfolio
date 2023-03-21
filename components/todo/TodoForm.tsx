@@ -1,17 +1,26 @@
 import { useState } from 'react';
+import { allTodoListProp } from './TodoApp';
 
 export interface TodoFormProps {
   todoDate: string;
-  allTodoList: any;
-  setAllTodoList: any;
+  highlightTodoDays: boolean;
+  allTodoList: allTodoListProp;
+  setHighlightTodoDays: React.Dispatch<React.SetStateAction<boolean>>;
+  setAllTodoList: React.Dispatch<React.SetStateAction<allTodoListProp>>;
 }
 
-const TodoForm = ({ todoDate, allTodoList, setAllTodoList }: TodoFormProps) => {
+const TodoForm = ({
+  todoDate,
+  allTodoList,
+  setAllTodoList,
+  highlightTodoDays,
+  setHighlightTodoDays,
+}: TodoFormProps) => {
   const [inputValue, setInputValue] = useState('');
 
   const handleSubmit = (e: React.FormEvent): void => {
     e.preventDefault();
-    const newTodoList = {
+    const newTodoList: allTodoListProp[0] = {
       todos: [],
       status: [],
     };
@@ -21,9 +30,10 @@ const TodoForm = ({ todoDate, allTodoList, setAllTodoList }: TodoFormProps) => {
     // set status
     const todoListStatus = allTodoList[todoDate]?.status || [];
     newTodoList.status = [...todoListStatus, false];
+
     const newAllTodoList = { ...allTodoList };
     newAllTodoList[todoDate] = newTodoList;
-    newAllTodoList.changed = !newAllTodoList.changed;
+    setHighlightTodoDays(!highlightTodoDays);
     setAllTodoList(newAllTodoList);
     localStorage.setItem('allTodoList', JSON.stringify(newAllTodoList));
     setInputValue('');

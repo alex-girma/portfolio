@@ -1,9 +1,13 @@
+import { allTodoListProp } from './TodoApp';
+
 export interface TodoListProps {
   ind: number;
   todo: string;
   todoDate: string;
-  allTodoList: any;
-  setAllTodoList: any;
+  highlightTodoDays: boolean;
+  allTodoList: allTodoListProp;
+  setHighlightTodoDays: React.Dispatch<React.SetStateAction<boolean>>;
+  setAllTodoList: React.Dispatch<React.SetStateAction<allTodoListProp>>;
 }
 
 const TodoList = ({
@@ -12,6 +16,8 @@ const TodoList = ({
   todoDate,
   allTodoList,
   setAllTodoList,
+  highlightTodoDays,
+  setHighlightTodoDays,
 }: TodoListProps) => {
   const handleClickDone = (): void => {
     const newAllTodoList = { ...allTodoList };
@@ -30,6 +36,7 @@ const TodoList = ({
     );
     if (!newAllTodoList[todoDate].todos.length) delete newAllTodoList[todoDate];
     setAllTodoList(newAllTodoList);
+    setHighlightTodoDays(!highlightTodoDays);
     localStorage.setItem('allTodoList', JSON.stringify(newAllTodoList));
   };
 
