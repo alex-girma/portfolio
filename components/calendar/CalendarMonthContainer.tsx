@@ -12,10 +12,10 @@ interface CalendarMonthContainerProps {
   locale: string;
   year: number;
   index: number;
+  setTodoDate: any;
   // weekdays: string[];
   // daysInMonth: number;
   // todoDate: string;
-  // setTodoDate: Dispatch<SetStateAction<string>>;
 }
 
 const CalendarMonthContainer = ({
@@ -23,11 +23,11 @@ const CalendarMonthContainer = ({
   locale,
   year,
   index,
+  setTodoDate,
 }: // weekdays,
 // daysInMonth,
 // setYear,
 // todoDate,
-// setTodoDate,
 CalendarMonthContainerProps) => {
   const [weekdayNames, setWeekdayNames] = useState<string[]>([]);
   const [daysInMonthArray, setDaysInMonthArray] = useState<string[]>([]);
@@ -106,6 +106,7 @@ CalendarMonthContainerProps) => {
               day={day}
               index={index}
               year={year}
+              setTodoDate={setTodoDate}
             />
           );
         })}

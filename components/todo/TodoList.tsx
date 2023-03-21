@@ -1,18 +1,18 @@
-interface TodoListProps {
-  allTodoList: any;
-  todo: string;
+export interface TodoListProps {
   ind: number;
-  setAllTodoList: any;
+  todo: string;
   todoDate: string;
+  allTodoList: any;
+  setAllTodoList: any;
 }
 
-const TodoList: React.FC<TodoListProps> = ({
-  todo,
-  allTodoList,
+const TodoList = ({
   ind,
-  setAllTodoList,
+  todo,
   todoDate,
-}) => {
+  allTodoList,
+  setAllTodoList,
+}: TodoListProps) => {
   const handleClickDone = (): void => {
     const newAllTodoList = { ...allTodoList };
 
