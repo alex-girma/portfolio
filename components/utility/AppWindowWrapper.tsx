@@ -5,7 +5,7 @@ interface AppWindowWrapperProps {
   children: React.ReactNode;
 }
 
-const AppWindowWrapper: React.FC<AppWindowWrapperProps> = ({ children }) => {
+const AppWindowWrapper = ({ children }: AppWindowWrapperProps) => {
   const route = useRouter();
   return (
     <div>

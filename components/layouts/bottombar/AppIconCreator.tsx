@@ -6,7 +6,7 @@ interface AppIconCreatorProps {
   key: string;
 }
 
-const AppIconCreator: React.FC<AppIconCreatorProps> = ({ name, route }) => {
+const AppIconCreator = ({ name, route }: AppIconCreatorProps) => {
   const firstHalf = name.substring(0, name.length / 2);
   const secondHalf = name.substring(name.length / 2);
 

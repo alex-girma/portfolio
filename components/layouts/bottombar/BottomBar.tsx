@@ -2,7 +2,7 @@
 
 import AppIconCreator from './AppIconCreator';
 
-const BottomBarLayout: React.FC = () => {
+const BottomBarLayout = () => {
   const apps = [
     {
       name: 'Home',

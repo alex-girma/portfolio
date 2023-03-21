@@ -7,7 +7,7 @@ interface PrimaryLayoutProps {
   children: React.ReactNode;
 }
 
-const PrimaryLayout: React.FC<PrimaryLayoutProps> = ({ children }) => {
+const PrimaryLayout = ({ children }: PrimaryLayoutProps) => {
   // This code solves a problem where the viewport of mobile devices is not really 100%. we need to check for window because no window ssr
   // This will be executed on the client. window and navigator are not defined on server. wrapp them inside useEffect to run them on the client side
   // if (typeof window !== 'undefined') {

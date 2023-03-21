@@ -3,7 +3,7 @@ import CalendarAppTopBar from '../../calendar/CalendarAppTopBar';
 import ClockAppTopBar from '../../clock/ClockAppTopBar';
 import WeatherAppTopBar from '../../weather/WeatherAppTopBar';
 
-const TopBarLayout: React.FC = () => {
+const TopBarLayout = () => {
   return (
     <nav className="flex justify-center text-xxxs text-white sm:text-xs">
       <Link
