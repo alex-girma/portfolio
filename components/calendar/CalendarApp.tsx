@@ -40,7 +40,7 @@ const CalendarApp: React.FC = () => {
                 year={year}
                 index={index}
                 setTodoDate={setTodoDate}
-                // todoDate={todoDate}
+                todoDate={todoDate}
                 // weekdays={weekdayNames}
                 // daysInMonth={daysInMonth[index]}
                 // setYear={setYear}

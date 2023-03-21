@@ -23,6 +23,7 @@ const TodoForm = ({ todoDate, allTodoList, setAllTodoList }: TodoFormProps) => {
     newTodoList.status = [...todoListStatus, false];
     const newAllTodoList = { ...allTodoList };
     newAllTodoList[todoDate] = newTodoList;
+    newAllTodoList.changed = !newAllTodoList.changed;
     setAllTodoList(newAllTodoList);
     localStorage.setItem('allTodoList', JSON.stringify(newAllTodoList));
     setInputValue('');

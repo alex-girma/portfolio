@@ -13,9 +13,10 @@ interface CalendarMonthContainerProps {
   year: number;
   index: number;
   setTodoDate: any;
+  todoDate: string;
+  allTodoList: any;
   // weekdays: string[];
   // daysInMonth: number;
-  // todoDate: string;
 }
 
 const CalendarMonthContainer = ({
@@ -24,10 +25,11 @@ const CalendarMonthContainer = ({
   year,
   index,
   setTodoDate,
+  todoDate,
+  allTodoList,
 }: // weekdays,
 // daysInMonth,
 // setYear,
-// todoDate,
 CalendarMonthContainerProps) => {
   const [weekdayNames, setWeekdayNames] = useState<string[]>([]);
   const [daysInMonthArray, setDaysInMonthArray] = useState<string[]>([]);
@@ -80,15 +82,15 @@ CalendarMonthContainerProps) => {
   //     return ' underline text-orange-600 ';
   //   return;
   // };
+  const highlichtMonthClass =
+    index === currentMonth && year === currentYear ? ' text-blue-500' : '';
 
   return (
     <div className="px-4 pt-16 border-2 border-orange-100 hidden md:block">
       <div
         className={
           'text-xl pb-1 text-orange-700 border-b-2 mb-1 border-orange-100' +
-          (index === currentMonth && year === currentYear
-            ? ' text-blue-500'
-            : '')
+          highlichtMonthClass
         }
       >
         {monthName}
@@ -107,6 +109,7 @@ CalendarMonthContainerProps) => {
               index={index}
               year={year}
               setTodoDate={setTodoDate}
+              todoDate={todoDate}
             />
           );
         })}

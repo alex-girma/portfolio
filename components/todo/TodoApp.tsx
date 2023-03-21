@@ -4,6 +4,7 @@ import TodoForm from './TodoForm';
 import TodoList from './TodoList';
 
 const allTodoListMoc = {
+  changed: false,
   '1.1.2023': {
     todos: ['buy milk', 'buy apple'],
     status: [false, false],
