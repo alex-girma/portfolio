@@ -15,14 +15,18 @@ const TodoForm = ({ todoDate, allTodoList, setAllTodoList }: TodoFormProps) => {
       todos: [],
       status: [],
     };
+    // set todos
     const todoList = allTodoList[todoDate]?.todos || [];
     newTodoList.todos = [...todoList, inputValue];
+    // set status
+    const todoListStatus = allTodoList[todoDate]?.status || [];
+    newTodoList.status = [...todoListStatus, false];
     const newAllTodoList = { ...allTodoList };
     newAllTodoList[todoDate] = newTodoList;
     setAllTodoList(newAllTodoList);
+    localStorage.setItem('allTodoList', JSON.stringify(newAllTodoList));
     setInputValue('');
   };
-  if (allTodoList[todoDate]) console.log(allTodoList[todoDate].status);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setInputValue(e.target.value);

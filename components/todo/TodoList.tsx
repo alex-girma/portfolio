@@ -28,6 +28,7 @@ const TodoList = ({
     newAllTodoList[todoDate].status = newAllTodoList[todoDate].status.filter(
       (status: boolean, index: number) => index !== ind
     );
+    if (!newAllTodoList[todoDate].todos.length) delete newAllTodoList[todoDate];
     setAllTodoList(newAllTodoList);
     localStorage.setItem('allTodoList', JSON.stringify(newAllTodoList));
   };
