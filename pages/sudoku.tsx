@@ -1,7 +1,8 @@
+import SudokuApp from '../components/sudoku/SudokuApp';
 import { NextPageWithLayout } from './_app';
 
 const Sudoku: NextPageWithLayout = () => {
-  return <div>Sudoku</div>;
+  return <SudokuApp />;
 };
 
 export default Sudoku;
