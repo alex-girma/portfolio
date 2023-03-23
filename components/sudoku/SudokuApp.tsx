@@ -1,5 +1,5 @@
 const SudokuApp = () => {
-  return <div>Sudoku App</div>;
+  return <div>Sudoku</div>;
 };
 
 export default SudokuApp;
