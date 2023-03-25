@@ -103,7 +103,8 @@ const PokemonForm = ({
   };
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    setGameStarted((value) => !value);
+    console.log(selectedPokemonNames);
+    // setGameStarted((value) => !value);
   };
   return (
     <form className="flex flex-col items-center gap-5 text-sm">

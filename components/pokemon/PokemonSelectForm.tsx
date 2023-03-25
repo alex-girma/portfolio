@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface PokemonSelectFormProps {
   index: number;
@@ -14,13 +14,21 @@ const PokemonSelectForm = ({
   setSelectedPokemonNames,
 }: PokemonSelectFormProps) => {
   const [filteredPokemon, setfilteredPokemon] = useState(allPokemon);
+  useEffect(() => {
+    const temp = allPokemon.filter(
+      (pokemon) => !selectedPokemonNames.includes(pokemon)
+    );
+    setfilteredPokemon([selectedPokemonNames[index], ...temp]);
+  }, [selectedPokemonNames]);
+
   const handleFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value.toLowerCase();
-    const temp = allPokemon.filter((pokemon) =>
+    const temp = filteredPokemon.filter((pokemon) =>
       pokemon.toLowerCase().includes(inputValue)
     );
     setfilteredPokemon(temp);
   };
+
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newSelectedPokemonNames = [...selectedPokemonNames];
     newSelectedPokemonNames[index] = e.target.value;
@@ -28,16 +36,8 @@ const PokemonSelectForm = ({
   };
   return (
     <div>
-      <input
-        className="bg-slate-200 block"
-        onChange={handleFilter}
-        onBlur={(e) => (e.target.value = '')}
-      />
-      <select
-        name="pokemon"
-        value={selectedPokemonNames[index]}
-        onChange={handleChange}
-      >
+      <input className="bg-slate-200 block" onChange={handleFilter} />
+      <select name="pokemon" onChange={handleChange}>
         {filteredPokemon.map((pokemon) => {
           return (
             <option value={pokemon} key={pokemon}>

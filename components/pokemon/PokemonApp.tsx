@@ -10,7 +10,6 @@ const PokemonApp = () => {
     'Charmander',
     'Squirtle',
   ]);
-  console.log(selectedPokemonNames);
   return (
     <AppWindowWrapper>
       <div className="p-6">
