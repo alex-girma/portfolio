@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+import { PokemonListProps } from './PokemonApp';
 import PokemonSelectForm from './PokemonSelectForm';
 
 const allPokemon = [
@@ -79,17 +81,23 @@ const allPokemon = [
   'Mew',
 ];
 
-export interface PokemonFormProps {
+interface PokemonFormProps {
   setGameStarted: React.Dispatch<React.SetStateAction<boolean>>;
   selectedPokemonNames: string[];
   setSelectedPokemonNames: React.Dispatch<React.SetStateAction<string[]>>;
+  setPlayerPokemonList: React.Dispatch<
+    React.SetStateAction<PokemonListProps[]>
+  >;
 }
 
 const PokemonForm = ({
   setGameStarted,
   selectedPokemonNames,
   setSelectedPokemonNames,
+  setPlayerPokemonList,
 }: PokemonFormProps) => {
+  const [pokemonList, setPokemonList] = useState<PokemonListProps[]>([]);
+
   const handleRandomPokemonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const temp: string[] = [];
@@ -101,11 +109,41 @@ const PokemonForm = ({
     }
     setSelectedPokemonNames(temp);
   };
-  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    console.log(selectedPokemonNames);
-    // setGameStarted((value) => !value);
+    if (pokemonList.length) {
+      const playerPokemon = pokemonList.filter((pokemon) => {
+        if (selectedPokemonNames.includes(pokemon.name)) return pokemon.id;
+      });
+      setPlayerPokemonList(playerPokemon);
+
+      setGameStarted((value) => !value);
+    }
   };
+
+  useEffect(() => {
+    if (sessionStorage.getItem('fetchedPokemon')) {
+      return setPokemonList(
+        JSON.parse(sessionStorage.getItem('fetchedPokemon') || '')
+      );
+    }
+    const fetchPokemonList = async () => {
+      const response = await fetch(
+        'https://jherr-pokemon.s3.us-west-1.amazonaws.com/index.json'
+      );
+      const data: PokemonListProps[] = await response.json();
+      setPokemonList(data);
+
+      const playerPokemon = data.filter((pokemon) => {
+        if (selectedPokemonNames.includes(pokemon.name)) return pokemon.id;
+      });
+      setPlayerPokemonList(playerPokemon);
+      sessionStorage.setItem('fetchedPokemon', JSON.stringify(data));
+    };
+    fetchPokemonList();
+  }, []);
+
   return (
     <form className="flex flex-col items-center gap-5 text-sm">
       <h1>Choose your Pokemon</h1>
@@ -137,7 +175,7 @@ const PokemonForm = ({
       </div>
       <button
         className="mt-10 bg-orange-600 hover:bg-orange-500 text-white px-3 rounded transition duration-200"
-        onClick={handleSubmit}
+        onClick={handleClick}
       >
         Start Game
       </button>

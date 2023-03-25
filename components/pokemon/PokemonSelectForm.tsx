@@ -19,14 +19,14 @@ const PokemonSelectForm = ({
       (pokemon) => !selectedPokemonNames.includes(pokemon)
     );
     setfilteredPokemon([selectedPokemonNames[index], ...temp]);
-  }, [selectedPokemonNames]);
+  }, [selectedPokemonNames, allPokemon, index]);
 
   const handleFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value.toLowerCase();
     const temp = filteredPokemon.filter((pokemon) =>
       pokemon.toLowerCase().includes(inputValue)
     );
-    setfilteredPokemon(temp);
+    setfilteredPokemon([...temp]);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -37,10 +37,15 @@ const PokemonSelectForm = ({
   return (
     <div>
       <input className="bg-slate-200 block" onChange={handleFilter} />
-      <select name="pokemon" onChange={handleChange}>
+
+      <select
+        name="pokemon"
+        onChange={handleChange}
+        value={selectedPokemonNames[index]}
+      >
         {filteredPokemon.map((pokemon) => {
           return (
-            <option value={pokemon} key={pokemon}>
+            <option value={pokemon} key={pokemon + index}>
               {pokemon}
             </option>
           );
