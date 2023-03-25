@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-
 const allPokemon = [
   'Bulbasaur',
   'Charmander',
@@ -79,11 +77,38 @@ const allPokemon = [
   'Mew',
 ];
 
-const PokemonSelectForm = ({ randomPokemon }: { randomPokemon: number }) => {
+const PokemonSelectForm = ({
+  index,
+  selectedPokemon,
+  setSelectedPokemon,
+  selectedPokemonNames,
+  setSelectedPokemonNames,
+}: {
+  index: number;
+  selectedPokemon: number[];
+  selectedPokemonNames: string[];
+  setSelectedPokemon: React.Dispatch<React.SetStateAction<number[]>>;
+  setSelectedPokemonNames: React.Dispatch<React.SetStateAction<string[]>>;
+}) => {
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const pokemonIndex = allPokemon.indexOf(e.target.value);
+    const newSelectedPokemon = [...selectedPokemon];
+    newSelectedPokemon[index] = pokemonIndex;
+
+    const newSelectedPokemonNames = [...selectedPokemonNames];
+    newSelectedPokemonNames[index] = e.target.value;
+
+    setSelectedPokemonNames(newSelectedPokemonNames);
+    setSelectedPokemon(newSelectedPokemon);
+  };
   return (
     <div>
       <input className="bg-slate-200 block" />
-      <select name="pokemon1" value={allPokemon[randomPokemon]}>
+      <select
+        name="pokemon"
+        value={allPokemon[selectedPokemon[index]]}
+        onChange={handleChange}
+      >
         {allPokemon.map((pokemon) => {
           return (
             <option value={pokemon} key={pokemon}>

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import AppWindowWrapper from '../utility/AppWindowWrapper';
-import PokemonForm from './PekemonForm';
+import PokemonForm from './PokemonForm';
 import PokemonGame from './PokemonGame';
 
 const PokemonApp = () => {
