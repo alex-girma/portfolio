@@ -1,25 +1,110 @@
-import { useState } from 'react';
 import PokemonSelectForm from './PokemonSelectForm';
 
-const PokemonForm = () => {
-  const [selectedPokemonNames, setSelectedPokemonNames] = useState([
-    'Bulbasaur',
-    'Charmander',
-    'Squirtle',
-  ]);
-  const [selectedPokemon, setSelectedPokemon] = useState([0, 1, 2]);
+const allPokemon = [
+  'Bulbasaur',
+  'Charmander',
+  'Squirtle',
+  'Caterpie',
+  'Weedle',
+  'Pidgey',
+  'Rattata',
+  'Spearow',
+  'Ekans',
+  'Pichu',
+  'Pikachu',
+  'Sandshrew',
+  'Nidorina',
+  'Cleffa',
+  'Vulpix',
+  'Igglybuff',
+  'Zubat',
+  'Oddish',
+  'Paras',
+  'Venonat',
+  'Diglett',
+  'Meowth',
+  'Psyduck',
+  'Mankey',
+  'Growlithe',
+  'Poliwag',
+  'Abra',
+  'Machop',
+  'Bellsprout',
+  'Tentacool',
+  'Geodude',
+  'Ponyta',
+  'Slowpoke',
+  'Magnemite',
+  'Doduo',
+  'Seel',
+  'Grimer',
+  'Shellder',
+  'Gastly',
+  'Onix',
+  'Drowzee',
+  'Krabby',
+  'Voltorb',
+  'Exeggcute',
+  'Cubone',
+  'Tyrogue',
+  'Lickitung',
+  'Koffing',
+  'Rhyhorn',
+  'Happiny',
+  'Tangela',
+  'Kangaskhan',
+  'Horsea',
+  'Goldeen',
+  'Staryu',
+  'Scyther',
+  'Smoochum',
+  'Elekid',
+  'Magby',
+  'Pinsir',
+  'Tauros',
+  'Magikarp',
+  'Lapras',
+  'Ditto',
+  'Eevee',
+  'Porygon',
+  'Omanyte',
+  'Kabuto',
+  'Aerodactyl',
+  'Munchlax',
+  'Articuno',
+  'Zapdos',
+  'Moltres',
+  'Dratini',
+  'Mewtwo',
+  'Mew',
+];
+
+export interface PokemonFormProps {
+  setGameStarted: React.Dispatch<React.SetStateAction<boolean>>;
+  selectedPokemonNames: string[];
+  setSelectedPokemonNames: React.Dispatch<React.SetStateAction<string[]>>;
+}
+
+const PokemonForm = ({
+  setGameStarted,
+  selectedPokemonNames,
+  setSelectedPokemonNames,
+}: PokemonFormProps) => {
   const handleRandomPokemonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    const temp: number[] = [];
-    let num = Math.floor(Math.random() * 76);
+    const temp: string[] = [];
+    let index = Math.floor(Math.random() * 76);
 
-    while (!temp.includes(num) && temp.length != 3) {
-      temp.push(num);
-      num = Math.floor(Math.random() * 76);
+    while (!temp.includes(allPokemon[index]) && temp.length != 3) {
+      temp.push(allPokemon[index]);
+      index = Math.floor(Math.random() * 76);
     }
-    setSelectedPokemon(temp);
+    setSelectedPokemonNames(temp);
   };
-  console.log(selectedPokemon);
+  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setGameStarted((value) => !value);
+  };
   return (
     <form className="flex flex-col items-center gap-5 text-sm">
       <h1>Choose your Pokemon</h1>
@@ -32,27 +117,27 @@ const PokemonForm = () => {
       <div className="flex gap-2">
         <PokemonSelectForm
           index={0}
-          selectedPokemon={selectedPokemon}
-          setSelectedPokemon={setSelectedPokemon}
+          allPokemon={allPokemon}
           selectedPokemonNames={selectedPokemonNames}
           setSelectedPokemonNames={setSelectedPokemonNames}
         />
         <PokemonSelectForm
           index={1}
-          selectedPokemon={selectedPokemon}
-          setSelectedPokemon={setSelectedPokemon}
+          allPokemon={allPokemon}
           selectedPokemonNames={selectedPokemonNames}
           setSelectedPokemonNames={setSelectedPokemonNames}
         />
         <PokemonSelectForm
           index={2}
-          selectedPokemon={selectedPokemon}
-          setSelectedPokemon={setSelectedPokemon}
+          allPokemon={allPokemon}
           selectedPokemonNames={selectedPokemonNames}
           setSelectedPokemonNames={setSelectedPokemonNames}
         />
       </div>
-      <button className="mt-10 bg-orange-600 hover:bg-orange-500 text-white px-3 rounded transition duration-200">
+      <button
+        className="mt-10 bg-orange-600 hover:bg-orange-500 text-white px-3 rounded transition duration-200"
+        onClick={handleSubmit}
+      >
         Start Game
       </button>
     </form>

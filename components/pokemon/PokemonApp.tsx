@@ -5,10 +5,24 @@ import PokemonGame from './PokemonGame';
 
 const PokemonApp = () => {
   const [gameStarted, setGameStarted] = useState(false);
+  const [selectedPokemonNames, setSelectedPokemonNames] = useState([
+    'Bulbasaur',
+    'Charmander',
+    'Squirtle',
+  ]);
+  console.log(selectedPokemonNames);
   return (
     <AppWindowWrapper>
       <div className="p-6">
-        {gameStarted ? <PokemonGame /> : <PokemonForm />}
+        {gameStarted ? (
+          <PokemonGame />
+        ) : (
+          <PokemonForm
+            setGameStarted={setGameStarted}
+            selectedPokemonNames={selectedPokemonNames}
+            setSelectedPokemonNames={setSelectedPokemonNames}
+          />
+        )}
       </div>
     </AppWindowWrapper>
   );
