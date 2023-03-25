@@ -32,10 +32,6 @@ const BottomBarLayout = () => {
       name: 'Calories',
       route: '/calories',
     },
-    {
-      name: 'Sudoku',
-      route: '/sudoku',
-    },
   ];
   return (
     <footer className="flex w-screen justify-center text-xs flex-wrap">
