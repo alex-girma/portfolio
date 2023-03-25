@@ -32,6 +32,10 @@ const BottomBarLayout = () => {
       name: 'Calories',
       route: '/calories',
     },
+    {
+      name: 'Pokemon',
+      route: '/pokemon',
+    },
   ];
   return (
     <footer className="flex w-screen justify-center text-xs flex-wrap">
