@@ -45,10 +45,10 @@ const CalculatorButtons: React.FC<Props> = ({
     // remove leading 0 when not decimal point
     if (curr === '0' && digit !== '.') return setCurr('' + digit);
     if (curr === '-0' && digit !== '.') return setCurr('-' + digit);
-    // allow only one .
+    // allow only one period(.)
     if (curr.includes('.') && digit === '.') return setCurr(curr);
 
-    if (digit !== '±') setCurr(curr + digit);
+    setCurr(curr + digit);
   };
   return (
     <button
