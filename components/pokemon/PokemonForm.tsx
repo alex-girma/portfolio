@@ -142,7 +142,7 @@ const PokemonForm = ({
       sessionStorage.setItem('fetchedPokemon', JSON.stringify(data));
     };
     fetchPokemonList();
-  }, []);
+  }, [selectedPokemonNames, setPlayerPokemonList]);
 
   return (
     <form className="flex flex-col items-center gap-5 text-sm">

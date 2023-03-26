@@ -23,8 +23,11 @@ const WeatherApp = () => {
   const [locale, setLocale] = useState<string>('en-US');
 
   useEffect(() => {
-    if (!sessionStorage.getItem('fetchedWeather')) return;
-    setWeather(JSON.parse(sessionStorage.getItem('fetchedWeather') || ''));
+    if (sessionStorage.getItem('fetchedWeather')) {
+      return setWeather(
+        JSON.parse(sessionStorage.getItem('fetchedWeather') || '')
+      );
+    }
     setLocale(navigator.language);
   }, []);
 
@@ -35,11 +38,12 @@ const WeatherApp = () => {
       <div className="flex flex-col items-center text-gray-600">
         <div className="flex flex-col items-center py-28 px-20 bg-neutral-200">
           <Image
-            src="https://openweathermap.org/img/wn/10d@2x.png"
-            alt="weather icon"
+            src={`https://openweathermap.org/img/wn/${weather?.weather[0].icon}@2x.png`}
+            alt={weather.weather[0].description}
             width={60}
             height={60}
           />
+
           {weather.weather[0].description}
         </div>
         <div className="py-1 font-bold">{weather.name}</div>
