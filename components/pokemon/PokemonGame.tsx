@@ -21,9 +21,7 @@ const PokemonGame = ({
   const [pokemon1, setPokemon1] = useState<PlayerPokemon>();
   const [pokemon2, setPokemon2] = useState<PlayerPokemon>();
   const [pokemon3, setPokemon3] = useState<PlayerPokemon>();
-  const [selectedPokemon, setSelectedPokemon] = useState(
-    playerPokemonList['0'].image
-  );
+  const [selectedPokemon, setSelectedPokemon] = useState(0);
   useEffect(() => {
     const fetchPokemon = async () => {
       const [response1, response2, response3] = await Promise.all([
@@ -46,17 +44,10 @@ const PokemonGame = ({
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    setSelectedPokemon(e.target.alt);
-    e.currentTarget.parentElement?.childNodes[0].classList.remove(
-      'border-red-400'
-    );
-
-    e.currentTarget.parentElement?.childNodes[1].classList.remove(
-      'border-red-400'
-    );
-    e.currentTarget.parentElement?.childNodes[2].classList.remove(
-      'border-red-400'
-    );
+    setSelectedPokemon(Number(e.currentTarget.id));
+    document.getElementById('0')?.classList.remove('border-red-400');
+    document.getElementById('1')?.classList.remove('border-red-400');
+    document.getElementById('2')?.classList.remove('border-red-400');
 
     e.currentTarget.classList.add('border-red-400');
   };
@@ -64,7 +55,11 @@ const PokemonGame = ({
   return (
     <div className="flex items-center gap-4 h-40">
       <div className="flex items-center gap-2">
-        <button onClick={handleClick} className="rounded-full border-4  p-1">
+        <button
+          onClick={handleClick}
+          className="rounded-full border-4  p-1"
+          id="0"
+        >
           <Image
             src={`https://jherr-pokemon.s3.us-west-1.amazonaws.com/${playerPokemonList['0'].image}`}
             alt={playerPokemonList['0'].image}
@@ -72,7 +67,11 @@ const PokemonGame = ({
             height={25}
           />
         </button>
-        <button onClick={handleClick} className="rounded-full border-4  p-1">
+        <button
+          onClick={handleClick}
+          className="rounded-full border-4  p-1"
+          id="1"
+        >
           <Image
             src={`https://jherr-pokemon.s3.us-west-1.amazonaws.com/${playerPokemonList['1'].image}`}
             alt={playerPokemonList['1'].image}
@@ -80,7 +79,11 @@ const PokemonGame = ({
             height={25}
           />
         </button>
-        <button onClick={handleClick} className="rounded-full border-4  p-1">
+        <button
+          onClick={handleClick}
+          className="rounded-full border-4  p-1"
+          id="2"
+        >
           <Image
             src={`https://jherr-pokemon.s3.us-west-1.amazonaws.com/${playerPokemonList['2'].image}`}
             alt={playerPokemonList['2'].image}
@@ -91,8 +94,8 @@ const PokemonGame = ({
       </div>
       <div>
         <Image
-          src={`https://jherr-pokemon.s3.us-west-1.amazonaws.com/${selectedPokemon}`}
-          alt={selectedPokemon}
+          src={`https://jherr-pokemon.s3.us-west-1.amazonaws.com/${playerPokemonList[selectedPokemon].image}`}
+          alt={playerPokemonList[selectedPokemon].image}
           width={80}
           height={80}
           className="rounded-full border-4 p-2"
