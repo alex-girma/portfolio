@@ -105,8 +105,8 @@ const PokemonForm = ({
     const temp: string[] = [];
     let index = Math.floor(Math.random() * 76);
 
-    while (!temp.includes(allPokemon[index]) && temp.length != 3) {
-      temp.push(allPokemon[index]);
+    while (temp.length != 3) {
+      if (!temp.includes(allPokemon[index])) temp.push(allPokemon[index]);
       index = Math.floor(Math.random() * 76);
     }
     setSelectedPokemonNames(temp);
@@ -126,8 +126,8 @@ const PokemonForm = ({
       const temp: string[] = [];
       let index = Math.floor(Math.random() * 76);
 
-      while (!temp.includes(allPokemon[index]) && temp.length != 3) {
-        temp.push(allPokemon[index]);
+      while (temp.length != 3) {
+        if (!temp.includes(allPokemon[index])) temp.push(allPokemon[index]);
         index = Math.floor(Math.random() * 76);
       }
       const enemyPokemon = pokemonList.filter((pokemon) => {
