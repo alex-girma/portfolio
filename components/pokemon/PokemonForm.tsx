@@ -88,6 +88,7 @@ interface PokemonFormProps {
   setPlayerPokemonList: React.Dispatch<
     React.SetStateAction<PokemonListProps[]>
   >;
+  setEnemyPokemonList: React.Dispatch<React.SetStateAction<PokemonListProps[]>>;
 }
 
 const PokemonForm = ({
@@ -95,6 +96,7 @@ const PokemonForm = ({
   selectedPokemonNames,
   setSelectedPokemonNames,
   setPlayerPokemonList,
+  setEnemyPokemonList,
 }: PokemonFormProps) => {
   const [pokemonList, setPokemonList] = useState<PokemonListProps[]>([]);
 
@@ -116,7 +118,22 @@ const PokemonForm = ({
       const playerPokemon = pokemonList.filter((pokemon) => {
         if (selectedPokemonNames.includes(pokemon.name)) return pokemon.id;
       });
+
       setPlayerPokemonList(playerPokemon);
+
+      // enemy pokemon
+
+      const temp: string[] = [];
+      let index = Math.floor(Math.random() * 76);
+
+      while (!temp.includes(allPokemon[index]) && temp.length != 3) {
+        temp.push(allPokemon[index]);
+        index = Math.floor(Math.random() * 76);
+      }
+      const enemyPokemon = pokemonList.filter((pokemon) => {
+        if (temp.includes(pokemon.name)) return pokemon.id;
+      });
+      setEnemyPokemonList(enemyPokemon);
 
       setGameStarted((value) => !value);
     }

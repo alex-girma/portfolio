@@ -19,17 +19,24 @@ const PokemonApp = () => {
   const [playerPokemonList, setPlayerPokemonList] = useState<
     PokemonListProps[]
   >([]);
+  const [enemyPokemonList, setEnemyPokemonList] = useState<PokemonListProps[]>(
+    []
+  );
   return (
     <AppWindowWrapper>
       <div className="p-6">
         {gameStarted ? (
-          <PokemonGame playerPokemonList={playerPokemonList} />
+          <PokemonGame
+            playerPokemonList={playerPokemonList}
+            enemyPokemonList={enemyPokemonList}
+          />
         ) : (
           <PokemonForm
             setGameStarted={setGameStarted}
             selectedPokemonNames={selectedPokemonNames}
             setSelectedPokemonNames={setSelectedPokemonNames}
             setPlayerPokemonList={setPlayerPokemonList}
+            setEnemyPokemonList={setEnemyPokemonList}
           />
         )}
       </div>

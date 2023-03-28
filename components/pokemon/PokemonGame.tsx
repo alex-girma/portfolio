@@ -1,7 +1,7 @@
-import Image from 'next/image';
-
 import { useEffect, useState } from 'react';
 import { PokemonListProps } from './PokemonApp';
+import PokemonEnemy from './PokemonEnemy';
+import PokemonPlayer from './PokemonPlayer';
 
 interface PlayerPokemon {
   name: string;
@@ -15,92 +15,54 @@ interface PlayerPokemon {
 
 const PokemonGame = ({
   playerPokemonList,
+  enemyPokemonList,
 }: {
   playerPokemonList: PokemonListProps[];
+  enemyPokemonList: PokemonListProps[];
 }) => {
-  const [pokemon1, setPokemon1] = useState<PlayerPokemon>();
-  const [pokemon2, setPokemon2] = useState<PlayerPokemon>();
-  const [pokemon3, setPokemon3] = useState<PlayerPokemon>();
-  const [selectedPokemon, setSelectedPokemon] = useState(0);
+  const [playerPokemon1, setPlayerPokemon1] = useState<PlayerPokemon>();
+  const [playerPokemon2, setPlayerPokemon2] = useState<PlayerPokemon>();
+  const [playerPokemon3, setPlayerPokemon3] = useState<PlayerPokemon>();
+  const [enemyPokemon1, setEnemyPokemon1] = useState<PlayerPokemon>();
+  const [enemyPokemon2, setEnemyPokemon2] = useState<PlayerPokemon>();
+  const [enemyPokemon3, setEnemyPokemon3] = useState<PlayerPokemon>();
   useEffect(() => {
     const fetchPokemon = async () => {
-      const [response1, response2, response3] = await Promise.all([
-        fetch(
-          `https://jherr-pokemon.s3.us-west-1.amazonaws.com/pokemon/${playerPokemonList['0'].id}.json`
-        ),
-        fetch(
-          `https://jherr-pokemon.s3.us-west-1.amazonaws.com/pokemon/${playerPokemonList['1'].id}.json`
-        ),
-        fetch(
-          `https://jherr-pokemon.s3.us-west-1.amazonaws.com/pokemon/${playerPokemonList['2'].id}.json`
-        ),
-      ]);
-      setPokemon1(await response1.json());
-      setPokemon2(await response2.json());
-      setPokemon3(await response3.json());
+      const [response1, response2, response3, response4, response5, response6] =
+        await Promise.all([
+          fetch(
+            `https://jherr-pokemon.s3.us-west-1.amazonaws.com/pokemon/${playerPokemonList['0'].id}.json`
+          ),
+          fetch(
+            `https://jherr-pokemon.s3.us-west-1.amazonaws.com/pokemon/${playerPokemonList['1'].id}.json`
+          ),
+          fetch(
+            `https://jherr-pokemon.s3.us-west-1.amazonaws.com/pokemon/${playerPokemonList['2'].id}.json`
+          ),
+          fetch(
+            `https://jherr-pokemon.s3.us-west-1.amazonaws.com/pokemon/${enemyPokemonList['0'].id}.json`
+          ),
+          fetch(
+            `https://jherr-pokemon.s3.us-west-1.amazonaws.com/pokemon/${enemyPokemonList['1'].id}.json`
+          ),
+          fetch(
+            `https://jherr-pokemon.s3.us-west-1.amazonaws.com/pokemon/${enemyPokemonList['2'].id}.json`
+          ),
+        ]);
+      setPlayerPokemon1(await response1.json());
+      setPlayerPokemon2(await response2.json());
+      setPlayerPokemon3(await response3.json());
+      setEnemyPokemon1(await response4.json());
+      setEnemyPokemon2(await response5.json());
+      setEnemyPokemon3(await response6.json());
     };
     fetchPokemon();
-  }, [playerPokemonList]);
-
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    setSelectedPokemon(Number(e.currentTarget.id));
-    document.getElementById('0')?.classList.remove('border-red-400');
-    document.getElementById('1')?.classList.remove('border-red-400');
-    document.getElementById('2')?.classList.remove('border-red-400');
-
-    e.currentTarget.classList.add('border-red-400');
-  };
+  }, [playerPokemonList, enemyPokemonList]);
 
   return (
     <div className="flex items-center gap-4 h-40">
-      <div className="flex items-center gap-2">
-        <button
-          onClick={handleClick}
-          className="rounded-full border-4  p-1"
-          id="0"
-        >
-          <Image
-            src={`https://jherr-pokemon.s3.us-west-1.amazonaws.com/${playerPokemonList['0'].image}`}
-            alt={playerPokemonList['0'].image}
-            width={25}
-            height={25}
-          />
-        </button>
-        <button
-          onClick={handleClick}
-          className="rounded-full border-4  p-1"
-          id="1"
-        >
-          <Image
-            src={`https://jherr-pokemon.s3.us-west-1.amazonaws.com/${playerPokemonList['1'].image}`}
-            alt={playerPokemonList['1'].image}
-            width={25}
-            height={25}
-          />
-        </button>
-        <button
-          onClick={handleClick}
-          className="rounded-full border-4  p-1"
-          id="2"
-        >
-          <Image
-            src={`https://jherr-pokemon.s3.us-west-1.amazonaws.com/${playerPokemonList['2'].image}`}
-            alt={playerPokemonList['2'].image}
-            width={25}
-            height={25}
-          />
-        </button>
-      </div>
-      <div>
-        <Image
-          src={`https://jherr-pokemon.s3.us-west-1.amazonaws.com/${playerPokemonList[selectedPokemon].image}`}
-          alt={playerPokemonList[selectedPokemon].image}
-          width={80}
-          height={80}
-          className="rounded-full border-4 p-2"
-        />
-      </div>
+      <PokemonPlayer playerPokemonList={playerPokemonList} />
+      <PokemonEnemy enemyPokemonList={enemyPokemonList} />
     </div>
   );
 };
