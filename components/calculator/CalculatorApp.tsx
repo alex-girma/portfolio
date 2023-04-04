@@ -2,9 +2,9 @@ import { useState } from 'react';
 import AppWindowWrapper from '../utility/AppWindowWrapper';
 import CalculatorButtons from './CalculatorButtons';
 
-const CalculatorApp: React.FC = () => {
-  const [prev, setPrev] = useState('');
-  const [curr, setCurr] = useState('0');
+const CalculatorApp = () => {
+  const [prev, setPrev] = useState(''); // first operand
+  const [curr, setCurr] = useState('0'); // current operand beeing typed
   const digits = [
     'c',
     'ce',

@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 
-interface Props {
+interface CalulatorProps {
   digit: string;
   prev: string;
   curr: string;
@@ -8,17 +8,17 @@ interface Props {
   setPrev: Dispatch<SetStateAction<string>>;
 }
 
-const CalculatorButtons: React.FC<Props> = ({
+const CalculatorButtons = ({
   digit, // pressed key
   setCurr,
   setPrev,
   prev,
   curr,
-}) => {
+}: CalulatorProps) => {
   const operator = ['+', '-', 'x', '÷', '='];
   const handleClick = () => {
     // Guardes
-    if (digit === '±' && !curr.includes('-')) return setCurr('-' + curr);
+    if (digit === '±' && !curr.includes('-')) return setCurr('-' + curr); // positive or negativ numbers
     if (digit === '±' && curr.includes('-')) return setCurr(curr.slice(1));
     if (digit === 'c') return [setCurr('0'), setPrev('')];
     if (digit === 'ce') return setCurr('0');

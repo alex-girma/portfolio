@@ -25,21 +25,18 @@ const CalendarMonthContainer = ({
   const currentMonth = new Date().getMonth();
   const currentYear = new Date().getFullYear();
   useEffect(() => {
-    console.log('test');
     setWeekdayNames(getWeekdayNames(locale));
     setDaysInMonthArray(createDaysInMonthArray(locale, index, year));
   }, [year, locale, index]);
 
-  const highlichtMonthClass =
-    index === currentMonth && year === currentYear ? ' text-blue-500' : '';
-
   return (
     <div className="px-4 pt-16 border-2 border-orange-100 hidden md:block">
       <div
-        className={
-          'text-xl pb-1 text-orange-700 border-b-2 mb-1 border-orange-100' +
-          highlichtMonthClass
-        }
+        className={`text-xl pb-1  border-b-2 mb-1 border-orange-100 ${
+          index === currentMonth && year === currentYear
+            ? ' text-blue-500'
+            : 'text-orange-700'
+        }`}
       >
         {monthName}
       </div>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const CalendarAppTopBar: React.FC = () => {
+const CalendarAppTopBar = () => {
   const [date, setDate] = useState('');
 
   useEffect(() => {
