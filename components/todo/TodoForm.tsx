@@ -20,6 +20,7 @@ const TodoForm = ({
 
   const handleSubmit = (e: React.FormEvent): void => {
     e.preventDefault();
+    if (!inputValue) return;
     const newTodoList: AllTodoListProp[0] = {
       todos: [],
       status: [],

@@ -3,7 +3,7 @@ import { PokemonListProps } from './PokemonApp';
 import PokemonEnemy from './PokemonEnemy';
 import PokemonPlayer from './PokemonPlayer';
 
-interface PlayerPokemon {
+export interface PlayerPokemon {
   name: string;
   type: string[];
   stats: {

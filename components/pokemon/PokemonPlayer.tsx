@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import { PokemonListProps } from './PokemonApp';
+import { PlayerPokemon } from './PokemonGame';
 
 const PokemonPlayer = ({
   playerPokemonList,
