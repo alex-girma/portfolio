@@ -20,12 +20,9 @@ const PokemonGame = ({
   playerPokemonList: PokemonListProps[];
   enemyPokemonList: PokemonListProps[];
 }) => {
-  const [playerPokemon1, setPlayerPokemon1] = useState<PlayerPokemon>();
-  const [playerPokemon2, setPlayerPokemon2] = useState<PlayerPokemon>();
-  const [playerPokemon3, setPlayerPokemon3] = useState<PlayerPokemon>();
-  const [enemyPokemon1, setEnemyPokemon1] = useState<PlayerPokemon>();
-  const [enemyPokemon2, setEnemyPokemon2] = useState<PlayerPokemon>();
-  const [enemyPokemon3, setEnemyPokemon3] = useState<PlayerPokemon>();
+  const [playerPokemons, setPlayerPokemons] = useState<PlayerPokemon[]>([]);
+  const [enemyPokemons, setEnemyPokemons] = useState<PlayerPokemon[]>([]);
+
   useEffect(() => {
     const fetchPokemon = async () => {
       const [response1, response2, response3, response4, response5, response6] =
@@ -49,20 +46,32 @@ const PokemonGame = ({
             `https://jherr-pokemon.s3.us-west-1.amazonaws.com/pokemon/${enemyPokemonList['2'].id}.json`
           ),
         ]);
-      setPlayerPokemon1(await response1.json());
-      setPlayerPokemon2(await response2.json());
-      setPlayerPokemon3(await response3.json());
-      setEnemyPokemon1(await response4.json());
-      setEnemyPokemon2(await response5.json());
-      setEnemyPokemon3(await response6.json());
+      const temp = [
+        await response1.json(),
+        await response2.json(),
+        await response3.json(),
+      ];
+      const temp1 = [
+        await response4.json(),
+        await response5.json(),
+        await response6.json(),
+      ];
+      setPlayerPokemons(temp);
+      setEnemyPokemons(temp1);
     };
     fetchPokemon();
   }, [playerPokemonList, enemyPokemonList]);
 
   return (
-    <div className="flex items-center gap-4 h-40">
-      <PokemonPlayer playerPokemonList={playerPokemonList} />
-      <PokemonEnemy enemyPokemonList={enemyPokemonList} />
+    <div className="flex items-center gap-4 h-60">
+      <PokemonPlayer
+        playerPokemonList={playerPokemonList}
+        playerPokemons={playerPokemons}
+      />
+      <PokemonEnemy
+        enemyPokemonList={enemyPokemonList}
+        enemyPokemons={enemyPokemons}
+      />
     </div>
   );
 };

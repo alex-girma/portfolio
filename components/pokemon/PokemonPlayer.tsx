@@ -5,8 +5,10 @@ import { PlayerPokemon } from './PokemonGame';
 
 const PokemonPlayer = ({
   playerPokemonList,
+  playerPokemons,
 }: {
   playerPokemonList: PokemonListProps[];
+  playerPokemons: PlayerPokemon[];
 }) => {
   const [selectedPokemon, setSelectedPokemon] = useState(0);
 
@@ -19,6 +21,7 @@ const PokemonPlayer = ({
 
     e.currentTarget.classList.add('border-red-400');
   };
+  console.log(playerPokemons);
 
   return (
     <>
@@ -64,10 +67,47 @@ const PokemonPlayer = ({
         <Image
           src={`https://jherr-pokemon.s3.us-west-1.amazonaws.com/${playerPokemonList[selectedPokemon].image}`}
           alt={playerPokemonList[selectedPokemon].image}
-          width={90}
-          height={90}
+          width={110}
+          height={110}
           className="border-4 p-2"
         />
+        <div className="bg-red-400 text-xs">
+          {playerPokemons.length
+            ? playerPokemons[selectedPokemon].stats[0].value
+            : '100'}
+        </div>
+        <button className="bg-red-400 text-xs flex w-full justify-between my-1">
+          <p>
+            {playerPokemons.length
+              ? playerPokemons[selectedPokemon].stats[1].name
+              : 'Attack'}
+          </p>
+          <p>
+            {playerPokemons.length
+              ? playerPokemons[selectedPokemon].stats[1].value
+              : '50'}
+          </p>
+        </button>
+        <button className="bg-red-400 text-xs flex w-full justify-between mb-1">
+          <p>Spe. Attack</p>
+          <p>
+            {playerPokemons.length
+              ? playerPokemons[selectedPokemon].stats[3].value
+              : '75'}
+          </p>
+        </button>
+        <button className="bg-red-400 text-xs flex w-full justify-between">
+          <p>
+            {playerPokemons.length
+              ? playerPokemons[selectedPokemon].stats[2].name
+              : 'Defense'}
+          </p>
+          <p>
+            {playerPokemons.length
+              ? playerPokemons[selectedPokemon].stats[2].value
+              : '50'}
+          </p>
+        </button>
       </div>
     </>
   );

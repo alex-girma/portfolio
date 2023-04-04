@@ -1,11 +1,14 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import { PokemonListProps } from './PokemonApp';
+import { PlayerPokemon } from './PokemonGame';
 
 const PokemonEnemy = ({
   enemyPokemonList,
+  enemyPokemons,
 }: {
   enemyPokemonList: PokemonListProps[];
+  enemyPokemons: PlayerPokemon[];
 }) => {
   const [selectedPokemon, setSelectedPokemon] = useState(0);
 
@@ -25,10 +28,47 @@ const PokemonEnemy = ({
         <Image
           src={`https://jherr-pokemon.s3.us-west-1.amazonaws.com/${enemyPokemonList[selectedPokemon].image}`}
           alt={enemyPokemonList[selectedPokemon].image}
-          width={90}
-          height={90}
+          width={110}
+          height={110}
           className="border-4 p-2"
         />
+        <div className="bg-red-400 text-xs">
+          {enemyPokemons.length
+            ? enemyPokemons[selectedPokemon].stats[0].value
+            : '100'}
+        </div>
+        <button className="bg-red-400 text-xs flex w-full justify-between my-1">
+          <p>
+            {enemyPokemons.length
+              ? enemyPokemons[selectedPokemon].stats[1].name
+              : 'Attack'}
+          </p>
+          <p>
+            {enemyPokemons.length
+              ? enemyPokemons[selectedPokemon].stats[1].value
+              : '50'}
+          </p>
+        </button>
+        <button className="bg-red-400 text-xs flex w-full justify-between mb-1">
+          <p>Spe. Attack</p>
+          <p>
+            {enemyPokemons.length
+              ? enemyPokemons[selectedPokemon].stats[3].value
+              : '75'}
+          </p>
+        </button>
+        <button className="bg-red-400 text-xs flex w-full justify-between">
+          <p>
+            {enemyPokemons.length
+              ? enemyPokemons[selectedPokemon].stats[2].name
+              : 'Defense'}
+          </p>
+          <p>
+            {enemyPokemons.length
+              ? enemyPokemons[selectedPokemon].stats[2].value
+              : '50'}
+          </p>
+        </button>
       </div>
       <div className="flex items-center gap-2">
         <button
