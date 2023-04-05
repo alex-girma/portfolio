@@ -54,7 +54,7 @@ const PokemonEnemy = ({
           <p>
             {enemyPokemons.length
               ? enemyPokemons[selectedPokemon].stats[3].value
-              : '75'}
+              : '65'}
           </p>
         </button>
         <button className="bg-red-400 text-xs flex w-full justify-between">
