@@ -55,7 +55,7 @@ const CaloriesApp = () => {
   };
   return (
     <AppWindowWrapper>
-      <form className="p-4 text-sm" onSubmit={handleSubmit}>
+      <form className="p-4 text-sm xs:text-xxs" onSubmit={handleSubmit}>
         <div>
           <label>Gender: </label>
           <input
@@ -94,7 +94,7 @@ const CaloriesApp = () => {
             name="pets"
             id="activities"
             onChange={onSelectChange}
-            className="calories-input"
+            className="calories-input xs:text-xxs"
           >
             <option value="sedentary_active">
               Sedentary (little or no exercise)

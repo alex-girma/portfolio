@@ -162,7 +162,7 @@ const PokemonForm = ({
   }, [selectedPokemonNames, setPlayerPokemonList]);
 
   return (
-    <form className="flex flex-col items-center gap-5 text-sm">
+    <form className="flex flex-col items-center gap-5 text-sm ">
       <h1>Choose your Pokemon</h1>
       <button
         onClick={handleRandomPokemonClick}
@@ -170,7 +170,7 @@ const PokemonForm = ({
       >
         random Pokemon
       </button>
-      <div className="flex gap-2">
+      <div className="flex gap-2 xs:flex-col">
         <PokemonSelectForm
           index={0}
           allPokemon={allPokemon}
