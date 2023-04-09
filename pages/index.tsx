@@ -3,9 +3,9 @@ import type { NextPageWithLayout } from './_app';
 const Home: NextPageWithLayout = () => {
   return (
     <>
-      <h1 className="font-normal text-xl ">
+      <h1 className="text-xl font-normal ">
         Welcome to my
-        <span className="text-white bg-red-500 px-2 py-1">Portfolio</span>
+        <span className="bg-red-500 px-2 py-1 text-white">Portfolio</span>
       </h1>
     </>
   );

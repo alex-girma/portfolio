@@ -33,7 +33,7 @@ const PrimaryLayout = ({ children }: PrimaryLayoutProps) => {
     });
   }, []);
   return (
-    <div className="flex mobile-h-screen flex-col justify-between">
+    <div className="mobile-h-screen flex flex-col justify-between">
       <Head>
         <title>Portfolio</title>
       </Head>

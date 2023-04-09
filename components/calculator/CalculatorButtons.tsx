@@ -54,7 +54,7 @@ const CalculatorButtons = ({
     <button
       onClick={handleClick}
       className={
-        'bg-white px-4 py-3 text-center rounded shadow-md hover:bg-slate-50 active:shadow-sm duration-150 cursor-default'
+        'cursor-default rounded bg-white px-4 py-3 text-center shadow-md duration-150 hover:bg-slate-50 active:shadow-sm'
       }
     >
       {digit}

@@ -13,14 +13,14 @@ const AppWindowWrapper = ({ children }: AppWindowWrapperProps) => {
         <div>{route.pathname.slice(1)}</div>
         <div>
           <Link href={'/'}>
-            <button className="px-4 text-xs h-7 hover:bg-gray-100">⚊</button>
+            <button className="h-7 px-4 text-xs hover:bg-gray-100">⚊</button>
           </Link>
           <Link href={'/'}>
-            <button className="px-4 text-xs h-7 hover:bg-red-600">✕</button>
+            <button className="h-7 px-4 text-xs hover:bg-red-600">✕</button>
           </Link>
         </div>
       </div>
-      <div className="shadow rounded">{children}</div>
+      <div className="rounded shadow">{children}</div>
     </div>
   );
 };

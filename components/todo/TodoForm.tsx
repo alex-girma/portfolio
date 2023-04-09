@@ -52,11 +52,11 @@ const TodoForm = ({
           autoFocus
           onChange={handleChange}
           value={inputValue}
-          className="appearance-none block w-full bg-slate-50 text-gray-700 caret-orange-500 text-sm border-gray-200 rounded py-1 px-3 mb-2 mr-2 focus:outline-none focus:bg-white focus:border-gray-200"
+          className="mb-2 mr-2 block w-full appearance-none rounded border-gray-200 bg-slate-50 py-1 px-3 text-sm text-gray-700 caret-orange-500 focus:border-gray-200 focus:bg-white focus:outline-none"
         />
         <button
           type="submit"
-          className="bg-orange-600 hover:bg-orange-500 text-white text-xs px-3 rounded mb-2 transition duration-200"
+          className="mb-2 rounded bg-orange-600 px-3 text-xs text-white transition duration-200 hover:bg-orange-500"
         >
           Add
         </button>

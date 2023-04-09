@@ -9,7 +9,7 @@ const TopBarLayout = () => {
       <Link
         href="/calendar"
         aria-label="Calendar"
-        className="link rounded-bl-md hidden sm:block"
+        className="link hidden rounded-bl-md sm:block"
       >
         <CalendarAppTopBar />
       </Link>

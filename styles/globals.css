@@ -31,35 +31,35 @@ code {
 
 @layer components {
   .link {
-    @apply bg-orange-500 px-6 py-1 hover:bg-red-500 duration-150;
+    @apply bg-orange-500 px-6 py-1 duration-150 hover:bg-red-500;
   }
   .appcreatorlink {
-    @apply px-3 grow-0 shrink-0  border-x-2 text-white bg-orange-500 hover:bg-red-500 duration-150 rounded-md mb-2;
+    @apply mb-2 shrink-0 grow-0  rounded-md border-x-2 bg-orange-500 px-3 text-white duration-150 hover:bg-red-500;
   }
   .absolute-l-t {
     @apply absolute left-1/2 top-1/2;
   }
   .position-hours {
-    @apply -translate-x-1/2 -translate-y-1/2 font-bold text-gray-500 z-10;
+    @apply z-10 -translate-x-1/2 -translate-y-1/2 font-bold text-gray-500;
   }
   .marks-3-6-9-12-container {
-    @apply w-62 h-1 bg-transparent absolute-l-t -translate-x-1/2 -translate-y-1/2 rounded-full flex justify-between;
+    @apply absolute-l-t flex h-1 w-62 -translate-x-1/2 -translate-y-1/2 justify-between rounded-full bg-transparent;
   }
   .marks-container {
-    @apply w-62 h-0.5 bg-transparent absolute-l-t -translate-x-1/2 -translate-y-1/2 rounded-full flex justify-between;
+    @apply absolute-l-t flex h-0.5 w-62 -translate-x-1/2 -translate-y-1/2 justify-between rounded-full bg-transparent;
   }
   .marks-3-6-9-12 {
-    @apply w-3 h-full bg-slate-500 rounded-full shadow;
+    @apply h-full w-3 rounded-full bg-slate-500 shadow;
   }
   .marks {
-    @apply w-2 h-full bg-slate-500;
+    @apply h-full w-2 bg-slate-500;
   }
   .calories-input {
-    @apply appearance-none bg-slate-50 text-gray-700 caret-orange-500 text-sm border-gray-200 rounded py-1 px-3 mb-2 mr-2 focus:outline-none focus:bg-white focus:border-gray-200;
+    @apply mb-2 mr-2 appearance-none rounded border-gray-200 bg-slate-50 py-1 px-3 text-sm text-gray-700 caret-orange-500 focus:border-gray-200 focus:bg-white focus:outline-none;
   }
 
   .alarm-input {
-    @apply appearance-none w-12 text-center bg-slate-50 text-gray-700 caret-orange-500 text-base border-gray-200 rounded focus:outline-none focus:bg-white focus:border-gray-200;
+    @apply w-12 appearance-none rounded border-gray-200 bg-slate-50 text-center text-base text-gray-700 caret-orange-500 focus:border-gray-200 focus:bg-white focus:outline-none;
   }
 }
 

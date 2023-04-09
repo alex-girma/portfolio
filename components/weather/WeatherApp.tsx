@@ -36,7 +36,7 @@ const WeatherApp = () => {
   return (
     <AppWindowWrapper>
       <div className="flex flex-col items-center text-gray-600">
-        <div className="flex flex-col items-center py-28 px-20 bg-neutral-200">
+        <div className="flex flex-col items-center bg-neutral-200 py-28 px-20">
           <Image
             src={`https://openweathermap.org/img/wn/${weather?.weather[0].icon}@2x.png`}
             alt={weather.weather[0].description}
@@ -52,7 +52,7 @@ const WeatherApp = () => {
           <div className="text-2xl font-bold ">
             {String(Math.round(weather.main.temp_min))}
           </div>
-          <div className="text-5xl mx-6 font-bold">
+          <div className="mx-6 text-5xl font-bold">
             {String(Math.round(weather.main.temp))}
           </div>
           <div className="text-2xl font-bold">

@@ -52,7 +52,7 @@ const Alarm = () => {
     setAlarmBoolean(tempBoolean);
   };
   return (
-    <div className="flex flex-col justify-center items-center w-full">
+    <div className="flex w-full flex-col items-center justify-center">
       <p className="py-2">Alarms</p>
       <form onSubmit={handleAlarmSubmit} className="pb-2">
         <input
@@ -80,7 +80,7 @@ const Alarm = () => {
         />
         <button
           type="submit"
-          className="bg-orange-600 hover:bg-orange-500 text-white text-sm px-3 ml-2 rounded transition duration-200"
+          className="ml-2 rounded bg-orange-600 px-3 text-sm text-white transition duration-200 hover:bg-orange-500"
         >
           Add
         </button>
@@ -89,7 +89,7 @@ const Alarm = () => {
         return (
           <div
             key={alarm + ind}
-            className="flex flex-row justify-center items-center w-full pb-2 "
+            className="flex w-full flex-row items-center justify-center pb-2 "
           >
             <div
               className={`border-b-4 border-transparent ${
@@ -101,7 +101,7 @@ const Alarm = () => {
             <button
               onClick={() => handleAlarmDelete(ind)}
               type="submit"
-              className="bg-orange-600 hover:bg-orange-500 text-white text-sm px-3 ml-7 rounded transition duration-200 "
+              className="ml-7 rounded bg-orange-600 px-3 text-sm text-white transition duration-200 hover:bg-orange-500 "
             >
               Del
             </button>

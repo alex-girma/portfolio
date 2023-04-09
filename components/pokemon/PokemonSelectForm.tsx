@@ -36,7 +36,7 @@ const PokemonSelectForm = ({
   };
   return (
     <div>
-      <input className="bg-slate-200 block" onChange={handleFilter} />
+      <input className="block bg-slate-200" onChange={handleFilter} />
 
       <select
         name="pokemon"

@@ -46,7 +46,7 @@ const BottomBarLayout = () => {
     },
   ];
   return (
-    <footer className="flex w-screen justify-center text-xs flex-wrap">
+    <footer className="flex w-screen flex-wrap justify-center text-xs">
       {apps.map((app) => {
         return (
           <AppIconCreator name={app.name} route={app.route} key={app.name} />

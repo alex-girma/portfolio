@@ -41,10 +41,10 @@ const TodoList = ({
   };
 
   return (
-    <div className="flex mb-1 normal-case text-xxs">
+    <div className="mb-1 flex text-xxs normal-case">
       <div
         className={
-          'w-full flex items-center my-2 ml-1 mr-2 text-inherit ' +
+          'my-2 ml-1 mr-2 flex w-full items-center text-inherit ' +
           (allTodoList[todoDate].status[ind] ? 'line-through' : '')
         }
       >
@@ -52,14 +52,14 @@ const TodoList = ({
       </div>
       <button
         type="button"
-        className="bg-green-500 hover:bg-green-400 text-white my-1 px-3 rounded duration-200 mr-1"
+        className="my-1 mr-1 rounded bg-green-500 px-3 text-white duration-200 hover:bg-green-400"
         onClick={handleClickDone}
       >
         ✓
       </button>
       <button
         type="button"
-        className="bg-red-500 hover:bg-red-400 text-white my-1 py px-3 rounded duration-200"
+        className="py my-1 rounded bg-red-500 px-3 text-white duration-200 hover:bg-red-400"
         onClick={handleClickRemove}
       >
         x

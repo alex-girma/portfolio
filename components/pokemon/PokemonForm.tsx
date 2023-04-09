@@ -166,7 +166,7 @@ const PokemonForm = ({
       <h1>Choose your Pokemon</h1>
       <button
         onClick={handleRandomPokemonClick}
-        className="bg-orange-600 hover:bg-orange-500 text-white px-3 rounded transition duration-200"
+        className="rounded bg-orange-600 px-3 text-white transition duration-200 hover:bg-orange-500"
       >
         random Pokemon
       </button>
@@ -191,7 +191,7 @@ const PokemonForm = ({
         />
       </div>
       <button
-        className="mt-10 bg-orange-600 hover:bg-orange-500 text-white px-3 rounded transition duration-200"
+        className="mt-10 rounded bg-orange-600 px-3 text-white transition duration-200 hover:bg-orange-500"
         onClick={handleClick}
       >
         Start Game

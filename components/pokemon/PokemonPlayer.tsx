@@ -28,7 +28,7 @@ const PokemonPlayer = ({
       <div className="flex items-center gap-2">
         <button
           onClick={handleClick}
-          className="rounded-full border-4  p-1 border-red-400"
+          className="rounded-full border-4  border-red-400 p-1"
           id="0"
         >
           <Image
@@ -76,7 +76,7 @@ const PokemonPlayer = ({
             ? playerPokemons[selectedPokemon].stats[0].value
             : '100'}
         </div>
-        <button className="bg-red-400 text-xs flex w-full justify-between my-1">
+        <button className="my-1 flex w-full justify-between bg-red-400 text-xs">
           <p>
             {playerPokemons.length
               ? playerPokemons[selectedPokemon].stats[1].name
@@ -88,7 +88,7 @@ const PokemonPlayer = ({
               : '50'}
           </p>
         </button>
-        <button className="bg-red-400 text-xs flex w-full justify-between mb-1">
+        <button className="mb-1 flex w-full justify-between bg-red-400 text-xs">
           <p>Spe. Attack</p>
           <p>
             {playerPokemons.length
@@ -96,7 +96,7 @@ const PokemonPlayer = ({
               : '65'}
           </p>
         </button>
-        <button className="bg-red-400 text-xs flex w-full justify-between">
+        <button className="flex w-full justify-between bg-red-400 text-xs">
           <p>
             {playerPokemons.length
               ? playerPokemons[selectedPokemon].stats[2].name

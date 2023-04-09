@@ -26,8 +26,8 @@ const CalendarApp = () => {
       </Head>
       <AppWindowWrapper>
         <CalendarYear year={year} setYear={setYear} />
-        <div className="grid grid-cols-6 grid-rows-3 gap-2 text-xxs uppercase cursor-default monthdiv p-1">
-          <div className="col-span-6 row-span-3 bg-stone-200 pt-4 px-3 xs:block md:col-span-2 md:row-span-3">
+        <div className="monthdiv grid cursor-default grid-cols-6 grid-rows-3 gap-2 p-1 text-xxs uppercase">
+          <div className="col-span-6 row-span-3 bg-stone-200 px-3 pt-4 xs:block md:col-span-2 md:row-span-3">
             <TodoApp
               todoDate={todoDate}
               highlightTodoDays={highlightTodoDays}

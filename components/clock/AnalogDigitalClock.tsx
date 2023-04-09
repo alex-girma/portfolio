@@ -19,9 +19,9 @@ const AnalogDigitalClock = () => {
 
   return (
     <>
-      <div className="flex justify-center items-center bg-slate-500 w-64 h-64 rounded-full shadow-clock">
-        <div className="relative bg-slate-50 w-62 h-62  rounded-full">
-          <div className="absolute right-8 top-1/2 -translate-y-1/2 text-xxxs font-bold origin-left border-2 border-slate-300 p-0.5 shadow-inner">
+      <div className="shadow-clock flex h-64 w-64 items-center justify-center rounded-full bg-slate-500">
+        <div className="relative h-62 w-62 rounded-full  bg-slate-50">
+          <div className="absolute right-8 top-1/2 origin-left -translate-y-1/2 border-2 border-slate-300 p-0.5 text-xxxs font-bold shadow-inner">
             {toIntlDateFormat(locale, new Date())}
           </div>
           <div
@@ -30,22 +30,22 @@ const AnalogDigitalClock = () => {
                 hour * 30 + ((30 / 60) * minute + (30 / 60 / 60) * second)
               }deg)`,
             }}
-            className="w-1.5 h-16 bg-orange-500 position-hands shadow-hour z-20"
+            className="position-hands shadow-hour z-20 h-16 w-1.5 bg-orange-500"
           ></div>
           <div
             style={{ transform: `rotate(${minute * 6}deg)` }}
-            className="w-1.5 h-20 bg-blue-500 position-hands shadow-min z-30 ease-out"
+            className="position-hands shadow-min z-30 h-20 w-1.5 bg-blue-500 ease-out"
           ></div>
           <div
             style={{ transform: `rotate(${second * 6}deg)` }}
-            className="w-1 h-28 bg-red-500 position-hands shadow-sec z-40 ease-out"
+            className="position-hands shadow-sec z-40 h-28 w-1 bg-red-500 ease-out"
           ></div>
-          <div className="w-3 h-3 bg-slate-600 absolute-l-t -translate-x-1/2 -translate-y-1/2 rounded-full shadow z-50"></div>
+          <div className="absolute-l-t z-50 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-slate-600 shadow"></div>
 
-          <div className="absolute left-1/2 top-5 position-hours">12</div>
-          <div className="absolute right-3 top-1/2 position-hours">3</div>
-          <div className="absolute left-1/2 -bottom-1 position-hours">6</div>
-          <div className="absolute left-5 top-1/2 position-hours">9</div>
+          <div className="position-hours absolute left-1/2 top-5">12</div>
+          <div className="position-hours absolute right-3 top-1/2">3</div>
+          <div className="position-hours absolute left-1/2 -bottom-1">6</div>
+          <div className="position-hours absolute left-5 top-1/2">9</div>
 
           <div className="marks-3-6-9-12-container ">
             <div className="marks-3-6-9-12"></div>
@@ -73,7 +73,7 @@ const AnalogDigitalClock = () => {
           </div>
         </div>
       </div>
-      <div className="flex gap-2 bg-slate-900 py-2 px-6 text-white shadow rounded">
+      <div className="flex gap-2 rounded bg-slate-900 py-2 px-6 text-white shadow">
         <p>{toIntlTimeFormat(locale, new Date())}</p>
       </div>
     </>

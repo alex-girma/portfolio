@@ -30,14 +30,14 @@ const CalculatorApp = () => {
   return (
     <div>
       <AppWindowWrapper>
-        <div className="grid grid-cols-1 grid-rows-2 gap-1 m-2 cursor-default content-center">
-          <p className="col-span-full text-right pr-4 h-10 text-gray-400 flex items-center place-content-end  mt-3">
+        <div className="m-2 grid cursor-default grid-cols-1 grid-rows-2 content-center gap-1">
+          <p className="col-span-full mt-3 flex h-10 place-content-end items-center pr-4 text-right  text-gray-400">
             {prev}
           </p>
-          <p className="col-span-full text-right pr-4 h-10 text-gray-400 flex items-center place-content-end ">
+          <p className="col-span-full flex h-10 place-content-end items-center pr-4 text-right text-gray-400 ">
             {curr}
           </p>
-          <div className="grid grid-cols-4 grid-rows-5 gap-1 mb-2">
+          <div className="mb-2 grid grid-cols-4 grid-rows-5 gap-1">
             {digits.map((digit) => {
               return (
                 <CalculatorButtons

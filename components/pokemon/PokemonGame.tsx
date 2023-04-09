@@ -63,7 +63,7 @@ const PokemonGame = ({
   }, [playerPokemonList, enemyPokemonList]);
 
   return (
-    <div className="flex items-center gap-4 h-60">
+    <div className="flex h-60 items-center gap-4">
       <PokemonPlayer
         playerPokemonList={playerPokemonList}
         playerPokemons={playerPokemons}

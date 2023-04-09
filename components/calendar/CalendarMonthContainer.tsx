@@ -30,9 +30,9 @@ const CalendarMonthContainer = ({
   }, [year, locale, index]);
 
   return (
-    <div className="px-4 pt-16 border-2 border-orange-100 hidden md:block">
+    <div className="hidden border-2 border-orange-100 px-4 pt-16 md:block">
       <div
-        className={`text-xl pb-1  border-b-2 mb-1 border-orange-100 ${
+        className={`mb-1 border-b-2  border-orange-100 pb-1 text-xl ${
           index === currentMonth && year === currentYear
             ? ' text-blue-500'
             : 'text-orange-700'
@@ -40,7 +40,7 @@ const CalendarMonthContainer = ({
       >
         {monthName}
       </div>
-      <div className="flex gap-1 justify-around text-xxxs">
+      <div className="flex justify-around gap-1 text-xxxs">
         {weekdayNames.map((day, ind) => {
           return <CalendarWeekContainer day={day} ind={ind} key={day} />;
         })}

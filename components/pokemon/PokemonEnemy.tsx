@@ -37,7 +37,7 @@ const PokemonEnemy = ({
             ? enemyPokemons[selectedPokemon].stats[0].value
             : '100'}
         </div>
-        <button className="bg-red-400 text-xs flex w-full justify-between my-1">
+        <button className="my-1 flex w-full justify-between bg-red-400 text-xs">
           <p>
             {enemyPokemons.length
               ? enemyPokemons[selectedPokemon].stats[1].name
@@ -49,7 +49,7 @@ const PokemonEnemy = ({
               : '50'}
           </p>
         </button>
-        <button className="bg-red-400 text-xs flex w-full justify-between mb-1">
+        <button className="mb-1 flex w-full justify-between bg-red-400 text-xs">
           <p>Spe. Attack</p>
           <p>
             {enemyPokemons.length
@@ -57,7 +57,7 @@ const PokemonEnemy = ({
               : '65'}
           </p>
         </button>
-        <button className="bg-red-400 text-xs flex w-full justify-between">
+        <button className="flex w-full justify-between bg-red-400 text-xs">
           <p>
             {enemyPokemons.length
               ? enemyPokemons[selectedPokemon].stats[2].name

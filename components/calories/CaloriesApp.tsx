@@ -113,8 +113,8 @@ const CaloriesApp = () => {
             </option>
           </select>
         </div>
-        <div className="text-center pb-2">
-          <button className="bg-orange-600 hover:bg-orange-500 text-white text-md px-3  py-2 my-3 rounded transition duration-200  ">
+        <div className="pb-2 text-center">
+          <button className="text-md my-3 rounded bg-orange-600 px-3  py-2 text-white transition duration-200 hover:bg-orange-500  ">
             Calculate
           </button>
         </div>
