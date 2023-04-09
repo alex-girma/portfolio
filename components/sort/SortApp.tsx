@@ -11,7 +11,7 @@ const Sort = () => {
     setDataArray(creatRandomArray(size));
   }, [size]);
   return (
-    <div>
+    <div className="mb-28">
       <SortHeader
         algo={algo}
         setAlgo={setAlgo}

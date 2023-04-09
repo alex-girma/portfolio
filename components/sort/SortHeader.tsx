@@ -1,10 +1,5 @@
 import { useState } from 'react';
-import {
-  addClass,
-  creatRandomArray,
-  removeClass,
-  toggleClass,
-} from '../utility/functions';
+import { addClass, creatRandomArray, removeClass } from '../utility/functions';
 
 interface SortHeaderProps {
   algo: string;
@@ -30,7 +25,7 @@ const SortHeader = ({
     e.preventDefault();
     setDataArray(creatRandomArray(size));
     for (let i = 0; i < dataArray.length; i++) {
-      removeClass(dataArray[i], 'bg-yellow-400');
+      removeClass(dataArray[i], 'green');
     }
   };
 
@@ -57,8 +52,8 @@ const SortHeader = ({
     for (let i = dataArray.length; i > 0; i--) {
       noSwap = true;
       for (let j = 0; j < i - 1; j++) {
-        toggleClass(dataArray[j], 'bg-green-400');
-        toggleClass(dataArray[j + 1], 'bg-green-400');
+        addClass(dataArray[j], 'blue');
+        addClass(dataArray[j + 1], 'blue');
         await new Promise((resolve) => setTimeout(resolve, 500));
         if (dataArray[j] > dataArray[j + 1]) {
           let right = dataArray[j];
@@ -68,14 +63,14 @@ const SortHeader = ({
           await new Promise((resolve) => setTimeout(resolve, 500));
           noSwap = false;
         }
-        toggleClass(dataArray[j], 'bg-green-400');
-        toggleClass(dataArray[j + 1], 'bg-green-400');
+        removeClass(dataArray[j], 'blue');
+        removeClass(dataArray[j + 1], 'blue');
       }
-      addClass(dataArray[i - 1], 'bg-yellow-400');
+      addClass(dataArray[i - 1], 'green');
       if (noSwap) break;
     }
     for (let i = 0; i < dataArray.length; i++) {
-      addClass(dataArray[i - 1], 'bg-yellow-400');
+      addClass(dataArray[i - 1], 'green');
     }
     setIsSorting(false);
   };
@@ -85,18 +80,18 @@ const SortHeader = ({
 
     for (var i = 0; i < dataArray.length; i++) {
       let smallest = i;
-      addClass(dataArray[smallest], 'bg-red-400');
+      addClass(dataArray[smallest], 'red');
       await new Promise((resolve) => setTimeout(resolve, 500));
       for (let j = i + 1; j < dataArray.length; j++) {
-        addClass(dataArray[j], 'bg-green-400');
+        addClass(dataArray[j], 'blue');
         await new Promise((resolve) => setTimeout(resolve, 500));
         if (dataArray[j] < dataArray[smallest]) {
-          removeClass(dataArray[smallest], 'bg-red-400');
+          removeClass(dataArray[smallest], 'red');
           smallest = j;
-          addClass(dataArray[j], 'bg-red-400');
+          addClass(dataArray[j], 'red');
           await new Promise((resolve) => setTimeout(resolve, 500));
         }
-        removeClass(dataArray[j], 'bg-green-400');
+        removeClass(dataArray[j], 'blue');
       }
       if (i !== smallest) {
         let temp = dataArray[i];
@@ -105,8 +100,8 @@ const SortHeader = ({
         setDataArray([...dataArray]);
         await new Promise((resolve) => setTimeout(resolve, 500));
       }
-      removeClass(dataArray[i], 'bg-red-400');
-      addClass(dataArray[i], 'bg-yellow-400');
+      removeClass(dataArray[i], 'red');
+      addClass(dataArray[i], 'green');
     }
     setIsSorting(false);
   };
@@ -115,7 +110,7 @@ const SortHeader = ({
     for (let i = 1; i < dataArray.length; i++) {
       let currentValue = dataArray[i];
       await new Promise((resolve) => setTimeout(resolve, 500));
-      addClass(currentValue, 'bg-red-400');
+      addClass(currentValue, 'red');
       addClass(currentValue, 'translateY');
       let j = i - 1;
 
@@ -128,11 +123,11 @@ const SortHeader = ({
         setDataArray([...dataArray]);
         await new Promise((resolve) => setTimeout(resolve, 500));
       }
-      removeClass(currentValue, 'bg-red-400');
+      removeClass(currentValue, 'red');
       await new Promise((resolve) => setTimeout(resolve, 500));
-      addClass(currentValue, 'bg-yellow-400');
-      addClass(dataArray[j], 'bg-yellow-400');
-      addClass(dataArray[i], 'bg-yellow-400');
+      addClass(currentValue, 'green');
+      addClass(dataArray[j], 'green');
+      addClass(dataArray[i], 'green');
       removeClass(currentValue, 'translateY');
     }
   };
