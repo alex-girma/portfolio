@@ -41,6 +41,10 @@ const BottomBarLayout = () => {
       route: '/sort',
     },
     {
+      name: 'Visualize Pathfinding',
+      route: '/pathfinding',
+    },
+    {
       name: 'Github',
       route: '/pokemon',
     },
