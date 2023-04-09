@@ -6,14 +6,14 @@ const WeatherAppTopBar = () => {
 
   useEffect(() => {
     const lang = navigator.language.slice(0, 2);
-    // save to session storage to avoid fetching weather on refresh etc...
+    // get weather from session storage if allready fetched to avoid fetching weather on refresh etc...
     if (sessionStorage.getItem('fetchedWeather')) {
       return setWeather(
         JSON.parse(sessionStorage.getItem('fetchedWeather') || '')
       );
     }
     navigator.geolocation.getCurrentPosition(
-      // position allowed
+      // if position allowed
       ({ coords }) => {
         const { latitude, longitude } = coords;
         requestWeather(latitude, longitude);
@@ -29,6 +29,7 @@ const WeatherAppTopBar = () => {
         );
         const data = await response.json();
         setWeather(data);
+        // save fetched weather to session storage to avoid refetching
         sessionStorage.setItem('fetchedWeather', JSON.stringify(data));
       } catch (error) {
         console.error(error);
