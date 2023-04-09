@@ -37,6 +37,10 @@ const BottomBarLayout = () => {
       route: '/pokemon',
     },
     {
+      name: 'Visualize  Sorting',
+      route: '/sort',
+    },
+    {
       name: 'Github',
       route: '/pokemon',
     },

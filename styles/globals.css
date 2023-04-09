@@ -120,3 +120,14 @@ code {
     width: 100%;
   }
 }
+
+.rotatex180 {
+  transform: rotateX(180deg);
+}
+.rotatex0 {
+  transform: rotateX(-180deg);
+}
+
+.translateY {
+  margin-top: -230px;
+}
