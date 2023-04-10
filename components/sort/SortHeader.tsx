@@ -41,6 +41,12 @@ const SortHeader = ({
       case 'Insertion':
         insertionSort();
         break;
+      case 'Merge':
+        mergeSort();
+        break;
+      case 'Quick':
+        quickSort();
+        break;
       default:
         break;
     }
@@ -132,6 +138,65 @@ const SortHeader = ({
     }
   };
 
+  const mergeSort = async () => {
+    const merge = async (array1: number[], array2: number[]) => {
+      let i = 0;
+      let j = 0;
+      let result: number[] = [];
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+
+      while (i < array1.length && j < array2.length) {
+        if (array2[j] > array1[i]) {
+          result.push(array1[i]);
+          i++;
+        } else {
+          result.push(array2[j]);
+          j++;
+        }
+      }
+      while (i < array1.length) {
+        result.push(array1[i]);
+        i++;
+      }
+      while (j < array2.length) {
+        result.push(array2[j]);
+        j++;
+      }
+      return result;
+    };
+
+    const sort = async (arr: number[]) => {
+      if (arr.length <= 1) return arr;
+      let mid = Math.floor(arr.length / 2);
+      // let l = arr.slice(0, mid);
+      // let r = arr.slice(mid);
+      // for (let i = 0; i < l.length; i++) {
+      //   addClass(dataArray[i], 'green');
+      // }
+      // await new Promise((resolve) => setTimeout(resolve, 2000));
+      // for (let i = 0; i < l.length; i++) {
+      //   removeClass(dataArray[i], 'green');
+      // }
+      let left: number[] = await sort(arr.slice(0, mid));
+      let right: number[] = await sort(arr.slice(mid));
+      return merge(left, right);
+    };
+    const test = await sort(dataArray);
+    setDataArray([...test]);
+    // const sort = (arr: number[]) => {
+    //   if (arr.length <= 1) return arr;
+    //   let mid = Math.floor(arr.length / 2);
+    //   let left: number[] = sort(arr.slice(0, mid));
+    //   let right: number[] = sort(arr.slice(mid));
+    //   return merge(left, right);
+    // };
+
+    // console.log(sort([10, 24, 76, 73, 72, 1, 9]));
+  };
+  const quickSort = async () => {
+    console.log('Quick');
+  };
+
   return (
     <div className="flex gap-10 text-gray-900">
       <div>
@@ -142,6 +207,8 @@ const SortHeader = ({
           <option value="Bubble">Bubble Sort</option>
           <option value="Selection">Selection Sort</option>
           <option value="Insertion">Insertion Sort</option>
+          <option value="Merge">Merge Sort</option>
+          <option value="Quick">Quick Sort</option>
         </select>
       </div>
       <div>

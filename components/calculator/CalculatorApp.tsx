@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import AppWindowWrapper from '../utility/AppWindowWrapper';
 import CalculatorButtons from './CalculatorButtons';
+import Head from 'next/head';
 
 const CalculatorApp = () => {
   const [prev, setPrev] = useState(''); // first operand
@@ -28,7 +29,10 @@ const CalculatorApp = () => {
     '=',
   ];
   return (
-    <div>
+    <>
+      <Head>
+        <title>Calculator</title>
+      </Head>
       <AppWindowWrapper>
         <div className="m-2 grid cursor-default grid-cols-1 grid-rows-2 content-center gap-1">
           <p className="col-span-full mt-3 flex h-10 place-content-end items-center pr-4 text-right  text-gray-400">
@@ -53,7 +57,7 @@ const CalculatorApp = () => {
           </div>
         </div>
       </AppWindowWrapper>
-    </div>
+    </>
   );
 };
 

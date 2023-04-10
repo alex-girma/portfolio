@@ -34,9 +34,6 @@ const PrimaryLayout = ({ children }: PrimaryLayoutProps) => {
   }, []);
   return (
     <div className="mobile-h-screen flex flex-col justify-between">
-      <Head>
-        <title>Portfolio</title>
-      </Head>
       <TopBarLayout />
       <main className="flex justify-center">{children}</main>
       <BottomBarLayout />

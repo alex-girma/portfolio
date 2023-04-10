@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import AppWindowWrapper from '../utility/AppWindowWrapper';
+import Head from 'next/head';
 
 const CaloriesApp = () => {
   const [calories, setCalories] = useState('');
@@ -54,103 +55,116 @@ const CaloriesApp = () => {
     setActivity(e.target.value);
   };
   return (
-    <AppWindowWrapper>
-      <form className="p-4 text-sm xs:text-xxs" onSubmit={handleSubmit}>
-        <div>
-          <label>Gender: </label>
-          <input
-            type="radio"
-            name="gender"
-            id="male"
-            value="male"
-            onChange={onChange}
-          />
-          <label htmlFor="male"> male </label>
-          <input
-            type="radio"
-            name="gender"
-            id="female"
-            value="female"
-            onChange={onChange}
-          />
-          <label htmlFor="female"> female</label>
-        </div>
-        <div>
-          <label>Age: </label>
-          <input type="number" className="calories-input" />
-        </div>
-        <div>
-          <label>Height: </label>
-          <input type="number" className="calories-input" placeholder="in cm" />
-        </div>
-        <div>
-          <label>Weight: </label>
-          <input type="number" className="calories-input" placeholder="in kg" />
-        </div>
-        <div>
-          <label htmlFor="activities">Activity: </label>
-
-          <select
-            name="pets"
-            id="activities"
-            onChange={onSelectChange}
-            className="calories-input xs:text-xxs"
-          >
-            <option value="sedentary_active">
-              Sedentary (little or no exercise)
-            </option>
-            <option value="light_active">
-              Lightly active (exercise 1-3 days/week)
-            </option>
-            <option value="moderate_active">
-              Moderately active (exercise 3-5 days/week)
-            </option>
-            <option value="active_active">
-              Active (exercise 6-7 days/week)
-            </option>
-            <option value="very_active">
-              Very active (hard exercise 6-7 days/week)
-            </option>
-          </select>
-        </div>
-        <div className="pb-2 text-center">
-          <button className="text-md my-3 rounded bg-orange-600 px-3  py-2 text-white transition duration-200 hover:bg-orange-500  ">
-            Calculate
-          </button>
-        </div>
-        {calories && (
-          <div className="flex justify-between">
-            <div>
-              <p>Loss Weight</p>
-              <br />
-              <div className="text-center">
-                <p>{Number(calories) - 250} kcal</p>
-                <p>{Number(calories) - 500} kcal</p>
-                <p>{Number(calories) - 1000} kcal</p>
-              </div>
-            </div>
-            <div className="text-center">
-              <p>{calories} kcal</p>
-              <br />
-              <div className="text-center">
-                <p>- 250g +</p>
-                <p>- 500g +</p>
-                <p>- 1000g +</p>
-              </div>
-            </div>
-            <div>
-              <p>Gain Weight</p>
-              <br />
-              <div className="text-center">
-                <p>{Number(calories) + 250} kcal</p>
-                <p>{Number(calories) + 500} kcal</p>
-                <p>{Number(calories) + 1000} kcal</p>
-              </div>
-            </div>
+    <>
+      <Head>
+        <title>Calories</title>
+      </Head>
+      <AppWindowWrapper>
+        <form className="p-4 text-sm xs:text-xxs" onSubmit={handleSubmit}>
+          <div>
+            <label>Gender: </label>
+            <input
+              type="radio"
+              name="gender"
+              id="male"
+              value="male"
+              onChange={onChange}
+            />
+            <label htmlFor="male"> male </label>
+            <input
+              type="radio"
+              name="gender"
+              id="female"
+              value="female"
+              onChange={onChange}
+            />
+            <label htmlFor="female"> female</label>
           </div>
-        )}
-      </form>
-    </AppWindowWrapper>
+          <div>
+            <label>Age: </label>
+            <input type="number" className="calories-input" />
+          </div>
+          <div>
+            <label>Height: </label>
+            <input
+              type="number"
+              className="calories-input"
+              placeholder="in cm"
+            />
+          </div>
+          <div>
+            <label>Weight: </label>
+            <input
+              type="number"
+              className="calories-input"
+              placeholder="in kg"
+            />
+          </div>
+          <div>
+            <label htmlFor="activities">Activity: </label>
+
+            <select
+              name="pets"
+              id="activities"
+              onChange={onSelectChange}
+              className="calories-input xs:text-xxs"
+            >
+              <option value="sedentary_active">
+                Sedentary (little or no exercise)
+              </option>
+              <option value="light_active">
+                Lightly active (exercise 1-3 days/week)
+              </option>
+              <option value="moderate_active">
+                Moderately active (exercise 3-5 days/week)
+              </option>
+              <option value="active_active">
+                Active (exercise 6-7 days/week)
+              </option>
+              <option value="very_active">
+                Very active (hard exercise 6-7 days/week)
+              </option>
+            </select>
+          </div>
+          <div className="pb-2 text-center">
+            <button className="text-md my-3 rounded bg-orange-600 px-3  py-2 text-white transition duration-200 hover:bg-orange-500  ">
+              Calculate
+            </button>
+          </div>
+          {calories && (
+            <div className="flex justify-between">
+              <div>
+                <p>Loss Weight</p>
+                <br />
+                <div className="text-center">
+                  <p>{Number(calories) - 250} kcal</p>
+                  <p>{Number(calories) - 500} kcal</p>
+                  <p>{Number(calories) - 1000} kcal</p>
+                </div>
+              </div>
+              <div className="text-center">
+                <p>{calories} kcal</p>
+                <br />
+                <div className="text-center">
+                  <p>- 250g +</p>
+                  <p>- 500g +</p>
+                  <p>- 1000g +</p>
+                </div>
+              </div>
+              <div>
+                <p>Gain Weight</p>
+                <br />
+                <div className="text-center">
+                  <p>{Number(calories) + 250} kcal</p>
+                  <p>{Number(calories) + 500} kcal</p>
+                  <p>{Number(calories) + 1000} kcal</p>
+                </div>
+              </div>
+            </div>
+          )}
+        </form>
+      </AppWindowWrapper>
+    </>
   );
 };
 

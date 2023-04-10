@@ -2,6 +2,7 @@ import { useState } from 'react';
 import AppWindowWrapper from '../utility/AppWindowWrapper';
 import PokemonForm from './PokemonForm';
 import PokemonGame from './PokemonGame';
+import Head from 'next/head';
 
 export interface PokemonListProps {
   id: number;
@@ -23,24 +24,29 @@ const PokemonApp = () => {
     []
   );
   return (
-    <AppWindowWrapper>
-      <div className="p-6">
-        {gameStarted ? (
-          <PokemonGame
-            playerPokemonList={playerPokemonList}
-            enemyPokemonList={enemyPokemonList}
-          />
-        ) : (
-          <PokemonForm
-            setGameStarted={setGameStarted}
-            selectedPokemonNames={selectedPokemonNames}
-            setSelectedPokemonNames={setSelectedPokemonNames}
-            setPlayerPokemonList={setPlayerPokemonList}
-            setEnemyPokemonList={setEnemyPokemonList}
-          />
-        )}
-      </div>
-    </AppWindowWrapper>
+    <>
+      <Head>
+        <title>Pokemon</title>
+      </Head>
+      <AppWindowWrapper>
+        <div className="p-6">
+          {gameStarted ? (
+            <PokemonGame
+              playerPokemonList={playerPokemonList}
+              enemyPokemonList={enemyPokemonList}
+            />
+          ) : (
+            <PokemonForm
+              setGameStarted={setGameStarted}
+              selectedPokemonNames={selectedPokemonNames}
+              setSelectedPokemonNames={setSelectedPokemonNames}
+              setPlayerPokemonList={setPlayerPokemonList}
+              setEnemyPokemonList={setEnemyPokemonList}
+            />
+          )}
+        </div>
+      </AppWindowWrapper>
+    </>
   );
 };
 
