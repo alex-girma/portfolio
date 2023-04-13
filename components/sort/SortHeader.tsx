@@ -149,13 +149,13 @@ const SortHeader = ({
     };
     const merge = (left: number[], right: number[]): number[] => {
       let arr: number[] = [];
-      while (left.length && right.length) {
-        // if (left[0] < right[0]) {
-        //   arr.push(left.shift());
-        // } else {
-        //   arr.push(right.shift());
-        // }
-      }
+      // while (left.length && right.length) {
+      //   if (left[0] < right[0]) {
+      //     arr.push(left.shift());
+      //   } else {
+      //     arr.push(right.shift());
+      //   }
+      // }
       return [...arr, ...left, ...right];
     };
     sort(dataArray);
