@@ -222,6 +222,8 @@ const SortHeader = ({
       }
       while (i < array1.length) {
         console.log('i < left array: ', dataArray);
+        // dataArray[dataArray.indexOf(array2[j])] = array1[i];
+        // dataArray[dataArray.indexOf(array1[i])] = array2[j];
         await new Promise((resolve) => setTimeout(resolve, 1000));
         setDataArray([...dataArray]);
 
