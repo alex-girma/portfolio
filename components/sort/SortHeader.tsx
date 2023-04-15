@@ -180,12 +180,12 @@ const SortHeader = ({
     // const test = await sort([...dataArray]);
     // setDataArray([...test]);
     const merge = async (array1: number[], array2: number[]) => {
-      for (let i = 0; i < array1.length; i++) {
-        addClass(array1[i], 'green');
-      }
-      for (let j = 0; j < array2.length; j++) {
-        addClass(array2[j], 'green');
-      }
+      // for (let i = 0; i < array1.length; i++) {
+      //   addClass(array1[i], 'green');
+      // }
+      // for (let j = 0; j < array2.length; j++) {
+      //   addClass(array2[j], 'green');
+      // }
       let results = [];
       let i = 0;
       let j = 0;
@@ -198,13 +198,13 @@ const SortHeader = ({
           console.log('right < left: ', dataArray);
           dataArray[dataArray.indexOf(array2[j])] = array1[i];
           dataArray[dataArray.indexOf(array1[i])] = array2[j];
-          await new Promise((resolve) => setTimeout(resolve, 500));
+          await new Promise((resolve) => setTimeout(resolve, 1000));
           setDataArray([...dataArray]);
           results.push(array2[j]);
           j++;
         } else {
           console.log('left < right: ', dataArray);
-          await new Promise((resolve) => setTimeout(resolve, 500));
+          await new Promise((resolve) => setTimeout(resolve, 1000));
           setDataArray([...dataArray]);
 
           // test[test.indexOf(array2[0])] = array1[i];
@@ -217,7 +217,7 @@ const SortHeader = ({
       }
       while (i < array1.length) {
         console.log('i < left array: ', dataArray);
-        await new Promise((resolve) => setTimeout(resolve, 500));
+        await new Promise((resolve) => setTimeout(resolve, 1000));
         setDataArray([...dataArray]);
 
         // dataArray[dataArray.indexOf(array2[i])] = array1[i];
@@ -230,7 +230,7 @@ const SortHeader = ({
       }
       while (j < array2.length) {
         console.log('j < right array: ', dataArray);
-        await new Promise((resolve) => setTimeout(resolve, 500));
+        await new Promise((resolve) => setTimeout(resolve, 1000));
         setDataArray([...dataArray]);
 
         // dataArray[dataArray.indexOf(array2[i])] = array1[i];
@@ -241,14 +241,14 @@ const SortHeader = ({
         results.push(array2[j]);
         j++;
       }
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      // await new Promise((resolve) => setTimeout(resolve, 1000));
 
-      for (let i = 0; i < array1.length; i++) {
-        removeClass(array1[i], 'green');
-      }
-      for (let j = 0; j < array2.length; j++) {
-        removeClass(array2[j], 'green');
-      }
+      // for (let i = 0; i < array1.length; i++) {
+      //   removeClass(array1[i], 'green');
+      // }
+      // for (let j = 0; j < array2.length; j++) {
+      //   removeClass(array2[j], 'green');
+      // }
 
       return results;
     };
