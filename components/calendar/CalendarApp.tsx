@@ -27,12 +27,23 @@ const CalendarApp = () => {
       <AppWindowWrapper>
         <CalendarYear year={year} setYear={setYear} />
         <div className="monthdiv grid cursor-default grid-cols-6 grid-rows-3 gap-2 p-1 text-xxs uppercase">
-          <div className="col-span-6 row-span-3 bg-stone-200 px-3 pt-4 xs:block md:col-span-2 md:row-span-3">
+          <div className="col-span-6 row-span-3 bg-stone-200 px-3 pt-4 md:col-span-2 ">
             <TodoApp
               todoDate={todoDate}
               highlightTodoDays={highlightTodoDays}
               setHighlightTodoDays={setHighlightTodoDays}
             />
+            <div>
+              <CalendarMonthContainer
+                key={'currentMonth'}
+                monthName={'April'}
+                locale={locale}
+                year={year}
+                index={3}
+                setTodoDate={setTodoDate}
+                highlightTodoDays={highlightTodoDays}
+              />
+            </div>
           </div>
           {monthNames.map((monthName, index) => {
             return (
