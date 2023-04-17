@@ -170,7 +170,7 @@ const PokemonForm = ({
       >
         random Pokemon
       </button>
-      <div className="flex gap-2 xs:flex-col">
+      <div className="flex flex-col gap-2 sm:flex-row">
         <PokemonSelectForm
           index={0}
           allPokemon={allPokemon}

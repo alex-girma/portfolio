@@ -24,8 +24,8 @@ const PokemonPlayer = ({
   console.log(playerPokemons);
 
   return (
-    <>
-      <div className="flex items-center gap-2">
+    <div>
+      <div className="mb-1 flex items-center gap-1">
         <button
           onClick={handleClick}
           className="rounded-full border-4  border-red-400 p-1"
@@ -36,11 +36,12 @@ const PokemonPlayer = ({
             alt={playerPokemonList['0'].image}
             width={30}
             height={30}
+            className="h-5 w-5 sm:h-10 sm:w-10"
           />
         </button>
         <button
           onClick={handleClick}
-          className="rounded-full border-4  p-1"
+          className="rounded-full border-4 p-1"
           id="1"
         >
           <Image
@@ -48,6 +49,7 @@ const PokemonPlayer = ({
             alt={playerPokemonList['1'].image}
             width={30}
             height={30}
+            className="h-5 w-5 sm:h-10 sm:w-10"
           />
         </button>
         <button
@@ -60,6 +62,7 @@ const PokemonPlayer = ({
             alt={playerPokemonList['2'].image}
             width={30}
             height={30}
+            className="h-5 w-5 sm:h-10 sm:w-10"
           />
         </button>
       </div>
@@ -69,7 +72,7 @@ const PokemonPlayer = ({
           alt={playerPokemonList[selectedPokemon].image}
           width={110}
           height={110}
-          className="border-4 p-2"
+          className="h-40 w-44 border-4 p-2 sm:h-40"
         />
         <div className="bg-red-400 text-xs">
           {playerPokemons.length
@@ -109,7 +112,7 @@ const PokemonPlayer = ({
           </p>
         </button>
       </div>
-    </>
+    </div>
   );
 };
 

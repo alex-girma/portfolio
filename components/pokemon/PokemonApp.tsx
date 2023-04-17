@@ -1,8 +1,8 @@
+import Head from 'next/head';
 import { useState } from 'react';
 import AppWindowWrapper from '../utility/AppWindowWrapper';
 import PokemonForm from './PokemonForm';
 import PokemonGame from './PokemonGame';
-import Head from 'next/head';
 
 export interface PokemonListProps {
   id: number;
@@ -29,7 +29,7 @@ const PokemonApp = () => {
         <title>Pokemon</title>
       </Head>
       <AppWindowWrapper>
-        <div className="p-6">
+        <div className="p-4">
           {gameStarted ? (
             <PokemonGame
               playerPokemonList={playerPokemonList}

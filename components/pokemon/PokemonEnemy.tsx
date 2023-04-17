@@ -23,14 +23,55 @@ const PokemonEnemy = ({
   };
 
   return (
-    <>
+    <div>
+      <div className="mb-1 flex items-center gap-1">
+        <button
+          onClick={handleClick}
+          className="rounded-full border-4  p-1"
+          id="3"
+        >
+          <Image
+            src={`https://jherr-pokemon.s3.us-west-1.amazonaws.com/${enemyPokemonList['0'].image}`}
+            alt={enemyPokemonList['0'].image}
+            width={30}
+            height={30}
+            className="h-5 w-5 sm:h-10 sm:w-10"
+          />
+        </button>
+        <button
+          onClick={handleClick}
+          className="rounded-full border-4  p-1"
+          id="4"
+        >
+          <Image
+            src={`https://jherr-pokemon.s3.us-west-1.amazonaws.com/${enemyPokemonList['1'].image}`}
+            alt={enemyPokemonList['1'].image}
+            width={30}
+            height={30}
+            className="h-5 w-5 sm:h-10 sm:w-10"
+          />
+        </button>
+        <button
+          onClick={handleClick}
+          className="rounded-full border-4  p-1"
+          id="5"
+        >
+          <Image
+            src={`https://jherr-pokemon.s3.us-west-1.amazonaws.com/${enemyPokemonList['2'].image}`}
+            alt={enemyPokemonList['2'].image}
+            width={30}
+            height={30}
+            className="h-5 w-5 sm:h-10 sm:w-10"
+          />
+        </button>
+      </div>
       <div>
         <Image
           src={`https://jherr-pokemon.s3.us-west-1.amazonaws.com/${enemyPokemonList[selectedPokemon].image}`}
           alt={enemyPokemonList[selectedPokemon].image}
           width={110}
           height={110}
-          className="border-4 p-2"
+          className="h-40 w-44 border-4 p-2 sm:h-40"
         />
         <div className="bg-red-400 text-xs">
           {enemyPokemons.length
@@ -70,45 +111,7 @@ const PokemonEnemy = ({
           </p>
         </button>
       </div>
-      <div className="flex items-center gap-2">
-        <button
-          onClick={handleClick}
-          className="rounded-full border-4  p-1"
-          id="3"
-        >
-          <Image
-            src={`https://jherr-pokemon.s3.us-west-1.amazonaws.com/${enemyPokemonList['0'].image}`}
-            alt={enemyPokemonList['0'].image}
-            width={30}
-            height={30}
-          />
-        </button>
-        <button
-          onClick={handleClick}
-          className="rounded-full border-4  p-1"
-          id="4"
-        >
-          <Image
-            src={`https://jherr-pokemon.s3.us-west-1.amazonaws.com/${enemyPokemonList['1'].image}`}
-            alt={enemyPokemonList['1'].image}
-            width={30}
-            height={30}
-          />
-        </button>
-        <button
-          onClick={handleClick}
-          className="rounded-full border-4  p-1"
-          id="5"
-        >
-          <Image
-            src={`https://jherr-pokemon.s3.us-west-1.amazonaws.com/${enemyPokemonList['2'].image}`}
-            alt={enemyPokemonList['2'].image}
-            width={30}
-            height={30}
-          />
-        </button>
-      </div>
-    </>
+    </div>
   );
 };
 
