@@ -18,7 +18,7 @@ const Sort = () => {
         <title>Visualize Sort Algorithms</title>
       </Head>
       <AppWindowWrapper>
-        <div className=" px-4 pb-64 pt-6">
+        <div className=" px-4 pb-64 pt-4">
           <SortHeader
             algo={algo}
             setAlgo={setAlgo}
@@ -27,7 +27,7 @@ const Sort = () => {
             dataArray={dataArray}
             setDataArray={setDataArray}
           />
-          <div className=" rotatex180 mt-10 flex h-60 justify-center gap-1 sm:gap-2">
+          <div className=" rotatex180 mt-2 flex h-60 justify-center gap-1 sm:gap-2">
             {dataArray.map((number) => {
               return <SortVisualizer key={number} number={number} />;
             })}

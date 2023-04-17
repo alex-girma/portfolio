@@ -146,7 +146,7 @@ const SortHeader = ({
   };
 
   return (
-    <div className="flex flex-col gap-10 text-xxs text-gray-900 sm:flex-row">
+    <div className="flex flex-col gap-2 text-xxs text-gray-900 sm:flex-row sm:gap-10">
       <div>
         <span className="font-medium text-blue-600 underline">
           Select Algorithm:
