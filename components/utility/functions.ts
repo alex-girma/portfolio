@@ -10,9 +10,10 @@ export const getMonthNames = (locale: string) => {
 };
 export const getMonthName = (locale: string, index: number) => {
   // get name of each month depending on user language
+  const year = new Date().getFullYear();
   const monthName: string = new Intl.DateTimeFormat(locale, {
     month: 'long',
-  }).format(new Date(2022, index, 1));
+  }).format(new Date(year, index, 1));
 
   return monthName;
 };

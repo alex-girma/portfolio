@@ -35,16 +35,18 @@ const CalendarApp = () => {
       <AppWindowWrapper>
         <CalendarYear year={year} setYear={setYear} />
         <div className="grid cursor-default grid-cols-3 gap-2 p-1 text-xxs uppercase">
-          <div className=" col-span-3 bg-stone-200 px-3 pt-4 md:col-span-1">
+          <div className=" col-span-3 bg-stone-200 px-3 py-4 md:col-span-1">
             <TodoApp
               todoDate={todoDate}
               highlightTodoDays={highlightTodoDays}
               setHighlightTodoDays={setHighlightTodoDays}
             />
             <CalendarMonth
+              year={year}
               index={monthIndex}
               setMonthIndex={setMonthIndex}
               currentMonthName={currentMonthName}
+              setYear={setYear}
             />
             <div>
               <CalendarMonthContainer
@@ -52,7 +54,7 @@ const CalendarApp = () => {
                 monthName={currentMonthName}
                 locale={locale}
                 year={year}
-                index={new Date().getMonth()}
+                index={monthIndex}
                 setTodoDate={setTodoDate}
                 highlightTodoDays={highlightTodoDays}
               />
