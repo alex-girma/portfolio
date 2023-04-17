@@ -8,6 +8,14 @@ export const getMonthNames = (locale: string) => {
   );
   return monthNames;
 };
+export const getMonthName = (locale: string, index: number) => {
+  // get name of each month depending on user language
+  const monthName: string = new Intl.DateTimeFormat(locale, {
+    month: 'long',
+  }).format(new Date(2022, index, 1));
+
+  return monthName;
+};
 
 export const getWeekdayNames = (locale: string) => {
   // get name of weekdays depending on user language
