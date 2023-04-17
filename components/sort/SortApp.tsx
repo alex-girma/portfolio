@@ -18,7 +18,7 @@ const Sort = () => {
         <title>Visualize Sort Algorithms</title>
       </Head>
       <AppWindowWrapper>
-        <div className=" px-4 pb-64 pt-4">
+        <div className=" px-4 pb-60 pt-4">
           <SortHeader
             algo={algo}
             setAlgo={setAlgo}
