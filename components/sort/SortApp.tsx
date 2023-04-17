@@ -27,7 +27,7 @@ const Sort = () => {
             dataArray={dataArray}
             setDataArray={setDataArray}
           />
-          <div className=" rotatex180 mt-10 flex h-60 justify-center gap-2">
+          <div className=" rotatex180 mt-10 flex h-60 justify-center gap-1 sm:gap-2">
             {dataArray.map((number) => {
               return <SortVisualizer key={number} number={number} />;
             })}

@@ -71,7 +71,7 @@ const PokemonEnemy = ({
           alt={enemyPokemonList[selectedPokemon].image}
           width={110}
           height={110}
-          className="h-40 w-44 border-4 p-2 sm:h-40"
+          className="h-40 w-44 border-4 p-2"
         />
         <div className="bg-red-400 text-xs">
           {enemyPokemons.length
