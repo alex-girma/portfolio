@@ -8,9 +8,7 @@ const PathfindingApp = () => {
         <title>Visualize Pathfinding Algorithms</title>
       </Head>
       <AppWindowWrapper>
-        <div className=" px-4 pb-64 pt-6">
-          working on pathfinding algorithms
-        </div>
+        <div className=" px-4 pb-64 pt-6">Coming soon...</div>
       </AppWindowWrapper>
     </>
   );
