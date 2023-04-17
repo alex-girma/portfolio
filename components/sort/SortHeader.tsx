@@ -113,6 +113,7 @@ const SortHeader = ({
   };
 
   const insertionSort = async () => {
+    setIsSorting(true);
     for (let i = 1; i < dataArray.length; i++) {
       let currentValue = dataArray[i];
       await new Promise((resolve) => setTimeout(resolve, 500));
@@ -136,6 +137,7 @@ const SortHeader = ({
       addClass(dataArray[i], 'green');
       removeClass(currentValue, 'translateY');
     }
+    setIsSorting(false);
   };
 
   const mergeSort = () => {
