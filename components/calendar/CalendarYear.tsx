@@ -7,16 +7,16 @@ export interface CalendarYearProps {
 
 const CalendarYear = ({ year, setYear }: CalendarYearProps) => {
   return (
-    <div className="text-l flex justify-center gap-2 py-2">
+    <div className="flex justify-center gap-2 py-2 ">
       <button
-        className=" h-6 px-3 text-xs hover:bg-gray-100"
+        className=" h-5 px-3 text-xs text-orange-500 hover:bg-gray-100"
         onClick={() => setYear(year - 1)}
       >
         -
       </button>
-      <p>{year}</p>
+      <p className="text-sm font-semibold text-orange-500">{year}</p>
       <button
-        className=" h-6 px-3 text-xs hover:bg-gray-100"
+        className=" h-5 px-3 text-xs text-orange-500 hover:bg-gray-100"
         onClick={() => setYear(year + 1)}
       >
         +

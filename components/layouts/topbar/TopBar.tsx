@@ -5,7 +5,7 @@ import WeatherAppTopBar from '../../weather/WeatherAppTopBar';
 
 const TopBarLayout = () => {
   return (
-    <nav className="flex justify-center text-xxxs text-white sm:text-xs">
+    <nav className="flex justify-center text-xxxs text-white sm:text-xxs">
       <Link
         href="/calendar"
         aria-label="Calendar"

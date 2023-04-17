@@ -30,9 +30,9 @@ const CalendarMonthContainer = ({
   }, [year, locale, index]);
 
   return (
-    <div className="border-2 border-orange-100 px-4 pt-16">
+    <div className="border-2 border-orange-100 px-4 pt-8 md:pt-16">
       <div
-        className={`mb-1 border-b-2  border-orange-100 pb-1 text-xl ${
+        className={`mb-1 border-b-2  border-orange-100 pb-1 text-sm ${
           index === currentMonth && year === currentYear
             ? ' text-blue-500'
             : 'text-orange-700'

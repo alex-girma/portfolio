@@ -52,7 +52,7 @@ const TodoList = ({
       </div>
       <button
         type="button"
-        className="my-1 mr-1 rounded bg-green-500 px-3 text-white duration-200 hover:bg-green-400"
+        className="my-1 mr-1 rounded bg-green-500 px-3  text-white duration-200 hover:bg-green-400"
         onClick={handleClickDone}
       >
         ✓

@@ -33,7 +33,7 @@ const TodoApp = ({
         setHighlightTodoDays={setHighlightTodoDays}
       />
 
-      <div className="flex justify-center pb-2 underline ">
+      <div className="flex justify-center pb-2 text-xxs text-orange-500 underline ">
         <p>{todoDate}</p>
       </div>
       {todoLists.map((todo, ind) => {
