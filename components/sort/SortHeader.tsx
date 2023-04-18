@@ -20,14 +20,14 @@ const SortHeader = ({
 }: SortHeaderProps) => {
   const [isSorting, setIsSorting] = useState(false);
 
-  // const handleRandomData = (e: React.MouseEvent<HTMLButtonElement>) => {
-  //   if (isSorting) return;
-  //   e.preventDefault();
-  //   setDataArray(creatRandomArray(size));
-  //   for (let i = 0; i < dataArray.length; i++) {
-  //     removeClass(dataArray[i], 'green');
-  //   }
-  // };
+  const handleRandomData = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (isSorting) return;
+    e.preventDefault();
+    setDataArray(creatRandomArray(size));
+    for (let i = 0; i < dataArray.length; i++) {
+      removeClass(dataArray[i], 'green');
+    }
+  };
 
   const handleSort = () => {
     if (isSorting) return;
@@ -214,7 +214,7 @@ const SortHeader = ({
         </select>
       </div>
       <button
-        // onClick={handleRandomData}
+        onClick={handleRandomData}
         className="rounded  bg-blue-400 px-4 py-1 duration-150 hover:bg-blue-500"
       >
         random array

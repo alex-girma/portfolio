@@ -8,13 +8,11 @@ import SortVisualizer from './SortVisualizer';
 const Sort = () => {
   const [algo, setAlgo] = useState('Bubble');
   const [size, setSize] = useState(10);
-  // const [dataArray, setDataArray] = useState<number[]>([]);
-  const [dataArray, setDataArray] = useState<number[]>([
-    44, 32, 18, 9, 24, 17, 41, 13, 39, 4,
-  ]);
-  // useEffect(() => {
-  //   setDataArray(creatRandomArray(size));
-  // }, [size]);
+  const [dataArray, setDataArray] = useState<number[]>([]);
+
+  useEffect(() => {
+    setDataArray(creatRandomArray(size));
+  }, [size]);
   return (
     <>
       <Head>
