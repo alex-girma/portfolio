@@ -140,8 +140,49 @@ const SortHeader = ({
     setIsSorting(false);
   };
 
-  const mergeSort = () => {
-    console.log('Coming soon...');
+  const mergeSort = async () => {
+    const merge = async (left: number[], right: number[]) => {
+      let arr = [];
+      // const start = [...left, ...right];
+
+      while (left.length && right.length) {
+        if (left[0] < right[0]) {
+          arr.push(left.shift());
+        } else {
+          arr.push(right.shift());
+        }
+      }
+
+      const sorted = [...arr, ...left, ...right];
+      const test = [...sorted];
+
+      //NOTE: for loop comparing test and dataArray
+      let i = 0;
+      while (i < test.length) {
+        dataArray[dataArray.indexOf(test[i]!)] = test[i + 1]!;
+        dataArray[dataArray.indexOf(test[i + 1]!)] = test[i]!;
+        console.log('test: ', test);
+        console.log('data: ', dataArray);
+        setDataArray([...dataArray]);
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        i++;
+      }
+
+      return sorted;
+    };
+    //@ts-ignore
+    const sort = async (array: number[]) => {
+      const half = Math.ceil(array.length / 2);
+
+      if (array.length < 2) {
+        return array;
+      }
+
+      const left = array.splice(0, half);
+      return merge(await sort(left), await sort(array));
+    };
+    console.log(dataArray);
+    setDataArray(await sort([...dataArray]));
   };
   const quickSort = () => {
     console.log('Coming soon...');
