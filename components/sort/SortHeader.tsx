@@ -20,14 +20,14 @@ const SortHeader = ({
 }: SortHeaderProps) => {
   const [isSorting, setIsSorting] = useState(false);
 
-  const handleRandomData = (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (isSorting) return;
-    e.preventDefault();
-    setDataArray(creatRandomArray(size));
-    for (let i = 0; i < dataArray.length; i++) {
-      removeClass(dataArray[i], 'green');
-    }
-  };
+  // const handleRandomData = (e: React.MouseEvent<HTMLButtonElement>) => {
+  //   if (isSorting) return;
+  //   e.preventDefault();
+  //   setDataArray(creatRandomArray(size));
+  //   for (let i = 0; i < dataArray.length; i++) {
+  //     removeClass(dataArray[i], 'green');
+  //   }
+  // };
 
   const handleSort = () => {
     if (isSorting) return;
@@ -141,48 +141,50 @@ const SortHeader = ({
   };
 
   const mergeSort = async () => {
-    const merge = async (left: number[], right: number[]) => {
-      let arr = [];
-      // const start = [...left, ...right];
+    // const merge = async (left: number[], right: number[]) => {
+    //   let arr = [];
+    //   const test = [...left, ...right];
+    //   let k = 0;
 
-      while (left.length && right.length) {
-        if (left[0] < right[0]) {
-          arr.push(left.shift());
-        } else {
-          arr.push(right.shift());
-        }
-      }
+    //   while (left.length && right.length) {
+    //     if (left[0] < right[0]) {
+    //       dataArray[dataArray.indexOf(left[0])] = dataArray[k];
+    //       dataArray[dataArray.indexOf(test[k])] = left[0];
+    //       arr.push(left.shift());
+    //     } else {
+    //       dataArray[dataArray.indexOf(right[0])] = dataArray[k];
+    //       dataArray[dataArray.indexOf(test[k])] = right[0];
+    //       arr.push(right.shift());
+    //     }
+    //     await new Promise((resolve) => setTimeout(resolve, 1000));
+    //     setDataArray([...dataArray]);
+    //     k++;
+    //   }
 
-      const sorted = [...arr, ...left, ...right];
-      const test = [...sorted];
+    //   let i = 0;
+    //   while (i < left.length - 1) {
+    //     dataArray[dataArray.indexOf(left[i + 1])] = left[i];
+    //     dataArray[dataArray.indexOf(left[i])] = left[i + 1];
+    //     await new Promise((resolve) => setTimeout(resolve, 1000));
+    //     setDataArray([...dataArray]);
+    //     i++;
+    //   }
 
-      //NOTE: for loop comparing test and dataArray
-      let i = 0;
-      while (i < test.length) {
-        dataArray[dataArray.indexOf(test[i]!)] = test[i + 1]!;
-        dataArray[dataArray.indexOf(test[i + 1]!)] = test[i]!;
-        console.log('test: ', test);
-        console.log('data: ', dataArray);
-        setDataArray([...dataArray]);
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-        i++;
-      }
-
-      return sorted;
-    };
+    //   return [...arr, ...left, ...right];
+    // };
     //@ts-ignore
-    const sort = async (array: number[]) => {
-      const half = Math.ceil(array.length / 2);
+    // const sort = async (array: number[]) => {
+    //   const half = Math.ceil(array.length / 2);
 
-      if (array.length < 2) {
-        return array;
-      }
+    //   if (array.length < 2) {
+    //     return array;
+    //   }
 
-      const left = array.splice(0, half);
-      return merge(await sort(left), await sort(array));
-    };
-    console.log(dataArray);
-    setDataArray(await sort([...dataArray]));
+    //   const left = array.splice(0, half);
+    //   return merge(await sort(left), await sort(array));
+    // };
+    // setDataArray(await sort([...dataArray]));
+    console.log('coming soon');
   };
   const quickSort = () => {
     console.log('Coming soon...');
@@ -212,7 +214,7 @@ const SortHeader = ({
         </select>
       </div>
       <button
-        onClick={handleRandomData}
+        // onClick={handleRandomData}
         className="rounded  bg-blue-400 px-4 py-1 duration-150 hover:bg-blue-500"
       >
         random array
