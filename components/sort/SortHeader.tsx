@@ -18,6 +18,7 @@ const SortHeader = ({
   dataArray,
   setDataArray,
 }: SortHeaderProps) => {
+  const [speed, setSpeed] = useState(500);
   const [isSorting, setIsSorting] = useState(false);
 
   const handleRandomData = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -60,13 +61,13 @@ const SortHeader = ({
       for (let j = 0; j < i - 1; j++) {
         addClass(dataArray[j], 'blue');
         addClass(dataArray[j + 1], 'blue');
-        await new Promise((resolve) => setTimeout(resolve, 500));
+        await new Promise((resolve) => setTimeout(resolve, speed));
         if (dataArray[j] > dataArray[j + 1]) {
           let right = dataArray[j];
           dataArray[j] = dataArray[j + 1];
           dataArray[j + 1] = right;
           setDataArray([...dataArray]);
-          await new Promise((resolve) => setTimeout(resolve, 500));
+          await new Promise((resolve) => setTimeout(resolve, speed));
           noSwap = false;
         }
         removeClass(dataArray[j], 'blue');
@@ -193,9 +194,7 @@ const SortHeader = ({
   return (
     <div className="flex flex-col gap-2 text-xxs text-gray-900 sm:flex-row sm:gap-10">
       <div>
-        <span className="font-medium text-blue-600 underline">
-          Select Algorithm:
-        </span>
+        <span className="font-medium text-blue-600 underline">Algorithm:</span>
         <select value={algo} onChange={(e) => setAlgo(e.target.value)}>
           <option value="Bubble">Bubble Sort</option>
           <option value="Selection">Selection Sort</option>
@@ -205,12 +204,21 @@ const SortHeader = ({
         </select>
       </div>
       <div>
-        <span className="font-medium text-blue-600 underline">
-          Select array size:
-        </span>
+        <span className="font-medium text-blue-600 underline">Size:</span>
         <select value={size} onChange={(e) => setSize(Number(e.target.value))}>
           <option value="10">Small</option>
           <option value="15">Big</option>
+        </select>
+      </div>
+      <div>
+        <span className="font-medium text-blue-600 underline">Speed:</span>
+        <select
+          value={speed}
+          onChange={(e) => setSpeed(Number(e.target.value))}
+        >
+          <option value="1000">Slow</option>
+          <option value="500">Fast</option>
+          <option value="200">Very Fast</option>
         </select>
       </div>
       <button
