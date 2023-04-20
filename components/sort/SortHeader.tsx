@@ -185,7 +185,7 @@ const SortHeader = ({
     //   return merge(await sort(left), await sort(array));
     // };
     // setDataArray(await sort([...dataArray]));
-    console.log('coming soon');
+    console.log('coming soon...');
   };
   const quickSort = () => {
     console.log('Coming soon...');
