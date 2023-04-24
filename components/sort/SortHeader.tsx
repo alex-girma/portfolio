@@ -143,74 +143,65 @@ const SortHeader = ({
 
   const mergeSort = async () => {
     const merge = async (left: number[], right: number[]) => {
+      await new Promise((resolve) => setTimeout(resolve, speed));
+
       const test = [...left, ...right];
 
       for (let i = 0; i < test.length; i++) {
         addClass(test[i], 'green');
         addClass(test[i], 'translateY');
       }
+      await new Promise((resolve) => setTimeout(resolve, speed));
       let arr = [];
 
       let counter = dataArray.indexOf(test[0]);
       while (left.length && right.length) {
-        await new Promise((resolve) => setTimeout(resolve, speed));
-
         if (left[0] < right[0]) {
-          console.log('left < right', left, right);
           dataArray[dataArray.indexOf(left[0])] = dataArray[counter];
           dataArray[counter] = left[0];
-          // await new Promise((resolve) => setTimeout(resolve, speed));
+          await new Promise((resolve) => setTimeout(resolve, speed));
           setDataArray([...dataArray]);
-          // await new Promise((resolve) => setTimeout(resolve, speed));
-          // removeClass(dataArray[dataArray.indexOf(left[0])], 'translateY');
-          // await new Promise((resolve) => setTimeout(resolve, speed));
-
+          await new Promise((resolve) => setTimeout(resolve, speed));
           removeClass(dataArray[counter], 'translateY');
-          console.log('left < right dataArray', dataArray);
+          await new Promise((resolve) => setTimeout(resolve, speed));
+          removeClass(dataArray[dataArray.indexOf(left[0])], 'translateY');
 
           arr.push(left.shift());
-        } else {
-          console.log('right < left', left, right);
-          dataArray[dataArray.indexOf(right[0])] = dataArray[counter];
-          // await new Promise((resolve) => setTimeout(resolve, speed));
-
-          dataArray[counter] = right[0];
-          setDataArray([...dataArray]);
-
-          removeClass(dataArray[counter], 'translateY');
-          // await new Promise((resolve) => setTimeout(resolve, speed));
           // removeClass(dataArray[dataArray.indexOf(left[0])], 'translateY');
+        } else {
+          dataArray[dataArray.indexOf(right[0])] = dataArray[counter];
+          dataArray[counter] = right[0];
+          await new Promise((resolve) => setTimeout(resolve, speed));
+          setDataArray([...dataArray]);
+          await new Promise((resolve) => setTimeout(resolve, speed));
+          removeClass(dataArray[counter], 'translateY');
+          await new Promise((resolve) => setTimeout(resolve, speed));
+          removeClass(dataArray[dataArray.indexOf(left[0])], 'translateY');
 
-          console.log('right < left dataArray', dataArray);
           arr.push(right.shift());
         }
-
+        // await new Promise((resolve) => setTimeout(resolve, speed));
         counter++;
       }
 
       const temp = [...left, ...right];
 
       while (temp.length) {
-        await new Promise((resolve) => setTimeout(resolve, speed));
-
-        console.log('left has elements', temp, right);
         dataArray[dataArray.indexOf(temp[0])] = dataArray[counter];
-        // removeClass(dataArray[dataArray.indexOf(temp[0])], 'translateY');
-
-        await new Promise((resolve) => setTimeout(resolve, speed));
-
         dataArray[counter] = temp[0];
-        removeClass(dataArray[counter], 'translateY');
-
-        console.log('left has elements dataArray', dataArray);
+        await new Promise((resolve) => setTimeout(resolve, speed));
         setDataArray([...dataArray]);
+        await new Promise((resolve) => setTimeout(resolve, speed));
+        removeClass(dataArray[counter], 'translateY');
+        await new Promise((resolve) => setTimeout(resolve, speed));
+        removeClass(dataArray[dataArray.indexOf(left[0])], 'translateY');
+
         temp.shift();
         counter++;
       }
 
       for (let i = 0; i < test.length; i++) {
         removeClass(test[i], 'green');
-        removeClass(test[i], 'translateY');
       }
 
       return [...arr, ...left, ...right];
