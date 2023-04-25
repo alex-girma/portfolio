@@ -116,26 +116,27 @@ const SortHeader = ({
   const insertionSort = async () => {
     setIsSorting(true);
     for (let i = 1; i < dataArray.length; i++) {
-      let currentValue = dataArray[i];
       await new Promise((resolve) => setTimeout(resolve, speed));
+      let currentValue = dataArray[i];
       addClass(currentValue, 'red');
       addClass(currentValue, 'translateY');
       let j = i - 1;
+      // await new Promise((resolve) => setTimeout(resolve, speed));
 
       for (j; j >= 0 && dataArray[j] > currentValue; j--) {
-        await new Promise((resolve) => setTimeout(resolve, speed));
-
         dataArray[j + 1] = dataArray[j];
         dataArray[j] = currentValue;
+        await new Promise((resolve) => setTimeout(resolve, speed));
 
         setDataArray([...dataArray]);
-        await new Promise((resolve) => setTimeout(resolve, speed));
+        addClass(currentValue, 'translateY');
+        // await new Promise((resolve) => setTimeout(resolve, speed));
       }
-      removeClass(currentValue, 'red');
       await new Promise((resolve) => setTimeout(resolve, speed));
-      addClass(currentValue, 'green');
-      addClass(dataArray[j], 'green');
-      addClass(dataArray[i], 'green');
+      // addClass(currentValue, 'green');
+      // addClass(dataArray[j], 'green');
+      // addClass(dataArray[i], 'green');
+      removeClass(currentValue, 'red');
       removeClass(currentValue, 'translateY');
     }
     setIsSorting(false);
