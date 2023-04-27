@@ -133,9 +133,9 @@ const SortHeader = ({
         // await new Promise((resolve) => setTimeout(resolve, speed));
       }
       await new Promise((resolve) => setTimeout(resolve, speed));
-      addClass(currentValue, 'green');
-      addClass(dataArray[j], 'green');
-      addClass(dataArray[i], 'green');
+      // addClass(currentValue, 'green');
+      // addClass(dataArray[j], 'green');
+      // addClass(dataArray[i], 'green');
       removeClass(currentValue, 'red');
       removeClass(currentValue, 'translateY');
     }
