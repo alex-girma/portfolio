@@ -33,9 +33,9 @@ const SortHeader = ({
       case 'Bubble':
         bubbleSort();
         break;
-      // case 'Selection':
-      //   selectionSort();
-      //   break;
+      case 'Selection':
+        selectionSort();
+        break;
       // case 'Insertion':
       //   insertionSort();
       //   break;
