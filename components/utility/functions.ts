@@ -1,3 +1,9 @@
+export interface ArrayProp {
+  value: number;
+  selected: boolean;
+  sorted: boolean;
+}
+
 export const getMonthNames = (locale: string) => {
   // get name of each month depending on user language
   const monthNames: string[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map(
@@ -80,11 +86,21 @@ const getDays = (year: number, month: number) => {
 };
 
 export const creatRandomArray = (size: number) => {
-  const array: number[] = [];
+  const array: ArrayProp[] = [];
   let number = Math.floor(Math.random() * 50);
 
   while (array.length != size) {
-    if (!array.includes(number)) array.push(number);
+    const temp: ArrayProp = {
+      value: 0,
+      selected: false,
+      sorted: false,
+    };
+    temp.value = number;
+    temp.selected = false;
+    temp.sorted = false;
+
+    array.push(temp);
+
     number = Math.floor(Math.random() * 50);
   }
   return array;

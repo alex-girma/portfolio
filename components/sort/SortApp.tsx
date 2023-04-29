@@ -1,14 +1,14 @@
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import AppWindowWrapper from '../utility/AppWindowWrapper';
-import { creatRandomArray } from '../utility/functions';
+import { ArrayProp, creatRandomArray } from '../utility/functions';
 import SortHeader from './SortHeader';
 import SortVisualizer from './SortVisualizer';
 
 const Sort = () => {
   const [algo, setAlgo] = useState('Bubble');
   const [size, setSize] = useState(10);
-  const [dataArray, setDataArray] = useState<number[]>([]);
+  const [dataArray, setDataArray] = useState<ArrayProp[]>([]);
 
   useEffect(() => {
     setDataArray(creatRandomArray(size));
@@ -31,7 +31,12 @@ const Sort = () => {
           <div className=" rotatex180 mt-2 flex h-44 justify-center gap-1 sm:gap-2">
             {dataArray.map((number, index) => {
               return (
-                <SortVisualizer key={number + String(index)} number={number} />
+                <SortVisualizer
+                  key={number + String(index)}
+                  value={number.value}
+                  selected={number.selected}
+                  sorted={number.sorted}
+                />
               );
             })}
           </div>
