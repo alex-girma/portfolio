@@ -29,13 +29,14 @@ const Sort = () => {
             setDataArray={setDataArray}
           />
           <div className=" rotatex180 mt-2 flex h-44 justify-center gap-1 sm:gap-2">
-            {dataArray.map((number, index) => {
+            {dataArray.map((element, index) => {
               return (
                 <SortVisualizer
-                  key={number + String(index)}
-                  value={number.value}
-                  selected={number.selected}
-                  sorted={number.sorted}
+                  key={element + String(index)}
+                  value={element.value}
+                  selected={element.selected}
+                  sorted={element.sorted}
+                  translateY={element.translateY}
                 />
               );
             })}

@@ -18,7 +18,7 @@ const SortHeader = ({
   dataArray,
   setDataArray,
 }: SortHeaderProps) => {
-  const [speed, setSpeed] = useState(500);
+  const [speed, setSpeed] = useState(750);
   const [isSorting, setIsSorting] = useState(false);
 
   const handleRandomData = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -36,9 +36,9 @@ const SortHeader = ({
       case 'Selection':
         selectionSort();
         break;
-      // case 'Insertion':
-      //   insertionSort();
-      //   break;
+      case 'Insertion':
+        insertionSort();
+        break;
       // case 'Merge':
       //   mergeSort();
       //   break;
@@ -119,34 +119,35 @@ const SortHeader = ({
     setIsSorting(false);
   };
 
-  // const insertionSort = async () => {
-  //   setIsSorting(true);
-  //   for (let i = 1; i < dataArray.length; i++) {
-  //     await new Promise((resolve) => setTimeout(resolve, speed));
-  //     let currentValue = dataArray[i];
-  //     addClass(currentValue, 'red');
-  //     addClass(currentValue, 'translateY');
-  //     let j = i - 1;
-  //     // await new Promise((resolve) => setTimeout(resolve, speed));
+  const insertionSort = async () => {
+    setIsSorting(true);
+    for (let i = 1; i < dataArray.length; i++) {
+      await new Promise((resolve) => setTimeout(resolve, speed));
+      let currentValue = dataArray[i].value;
+      let j = i - 1;
+      dataArray[i].selected = true;
+      dataArray[i].translateY = true;
+      setDataArray([...dataArray]);
+      await new Promise((resolve) => setTimeout(resolve, speed));
+      for (j; j >= 0 && dataArray[j].value > currentValue; j--) {
+        const temp = dataArray[j + 1];
+        dataArray[j + 1] = dataArray[j];
+        dataArray[j] = temp;
+        setDataArray([...dataArray]);
+        await new Promise((resolve) => setTimeout(resolve, speed));
+      }
+      dataArray[j + 1].selected = false;
+      dataArray[j + 1].translateY = false;
+      setDataArray([...dataArray]);
+    }
 
-  //     for (j; j >= 0 && dataArray[j] > currentValue; j--) {
-  //       dataArray[j + 1] = dataArray[j];
-  //       dataArray[j] = currentValue;
-  //       await new Promise((resolve) => setTimeout(resolve, speed));
-
-  //       setDataArray([...dataArray]);
-  //       addClass(currentValue, 'translateY');
-  //       // await new Promise((resolve) => setTimeout(resolve, speed));
-  //     }
-  //     await new Promise((resolve) => setTimeout(resolve, speed));
-  //     addClass(currentValue, 'green');
-  //     addClass(dataArray[j], 'green');
-  //     addClass(dataArray[i], 'green');
-  //     removeClass(currentValue, 'red');
-  //     removeClass(currentValue, 'translateY');
-  //   }
-  //   setIsSorting(false);
-  // };
+    for (let i = 0; i < dataArray.length; i++) {
+      dataArray[i].sorted = true;
+    }
+    await new Promise((resolve) => setTimeout(resolve, speed));
+    setDataArray([...dataArray]);
+    setIsSorting(false);
+  };
 
   // const mergeSort = async () => {
   //   const merge = async (left: number[], right: number[]) => {
@@ -258,7 +259,7 @@ const SortHeader = ({
           onChange={(e) => setSpeed(Number(e.target.value))}
         >
           <option value="1000">Slow</option>
-          <option value="700">Fast</option>
+          <option value="750">Fast</option>
           <option value="250">Very Fast</option>
         </select>
       </div>
