@@ -32,7 +32,7 @@ const Sort = () => {
             {dataArray.map((element, index) => {
               return (
                 <SortVisualizer
-                  key={element + String(index)}
+                  key={element.value + String(index)}
                   value={element.value}
                   selected={element.selected}
                   sorted={element.sorted}
