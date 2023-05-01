@@ -151,125 +151,50 @@ const SortHeader = ({
 
   const mergeSort = async () => {
     const merge = async (left: ArrayProp[], right: ArrayProp[]) => {
-      // console.log(left.slice(), right.slice());
-      // await new Promise((resolve) => setTimeout(resolve, speed));
-      // const test = [...left, ...right];
-      // for (let i = 0; i < test.length; i++) {
-      //   test[i].selected = true;
-      //   test[i].translateY = true;
-      // }
-      // setDataArray([...dataArray]);
-
+      await new Promise((resolve) => setTimeout(resolve, speed));
+      const leftRight = [...left, ...right];
+      const leftRightDeep = JSON.parse(JSON.stringify(leftRight));
       let arr: ArrayProp[] = [];
 
       while (left.length && right.length) {
-        // await new Promise((resolve) => setTimeout(resolve, speed));
         if (left[0].value < right[0].value) {
-          // setDataArray([...dataArray]);
           arr.push(left.shift()!);
         } else {
-          // const temp = right[0].value;
-          // right[0].value = left[0].value;
-          // left[0].value = temp;
-          // setDataArray([...dataArray]);
           arr.push(right.shift()!);
         }
       }
-      // const temp = [...left, ...right];
-      // console.log(temp);
 
-      // while (temp.length - 1) {
-      //   await new Promise((resolve) => setTimeout(resolve, speed));
+      let temp = [...arr, ...left, ...right];
+      // to deep lone the sorted array for comparation without modifying the original array
+      let tempDeep = JSON.parse(JSON.stringify(temp));
+      // to get the starting index of the provided array in the dataArray
+      let i = dataArray.findIndex((x) => x.value === leftRightDeep[0].value);
+      let k = temp.length + i;
+      let j = 0;
 
-      //   [temp[0].value, temp[1].value] = [temp[1].value, temp[0].value];
-      //   setDataArray([...dataArray]);
-      //   temp.shift();
-      // }
-
-      // let counter = dataArray.indexOf(test[0]);
-      // while (left.length && right.length) {
-      //   if (left[0] < right[0]) {
-      //     dataArray[dataArray.indexOf(left[0])] = dataArray[counter];
-      //     dataArray[counter] = left[0];
-      //     await new Promise((resolve) => setTimeout(resolve, speed));
-      //     setDataArray([...dataArray]);
-      //     await new Promise((resolve) => setTimeout(resolve, speed));
-      //     removeClass(dataArray[counter], 'translateY');
-      //     await new Promise((resolve) => setTimeout(resolve, speed));
-      //     removeClass(dataArray[dataArray.indexOf(left[0])], 'translateY');
-
-      //     arr.push(left.shift());
-      //     // removeClass(dataArray[dataArray.indexOf(left[0])], 'translateY');
-      //   } else {
-      //     dataArray[dataArray.indexOf(right[0])] = dataArray[counter];
-      //     dataArray[counter] = right[0];
-      //     await new Promise((resolve) => setTimeout(resolve, speed));
-      //     setDataArray([...dataArray]);
-      //     await new Promise((resolve) => setTimeout(resolve, speed));
-      //     removeClass(dataArray[counter], 'translateY');
-      //     await new Promise((resolve) => setTimeout(resolve, speed));
-      //     removeClass(dataArray[dataArray.indexOf(left[0])], 'translateY');
-
-      //     arr.push(right.shift());
-      //   }
-      //   // await new Promise((resolve) => setTimeout(resolve, speed));
-      //   counter++;
-      // }
-
-      // const temp = [...left, ...right];
-
-      // while (temp.length) {
-      //   dataArray[dataArray.indexOf(temp[0])] = dataArray[counter];
-      //   dataArray[counter] = temp[0];
-      //   await new Promise((resolve) => setTimeout(resolve, speed));
-      //   setDataArray([...dataArray]);
-      //   await new Promise((resolve) => setTimeout(resolve, speed));
-      //   removeClass(dataArray[counter], 'translateY');
-      //   await new Promise((resolve) => setTimeout(resolve, speed));
-      //   removeClass(dataArray[dataArray.indexOf(left[0])], 'translateY');
-
-      //   temp.shift();
-      //   counter++;
-      // }
-
-      // for (let i = 0; i < test.length; i++) {
-      //   removeClass(test[i], 'green');
-      // }
-
-      // await new Promise((resolve) => setTimeout(resolve, speed));
-      // for (let i = 0; i < test.length; i++) {
-      //   test[i].selected = false;
-      //   test[i].translateY = false;
-      // }
-      // setDataArray([...dataArray]);
-      const temp = [...arr, ...left, ...right];
-      await new Promise((resolve) => setTimeout(resolve, speed));
-
-      for (let i = 0; i < temp.length; i++) {
-        temp[i].selected = true;
-        temp[i].translateY = true;
+      for (let i = 0; i < leftRight.length; i++) {
+        dataArray[
+          dataArray.findIndex((x) => x.value === leftRightDeep[i].value)
+        ].selected = true;
+        dataArray[
+          dataArray.findIndex((x) => x.value === leftRightDeep[i].value)
+        ].translateY = true;
       }
       setDataArray([...dataArray]);
 
-      await new Promise((resolve) => setTimeout(resolve, speed));
-
-      for (let i = 0; i < temp.length - 1; i++) {
-        let index = dataArray.findIndex((x) => x.value === temp[i].value);
-        let test = temp[i].value;
-        let test1 = dataArray[i].value;
-        dataArray[i].value = test;
-        dataArray[index].value = test1;
+      for (i; i < k; i++) {
+        await new Promise((resolve) => setTimeout(resolve, speed));
+        let index = dataArray.findIndex((x) => x.value === tempDeep[j].value);
+        let tempValue = dataArray[i].value;
+        dataArray[i].value = tempDeep[j].value;
+        dataArray[index].value = tempValue;
+        dataArray[i].translateY = false;
+        dataArray[i].selected = false;
+        dataArray[i].sorted = true;
+        setDataArray([...dataArray]);
+        j++;
       }
-      setDataArray([...dataArray]);
-
-      await new Promise((resolve) => setTimeout(resolve, speed));
-
-      for (let i = 0; i < temp.length; i++) {
-        temp[i].selected = false;
-        temp[i].translateY = false;
-      }
-      setDataArray([...dataArray]);
-      return [...arr, ...left, ...right];
+      return tempDeep;
     };
     // @ts-ignore
     const sort = async (array: ArrayProp[]) => {
@@ -282,9 +207,13 @@ const SortHeader = ({
       const left = array.splice(0, half);
       return merge(await sort(left), await sort(array));
     };
-    console.log(dataArray.slice());
-    setDataArray(await sort([...dataArray]));
-    // console.log('coming soon...');
+
+    const temp = await sort([...dataArray]);
+    for (let i = 0; i < temp.length; i++) {
+      temp[i].sorted = true;
+    }
+
+    setDataArray([...temp]);
   };
   // const quickSort = () => {
   //   console.log('Coming soon...');

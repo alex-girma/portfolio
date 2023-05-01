@@ -88,23 +88,26 @@ const getDays = (year: number, month: number) => {
 
 export const creatRandomArray = (size: number) => {
   const array: ArrayProp[] = [];
-  let number = Math.floor(Math.random() * 50);
+  const numbers: number[] = [];
 
   while (array.length != size) {
-    const temp: ArrayProp = {
-      value: 0,
-      selected: false,
-      sorted: false,
-      translateY: false,
-    };
-    temp.value = number;
-    temp.selected = false;
-    temp.sorted = false;
-    temp.translateY = false;
+    const number = Math.floor(Math.random() * 50);
 
-    array.push(temp);
+    if (!numbers.includes(number)) {
+      numbers.push(number);
+      const temp: ArrayProp = {
+        value: 0,
+        selected: false,
+        sorted: false,
+        translateY: false,
+      };
+      temp.value = number;
+      temp.selected = false;
+      temp.sorted = false;
+      temp.translateY = false;
 
-    number = Math.floor(Math.random() * 50);
+      array.push(temp);
+    }
   }
   return array;
 };
