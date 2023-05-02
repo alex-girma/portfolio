@@ -18,7 +18,7 @@ const SortHeader = ({
   dataArray,
   setDataArray,
 }: SortHeaderProps) => {
-  const [speed, setSpeed] = useState(750);
+  const [speed, setSpeed] = useState(500);
   const [isSorting, setIsSorting] = useState(false);
 
   const handleRandomData = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -144,12 +144,12 @@ const SortHeader = ({
     for (let i = 0; i < dataArray.length; i++) {
       dataArray[i].sorted = true;
     }
-    await new Promise((resolve) => setTimeout(resolve, speed));
     setDataArray([...dataArray]);
     setIsSorting(false);
   };
 
   const mergeSort = async () => {
+    setIsSorting(true);
     const merge = async (left: ArrayProp[], right: ArrayProp[]) => {
       await new Promise((resolve) => setTimeout(resolve, speed));
       const leftRight = [...left, ...right];
@@ -212,6 +212,7 @@ const SortHeader = ({
     for (let i = 0; i < temp.length; i++) {
       temp[i].sorted = true;
     }
+    setIsSorting(false);
 
     setDataArray([...temp]);
   };
