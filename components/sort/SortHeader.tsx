@@ -245,7 +245,7 @@ const SortHeader = ({
           onChange={(e) => setSpeed(Number(e.target.value))}
         >
           <option value="1000">Slow</option>
-          <option value="750">Fast</option>
+          <option value="500">Fast</option>
           <option value="250">Very Fast</option>
         </select>
       </div>
