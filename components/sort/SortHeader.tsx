@@ -217,70 +217,71 @@ const SortHeader = ({
     setDataArray([...temp]);
   };
   const quickSort = async () => {
-    const pivot = (arr: ArrayProp[], start = 0, end = arr.length + 1) => {
+    const pivot = async (arr: ArrayProp[], start = 0, end = arr.length) => {
+      await new Promise((resolve) => setTimeout(resolve, speed));
+
       let pivot = arr[start].value;
+      dataArray[start].translateY = true;
+      setDataArray([...dataArray]);
+
       let swapIndex = start;
-      for (let i = start + 1; i < arr.length; i++) {
+      for (let i = start + 1; i < end + 1; i++) {
+        dataArray[i].selected = true;
+        setDataArray([...dataArray]);
+        await new Promise((resolve) => setTimeout(resolve, speed));
         if (pivot > arr[i].value) {
           swapIndex++;
-          let temp = arr[swapIndex].value;
-          arr[swapIndex].value = arr[i].value;
-          arr[i].value = temp;
+          dataArray[i].selected = false;
+          dataArray[i].sorted = true;
+          setDataArray([...dataArray]);
+
+          let temp = arr[swapIndex];
+          arr[swapIndex] = arr[i];
+          arr[i] = temp;
+        }
+        await new Promise((resolve) => setTimeout(resolve, speed));
+        setDataArray([...dataArray]);
+      }
+      let temp = arr[start].value;
+      arr[start].value = arr[swapIndex].value;
+      arr[swapIndex].value = temp;
+      setDataArray([...dataArray]);
+
+      await new Promise((resolve) => setTimeout(resolve, speed));
+
+      dataArray[start].translateY = false;
+      for (let i = 0; i < end + 1; i++) {
+        dataArray[i].selected = false;
+        dataArray[i].sorted = false;
+        if (end === start) {
+          arr[i].sement = true;
         }
       }
-      let test = arr[start].value;
-      arr[start].value = arr[swapIndex].value;
-      arr[swapIndex].value = test;
+
+      dataArray[swapIndex].sement = true;
+      setDataArray([...dataArray]);
+
       return swapIndex;
     };
 
-    const sort = (arr: ArrayProp[], left = 0, right = arr.length - 1) => {
+    const sort = async (arr: ArrayProp[], left = 0, right = arr.length - 1) => {
       if (left < right) {
-        let pivotIndex = pivot(arr, left, right);
+        let pivotIndex = await pivot(arr, left, right);
         //left
-        sort(arr, left, pivotIndex - 1);
+        await sort(arr, left, pivotIndex - 1);
         //right
-        sort(arr, pivotIndex + 1, right);
+        await sort(arr, pivotIndex + 1, right);
       }
-      console.log(arr);
       return arr;
     };
 
-    const temp = sort(dataArray);
+    const temp = await sort(dataArray);
+    for (let i = 0; i < temp.length; i++) {
+      temp[i].sement = false;
+      temp[i].sorted = true;
+    }
     setDataArray([...temp]);
   };
-  // const quickSort = async () => {
-  //   const pivot = (arr, start = 0, end = arr.length + 1) => {
-  //     let pivot = arr[start];
-  //     let swapIndex = start;
-  //     for (let i = start + 1; i < arr.length; i++) {
-  //       if (pivot > arr[i]) {
-  //         swapIndex++;
-  //         let temp = arr[swapIndex];
-  //         arr[swapIndex] = arr[i];
-  //         arr[i] = temp;
-  //       }
-  //     }
-  //     let test = arr[start];
-  //     arr[start] = arr[swapIndex];
-  //     arr[swapIndex] = test;
-  //     return swapIndex;
-  //   };
-
-  //   const sort = (arr, left = 0, right = arr.length - 1) => {
-  //     if (left < right) {
-  //       let pivotIndex = pivot(arr, left, right);
-  //       //left
-  //       sort(arr, left, pivotIndex - 1);
-  //       //right
-  //       sort(arr, pivotIndex + 1, right);
-  //     }
-  //     console.log(arr);
-  //     return arr;
-  //   };
-
-  //   sort([4, 8, 2, 1, 5, 7, 6, 3]);
-  // };
 
   return (
     <div className="flex flex-col gap-2 text-xxs text-gray-900 sm:flex-row sm:gap-10">

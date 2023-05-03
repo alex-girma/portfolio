@@ -3,6 +3,7 @@ export interface ArrayProp {
   selected: boolean;
   sorted: boolean;
   translateY: boolean;
+  sement: boolean;
 }
 
 export const getMonthNames = (locale: string) => {
@@ -100,11 +101,13 @@ export const creatRandomArray = (size: number) => {
         selected: false,
         sorted: false,
         translateY: false,
+        sement: false,
       };
       temp.value = number;
       temp.selected = false;
       temp.sorted = false;
       temp.translateY = false;
+      temp.sement = false;
 
       array.push(temp);
     }

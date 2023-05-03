@@ -7,7 +7,7 @@ import SortVisualizer from './SortVisualizer';
 
 const Sort = () => {
   const [algo, setAlgo] = useState('Bubble');
-  const [size, setSize] = useState(10);
+  const [size, setSize] = useState(5);
   const [dataArray, setDataArray] = useState<ArrayProp[]>([]);
 
   useEffect(() => {
@@ -37,6 +37,7 @@ const Sort = () => {
                   selected={element.selected}
                   sorted={element.sorted}
                   translateY={element.translateY}
+                  sement={element.sement}
                 />
               );
             })}
