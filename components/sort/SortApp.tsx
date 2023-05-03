@@ -6,7 +6,6 @@ import SortHeader from './SortHeader';
 import SortVisualizer from './SortVisualizer';
 
 const Sort = () => {
-  const [algo, setAlgo] = useState('Bubble');
   const [size, setSize] = useState(10);
   const [dataArray, setDataArray] = useState<ArrayProp[]>([]);
 
@@ -21,8 +20,6 @@ const Sort = () => {
       <AppWindowWrapper>
         <div className=" px-4 pb-44 pt-4">
           <SortHeader
-            algo={algo}
-            setAlgo={setAlgo}
             size={size}
             setSize={setSize}
             dataArray={dataArray}

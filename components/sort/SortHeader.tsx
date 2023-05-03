@@ -2,22 +2,20 @@ import { useState } from 'react';
 import { ArrayProp, creatRandomArray } from '../utility/functions';
 
 interface SortHeaderProps {
-  algo: string;
   size: number;
   dataArray: ArrayProp[];
-  setAlgo: React.Dispatch<React.SetStateAction<string>>;
   setSize: React.Dispatch<React.SetStateAction<number>>;
   setDataArray: React.Dispatch<React.SetStateAction<ArrayProp[]>>;
 }
 
 const SortHeader = ({
-  algo,
-  setAlgo,
   size,
   setSize,
   dataArray,
   setDataArray,
 }: SortHeaderProps) => {
+  const [algo, setAlgo] = useState('Bubble');
+
   const [speed, setSpeed] = useState(500);
   const [isSorting, setIsSorting] = useState(false);
 
