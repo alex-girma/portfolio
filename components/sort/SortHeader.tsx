@@ -217,24 +217,24 @@ const SortHeader = ({
     setDataArray([...temp]);
   };
   const quickSort = async () => {
-    const pivot = (arr, start = 0, end = arr.length + 1) => {
-      let pivot = arr[start];
+    const pivot = (arr: ArrayProp[], start = 0, end = arr.length + 1) => {
+      let pivot = arr[start].value;
       let swapIndex = start;
       for (let i = start + 1; i < arr.length; i++) {
-        if (pivot > arr[i]) {
+        if (pivot > arr[i].value) {
           swapIndex++;
-          let temp = arr[swapIndex];
-          arr[swapIndex] = arr[i];
-          arr[i] = temp;
+          let temp = arr[swapIndex].value;
+          arr[swapIndex].value = arr[i].value;
+          arr[i].value = temp;
         }
       }
-      let test = arr[start];
-      arr[start] = arr[swapIndex];
-      arr[swapIndex] = test;
+      let test = arr[start].value;
+      arr[start].value = arr[swapIndex].value;
+      arr[swapIndex].value = test;
       return swapIndex;
     };
 
-    const sort = (arr, left = 0, right = arr.length - 1) => {
+    const sort = (arr: ArrayProp[], left = 0, right = arr.length - 1) => {
       if (left < right) {
         let pivotIndex = pivot(arr, left, right);
         //left
@@ -246,7 +246,8 @@ const SortHeader = ({
       return arr;
     };
 
-    sort([4, 8, 2, 1, 5, 7, 6, 3]);
+    const temp = sort(dataArray);
+    setDataArray([...temp]);
   };
   // const quickSort = async () => {
   //   const pivot = (arr, start = 0, end = arr.length + 1) => {
