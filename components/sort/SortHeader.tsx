@@ -217,8 +217,69 @@ const SortHeader = ({
     setDataArray([...temp]);
   };
   const quickSort = async () => {
-    console.log('Coming soon...');
+    const pivot = (arr, start = 0, end = arr.length + 1) => {
+      let pivot = arr[start];
+      let swapIndex = start;
+      for (let i = start + 1; i < arr.length; i++) {
+        if (pivot > arr[i]) {
+          swapIndex++;
+          let temp = arr[swapIndex];
+          arr[swapIndex] = arr[i];
+          arr[i] = temp;
+        }
+      }
+      let test = arr[start];
+      arr[start] = arr[swapIndex];
+      arr[swapIndex] = test;
+      return swapIndex;
+    };
+
+    const sort = (arr, left = 0, right = arr.length - 1) => {
+      if (left < right) {
+        let pivotIndex = pivot(arr, left, right);
+        //left
+        sort(arr, left, pivotIndex - 1);
+        //right
+        sort(arr, pivotIndex + 1, right);
+      }
+      console.log(arr);
+      return arr;
+    };
+
+    sort([4, 8, 2, 1, 5, 7, 6, 3]);
   };
+  // const quickSort = async () => {
+  //   const pivot = (arr, start = 0, end = arr.length + 1) => {
+  //     let pivot = arr[start];
+  //     let swapIndex = start;
+  //     for (let i = start + 1; i < arr.length; i++) {
+  //       if (pivot > arr[i]) {
+  //         swapIndex++;
+  //         let temp = arr[swapIndex];
+  //         arr[swapIndex] = arr[i];
+  //         arr[i] = temp;
+  //       }
+  //     }
+  //     let test = arr[start];
+  //     arr[start] = arr[swapIndex];
+  //     arr[swapIndex] = test;
+  //     return swapIndex;
+  //   };
+
+  //   const sort = (arr, left = 0, right = arr.length - 1) => {
+  //     if (left < right) {
+  //       let pivotIndex = pivot(arr, left, right);
+  //       //left
+  //       sort(arr, left, pivotIndex - 1);
+  //       //right
+  //       sort(arr, pivotIndex + 1, right);
+  //     }
+  //     console.log(arr);
+  //     return arr;
+  //   };
+
+  //   sort([4, 8, 2, 1, 5, 7, 6, 3]);
+  // };
 
   return (
     <div className="flex flex-col gap-2 text-xxs text-gray-900 sm:flex-row sm:gap-10">
