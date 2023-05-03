@@ -42,9 +42,9 @@ const SortHeader = ({
       case 'Merge':
         mergeSort();
         break;
-      // case 'Quick':
-      //   quickSort();
-      //   break;
+      case 'Quick':
+        quickSort();
+        break;
       default:
         break;
     }
@@ -216,9 +216,9 @@ const SortHeader = ({
 
     setDataArray([...temp]);
   };
-  // const quickSort = () => {
-  //   console.log('Coming soon...');
-  // };
+  const quickSort = async () => {
+    console.log('Coming soon...');
+  };
 
   return (
     <div className="flex flex-col gap-2 text-xxs text-gray-900 sm:flex-row sm:gap-10">
