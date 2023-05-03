@@ -6,6 +6,14 @@ export interface ArrayProp {
   sement: boolean;
 }
 
+export interface GridProps {
+  value: string;
+  isStart: boolean;
+  isVisited: boolean;
+  isWall: boolean;
+  isFinish: boolean;
+}
+
 export const getMonthNames = (locale: string) => {
   // get name of each month depending on user language
   const monthNames: string[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map(
@@ -115,12 +123,33 @@ export const creatRandomArray = (size: number) => {
   return array;
 };
 
-export const toggleClass = (id: number, className: string) => {
-  document.getElementById(String(id))?.classList.toggle(className);
-};
-export const addClass = (id: number, className: string) => {
-  document.getElementById(String(id))?.classList.add(className);
-};
-export const removeClass = (id: number, className: string) => {
-  document.getElementById(String(id))?.classList.remove(className);
+export const generateGrid = () => {
+  const grid: GridProps[][] = [];
+  for (let i = 0; i < 10; i++) {
+    const col: GridProps[] = [];
+    for (let j = 0; j < 10; j++) {
+      const cell: GridProps = {
+        value: '',
+        isStart: false,
+        isVisited: false,
+        isWall: false,
+        isFinish: false,
+      };
+      cell.value = '';
+      cell.isStart = false;
+      cell.isVisited = false;
+      cell.isWall = false;
+      cell.isFinish = false;
+      if (i === 1 && j === 1) {
+        cell.isStart = true;
+      }
+      if (i === 8 && j === 8) {
+        cell.isFinish = true;
+      }
+      col.push(cell);
+    }
+    grid.push(col);
+  }
+
+  return grid;
 };

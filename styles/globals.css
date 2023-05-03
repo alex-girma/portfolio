@@ -141,3 +141,7 @@ code {
 .red {
   background-color: lightcoral;
 }
+
+.gap1 {
+  gap: 1px;
+}
