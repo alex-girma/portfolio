@@ -7,7 +7,7 @@ import SortVisualizer from './SortVisualizer';
 
 const Sort = () => {
   const [algo, setAlgo] = useState('Bubble');
-  const [size, setSize] = useState(5);
+  const [size, setSize] = useState(10);
   const [dataArray, setDataArray] = useState<ArrayProp[]>([]);
 
   useEffect(() => {
