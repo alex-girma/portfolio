@@ -217,6 +217,8 @@ const SortHeader = ({
     setDataArray([...temp]);
   };
   const quickSort = async () => {
+    setIsSorting(true);
+
     const pivot = async (arr: ArrayProp[], start = 0, end = arr.length) => {
       await new Promise((resolve) => setTimeout(resolve, speed));
 
@@ -280,6 +282,8 @@ const SortHeader = ({
       temp[i].sement = false;
       temp[i].sorted = true;
     }
+    setIsSorting(false);
+
     setDataArray([...temp]);
   };
 
