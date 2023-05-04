@@ -1,10 +1,10 @@
 import { GridProps } from '../utility/functions';
 
-const PathfindingVisualizer = ({ data }: { data: GridProps[][] }) => {
+const PathfindingVisualizer = ({ grid }: { grid: GridProps[][] }) => {
   return (
     <table>
       <tbody className="">
-        {data.map((row, rowIndex) => (
+        {grid.map((row, rowIndex) => (
           <tr key={rowIndex}>
             {row.map((cell, cellIndex) => (
               <td

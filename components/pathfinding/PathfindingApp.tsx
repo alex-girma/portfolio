@@ -10,7 +10,6 @@ const PathfindingApp = () => {
   useEffect(() => {
     setGrid(generateGrid());
   }, []);
-
   return (
     <>
       <Head>
@@ -18,9 +17,9 @@ const PathfindingApp = () => {
       </Head>
       <AppWindowWrapper>
         <div className=" px-4 pb-10 pt-6">
-          <PathfindingHeader />
+          <PathfindingHeader grid={grid} setGrid={setGrid} />
           <div className="flex justify-center pt-10">
-            <PathfindingVisualizer data={grid} />
+            <PathfindingVisualizer grid={grid} />
           </div>
         </div>
       </AppWindowWrapper>

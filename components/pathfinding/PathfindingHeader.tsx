@@ -1,6 +1,13 @@
 import { useState } from 'react';
+import { GridProps } from '../utility/functions';
 
-const PathfindingHeader = () => {
+interface HeaderProps {
+  grid: GridProps[][];
+  setGrid: React.Dispatch<React.SetStateAction<GridProps[][]>>;
+}
+
+const PathfindingHeader = ({ grid, setGrid }: HeaderProps) => {
+  const [isSearching, setIsSearching] = useState(false);
   const [algo, setAlgo] = useState('BFS');
   const [speed, setSpeed] = useState(500);
   const handleMaze = (): void => {
@@ -20,7 +27,93 @@ const PathfindingHeader = () => {
   };
 
   const handleAlgo = (): void => {
-    throw new Error('Function not implemented.');
+    if (isSearching) return;
+    switch (algo) {
+      case 'BFS':
+        BFS();
+        break;
+      case 'DFS':
+        DFS();
+        break;
+      default:
+        break;
+    }
+  };
+
+  const BFS = () => {
+    setIsSearching(true);
+    // grid[0][1].isStart = true;
+    let start = [1, 1];
+    let topNode = [start[0] + -1, start[1]];
+    let rightNode = [start[0], start[1] + 1];
+    let bottomNode = [start[0] + 1, start[1]];
+    let leftNode = [start[0], start[1] + -1];
+    // grid[topNode[0]][topNode[1]].isStart = true;
+    // grid[rightNode[0]][rightNode[1]].isStart = true;
+    // grid[bottomNode[0]][bottomNode[1]].isStart = true;
+    // grid[leftNode[0]][leftNode[1]].isStart = true;
+    let queue: number[][] = [];
+    queue.push(start);
+    let i = 0;
+    while (queue.length) {
+      i++;
+      console.log(i, queue.slice());
+      grid[start[0]][start[1]].isVisited = true;
+      grid[start[0]][start[1]].isStart = true;
+      start = queue.shift()!;
+      console.log('start: ', start);
+      topNode = [start[0] + -1, start[1]];
+      rightNode = [start[0], start[1] + 1];
+      bottomNode = [start[0] + 1, start[1]];
+      leftNode = [start[0], start[1] + -1];
+      console.log('topNode: ', topNode);
+      console.log('rightNode: ', rightNode);
+      console.log('bottomNode: ', bottomNode);
+      console.log('leftNode: ', leftNode);
+      if (
+        grid[topNode[0]] &&
+        grid[topNode[0]][topNode[1]] &&
+        !grid[topNode[0]][topNode[1]].isInQueue &&
+        !grid[topNode[0]][topNode[1]].isVisited
+      ) {
+        grid[topNode[0]][topNode[1]].isInQueue = true;
+        queue.push(topNode);
+      }
+      if (
+        grid[rightNode[0]] &&
+        grid[rightNode[0]][rightNode[1]] &&
+        !grid[rightNode[0]][rightNode[1]].isInQueue &&
+        !grid[rightNode[0]][rightNode[1]].isVisited
+      ) {
+        grid[rightNode[0]][rightNode[1]].isVisited = true;
+        queue.push(rightNode);
+      }
+      if (
+        grid[bottomNode[0]] &&
+        grid[bottomNode[0]][bottomNode[1]] &&
+        !grid[bottomNode[0]][bottomNode[1]].isInQueue &&
+        !grid[bottomNode[0]][bottomNode[1]].isVisited
+      ) {
+        grid[bottomNode[0]][bottomNode[1]].isInQueue = true;
+        queue.push(bottomNode);
+      }
+      if (
+        grid[leftNode[0]] &&
+        grid[leftNode[0]][leftNode[1]] &&
+        !grid[leftNode[0]][leftNode[1]].isInQueue &&
+        !grid[leftNode[0]][leftNode[1]].isVisited
+      ) {
+        grid[leftNode[0]][leftNode[1]].isInQueue = true;
+        queue.push(leftNode);
+      }
+    }
+    setGrid([...grid]);
+    setIsSearching(false);
+  };
+  const DFS = () => {
+    setIsSearching(true);
+    console.log('DFS');
+    setIsSearching(false);
   };
 
   return (

@@ -12,6 +12,7 @@ export interface GridProps {
   isVisited: boolean;
   isWall: boolean;
   isFinish: boolean;
+  isInQueue: boolean;
 }
 
 export const getMonthNames = (locale: string) => {
@@ -127,23 +128,25 @@ export const generateGrid = () => {
   const grid: GridProps[][] = [];
   for (let i = 0; i < 10; i++) {
     const col: GridProps[] = [];
-    for (let j = 0; j < 10; j++) {
+    for (let j = 0; j < 15; j++) {
       const cell: GridProps = {
         value: '',
         isStart: false,
         isVisited: false,
         isWall: false,
         isFinish: false,
+        isInQueue: false,
       };
       cell.value = '';
       cell.isStart = false;
       cell.isVisited = false;
       cell.isWall = false;
       cell.isFinish = false;
+      cell.isInQueue = false;
       if (i === 1 && j === 1) {
         cell.isStart = true;
       }
-      if (i === 8 && j === 8) {
+      if (i === 8 && j === 13) {
         cell.isFinish = true;
       }
       col.push(cell);
