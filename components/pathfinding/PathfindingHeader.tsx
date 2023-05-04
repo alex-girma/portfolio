@@ -40,7 +40,7 @@ const PathfindingHeader = ({ grid, setGrid }: HeaderProps) => {
     }
   };
 
-  const BFS = () => {
+  const BFS = async () => {
     setIsSearching(true);
     // grid[0][1].isStart = true;
     let start = [1, 1];
@@ -48,28 +48,17 @@ const PathfindingHeader = ({ grid, setGrid }: HeaderProps) => {
     let rightNode = [start[0], start[1] + 1];
     let bottomNode = [start[0] + 1, start[1]];
     let leftNode = [start[0], start[1] + -1];
-    // grid[topNode[0]][topNode[1]].isStart = true;
-    // grid[rightNode[0]][rightNode[1]].isStart = true;
-    // grid[bottomNode[0]][bottomNode[1]].isStart = true;
-    // grid[leftNode[0]][leftNode[1]].isStart = true;
     let queue: number[][] = [];
     queue.push(start);
-    let i = 0;
     while (queue.length) {
-      i++;
-      console.log(i, queue.slice());
+      if (grid[start[0]][start[1]].isFinish) return;
       grid[start[0]][start[1]].isVisited = true;
       grid[start[0]][start[1]].isStart = true;
       start = queue.shift()!;
-      console.log('start: ', start);
       topNode = [start[0] + -1, start[1]];
       rightNode = [start[0], start[1] + 1];
       bottomNode = [start[0] + 1, start[1]];
       leftNode = [start[0], start[1] + -1];
-      console.log('topNode: ', topNode);
-      console.log('rightNode: ', rightNode);
-      console.log('bottomNode: ', bottomNode);
-      console.log('leftNode: ', leftNode);
       if (
         grid[topNode[0]] &&
         grid[topNode[0]][topNode[1]] &&
@@ -106,8 +95,10 @@ const PathfindingHeader = ({ grid, setGrid }: HeaderProps) => {
         grid[leftNode[0]][leftNode[1]].isInQueue = true;
         queue.push(leftNode);
       }
+      await new Promise((resolve) => setTimeout(resolve, speed));
+
+      setGrid([...grid]);
     }
-    setGrid([...grid]);
     setIsSearching(false);
   };
   const DFS = () => {
