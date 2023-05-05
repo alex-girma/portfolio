@@ -48,8 +48,7 @@ const PathfindingHeader = ({ grid, setGrid }: HeaderProps) => {
     let rightNode = [start[0], start[1] + 1];
     let bottomNode = [start[0] + 1, start[1]];
     let leftNode = [start[0], start[1] + -1];
-    let queue: number[][] = [];
-    queue.push(start);
+    let queue: number[][] = [start];
     while (queue.length) {
       if (grid[start[0]][start[1]].isFinish) return;
       grid[start[0]][start[1]].isVisited = true;
