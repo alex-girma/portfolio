@@ -10,7 +10,9 @@ const PathfindingVisualizer = ({ grid }: { grid: GridProps[][] }) => {
               <td
                 className={`h-7 w-7 border border-blue-300 ${
                   cell.isStart ? ` green` : ``
-                } ${cell.isFinish ? ` red` : ``}`}
+                } ${cell.isFinish ? ` red` : ``} ${
+                  cell.isVisited ? ` blue` : ``
+                }`}
                 key={`${rowIndex}-${cellIndex}`}
               >
                 {cell.value}

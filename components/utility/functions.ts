@@ -12,6 +12,7 @@ export interface GridProps {
   isVisited: boolean;
   isWall: boolean;
   isFinish: boolean;
+  isPath: boolean;
   isInQueue: boolean;
 }
 
@@ -135,6 +136,7 @@ export const generateGrid = () => {
         isVisited: false,
         isWall: false,
         isFinish: false,
+        isPath: false,
         isInQueue: false,
       };
       cell.value = '';
@@ -142,6 +144,7 @@ export const generateGrid = () => {
       cell.isVisited = false;
       cell.isWall = false;
       cell.isFinish = false;
+      cell.isPath = false;
       cell.isInQueue = false;
       if (i === 1 && j === 1) {
         cell.isStart = true;
