@@ -21,7 +21,6 @@ const PokemonPlayer = ({
 
     e.currentTarget.classList.add('border-red-400');
   };
-  console.log(playerPokemons);
 
   return (
     <div>
