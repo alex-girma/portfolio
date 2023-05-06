@@ -1,15 +1,13 @@
 import Head from 'next/head';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import AppWindowWrapper from '../utility/AppWindowWrapper';
-import { GridProps, generateGrid } from '../utility/functions';
+import { GridProps } from '../utility/functions';
 import PathfindingHeader from './PathfindingHeader';
 import PathfindingVisualizer from './PathfindingVisualizer';
 
 const PathfindingApp = () => {
   const [grid, setGrid] = useState<GridProps[][]>([]);
-  useEffect(() => {
-    setGrid(generateGrid());
-  }, []);
+
   return (
     <>
       <Head>

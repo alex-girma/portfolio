@@ -124,7 +124,10 @@ export const creatRandomArray = (size: number) => {
   return array;
 };
 
-export const generateGrid = () => {
+export const generateGrid = (
+  startPosition: number[],
+  endPosition: number[]
+) => {
   const grid: GridProps[][] = [];
   for (let i = 0; i < 15; i++) {
     const col: GridProps[] = [];
@@ -148,18 +151,9 @@ export const generateGrid = () => {
     }
     grid.push(col);
   }
-  //test
-  grid[6][5].isStart = true;
-  grid[6][24].isFinish = true;
-  grid[0][13].isWall = true;
-  grid[1][13].isWall = true;
-  grid[2][13].isWall = true;
-  grid[3][13].isWall = true;
-  grid[4][13].isWall = true;
-  grid[5][13].isWall = true;
-  grid[6][13].isWall = true;
-  grid[7][13].isWall = true;
-  grid[8][13].isWall = true;
+  // set start and end position
+  grid[startPosition[0]][startPosition[1]].isStart = true;
+  grid[endPosition[0]][endPosition[1]].isFinish = true;
 
   return grid;
 };
