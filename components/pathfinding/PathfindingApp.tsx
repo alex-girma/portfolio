@@ -4,6 +4,7 @@ import AppWindowWrapper from '../utility/AppWindowWrapper';
 import { GridProps } from '../utility/functions';
 import PathfindingHeader from './PathfindingHeader';
 import PathfindingVisualizer from './PathfindingVisualizer';
+import PathfindingInfo from './PathfindingInfo';
 
 const PathfindingApp = () => {
   const [grid, setGrid] = useState<GridProps[][]>([]);
@@ -28,7 +29,10 @@ const PathfindingApp = () => {
             setEndPosition={setEndPosition}
             setStartPosition={setStartPosition}
           />
-          <div className="flex justify-center pt-10">
+          <div className="flex justify-center py-4">
+            <PathfindingInfo />
+          </div>
+          <div className="flex justify-center">
             <PathfindingVisualizer
               grid={grid}
               wall={wall}

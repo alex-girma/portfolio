@@ -56,7 +56,6 @@ const PathfindingHeader = ({
   };
 
   const handleAlgo = (): void => {
-    // if (isSearching) return;
     switch (algo) {
       case 'BFS':
         BFS();
