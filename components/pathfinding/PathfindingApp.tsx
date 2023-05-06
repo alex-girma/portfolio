@@ -7,6 +7,9 @@ import PathfindingVisualizer from './PathfindingVisualizer';
 
 const PathfindingApp = () => {
   const [grid, setGrid] = useState<GridProps[][]>([]);
+  const [startPosition, setStartPosition] = useState([6, 5]);
+  const [endPosition, setEndPosition] = useState([6, 24]);
+  const [wall, setWall] = useState<number[][]>([]);
 
   return (
     <>
@@ -15,7 +18,14 @@ const PathfindingApp = () => {
       </Head>
       <AppWindowWrapper>
         <div className=" px-4 pb-10 pt-6">
-          <PathfindingHeader grid={grid} setGrid={setGrid} />
+          <PathfindingHeader
+            grid={grid}
+            setGrid={setGrid}
+            startPosition={startPosition}
+            endPosition={endPosition}
+            wall={wall}
+            setWall={setWall}
+          />
           <div className="flex justify-center pt-10">
             <PathfindingVisualizer grid={grid} />
           </div>

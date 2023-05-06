@@ -126,7 +126,8 @@ export const creatRandomArray = (size: number) => {
 
 export const generateGrid = (
   startPosition: number[],
-  endPosition: number[]
+  endPosition: number[],
+  wall: number[][]
 ) => {
   const grid: GridProps[][] = [];
   for (let i = 0; i < 15; i++) {
@@ -155,5 +156,31 @@ export const generateGrid = (
   grid[startPosition[0]][startPosition[1]].isStart = true;
   grid[endPosition[0]][endPosition[1]].isFinish = true;
 
+  // set walls
+  for (let i = 0; i < wall.length; i++) {
+    if (
+      grid[wall[i][0]][wall[i][1]].isStart ||
+      grid[wall[i][0]][wall[i][1]].isFinish
+    )
+      continue;
+    grid[wall[i][0]][wall[i][1]].isWall = true;
+  }
+
   return grid;
+};
+
+export const generateWall = () => {
+  // probability of a cell being a wall
+  const WALL_PROBABILITY = 0.25;
+  const wall: number[][] = [];
+
+  // randomly set a cell to a wall
+  for (let i = 0; i < 15; i++) {
+    for (let j = 0; j < 30; j++) {
+      if (Math.random() < WALL_PROBABILITY) {
+        wall.push([i, j]);
+      }
+    }
+  }
+  return wall;
 };

@@ -1,38 +1,51 @@
 import { useEffect, useState } from 'react';
-import { GridProps, generateGrid } from '../utility/functions';
+import { GridProps, generateGrid, generateWall } from '../utility/functions';
 
 interface HeaderProps {
+  startPosition: number[];
+  endPosition: number[];
+  wall: number[][];
   grid: GridProps[][];
+  setWall: React.Dispatch<React.SetStateAction<number[][]>>;
   setGrid: React.Dispatch<React.SetStateAction<GridProps[][]>>;
 }
 
-const PathfindingHeader = ({ grid, setGrid }: HeaderProps) => {
+const PathfindingHeader = ({
+  grid,
+  setGrid,
+  startPosition,
+  endPosition,
+  wall,
+  setWall,
+}: HeaderProps) => {
+  const start = [6, 5];
+  const end = [6, 24];
   const [isSearching, setIsSearching] = useState(false);
   const [algo, setAlgo] = useState('BFS');
   const [speed, setSpeed] = useState(20);
-  const [startPosition, setStartPosition] = useState([6, 5]);
-  const [endPosition, setEndPosition] = useState([6, 24]);
 
   useEffect(() => {
-    setGrid(generateGrid(startPosition, endPosition));
-  }, [startPosition, endPosition, setGrid]);
+    setGrid(generateGrid(startPosition, endPosition, wall));
+  }, [startPosition, endPosition, wall, setGrid]);
 
-  const handleMaze = (): void => {
-    setGrid(generateGrid(startPosition, endPosition));
+  const handleRandomMaze = (): void => {
+    setWall(generateWall());
+    setGrid(generateGrid(startPosition, endPosition, wall));
   };
+
   // clear the board leaving starting position, finishing position and walls the same
-  const handleClearBoard = (): void => {
-    throw new Error('Function not implemented.');
+  const handleClearPath = (): void => {
+    setGrid(generateGrid(startPosition, endPosition, wall));
+  };
+
+  const handleClearWall = (): void => {
+    setWall([]);
+    setGrid(generateGrid(startPosition, endPosition, []));
   };
 
   // reset the whole board to default with fixed starting and finish position and removes walls
   const handleResetBoard = (): void => {
-    throw new Error('Function not implemented.');
-  };
-
-  const handleClearWall = (): void => {
-    setStartPosition([2, 3]);
-    setEndPosition([8, 26]);
+    setGrid(generateGrid(start, end, []));
   };
 
   const handleAlgo = (): void => {
@@ -91,6 +104,7 @@ const PathfindingHeader = ({ grid, setGrid }: HeaderProps) => {
       await new Promise((resolve) => setTimeout(resolve, speed));
       setGrid([...grid]);
     }
+    setIsSearching(false);
     const shortestPath = [];
     let currNode = endPosition; // change to isFinish
     while (currNode !== null) {
@@ -107,7 +121,6 @@ const PathfindingHeader = ({ grid, setGrid }: HeaderProps) => {
 
       setGrid([...grid]);
     }
-    setIsSearching(false);
   };
   const DFS = () => {
     setIsSearching(true);
@@ -137,10 +150,16 @@ const PathfindingHeader = ({ grid, setGrid }: HeaderProps) => {
         </select>
       </div>
       <button
-        onClick={handleMaze}
+        onClick={handleRandomMaze}
         className="rounded  bg-blue-400 px-4 py-1 duration-150 hover:bg-blue-500"
       >
         generate random Maze
+      </button>
+      <button
+        onClick={handleClearPath}
+        className="rounded  bg-blue-400 px-4 py-1 duration-150 hover:bg-blue-500"
+      >
+        Clear Path
       </button>
       <button
         onClick={handleClearWall}
@@ -149,16 +168,10 @@ const PathfindingHeader = ({ grid, setGrid }: HeaderProps) => {
         Clear Wall
       </button>
       <button
-        onClick={handleClearBoard}
-        className="rounded  bg-blue-400 px-4 py-1 duration-150 hover:bg-blue-500"
-      >
-        Clear Board
-      </button>
-      <button
         onClick={handleResetBoard}
         className="rounded  bg-blue-400 px-4 py-1 duration-150 hover:bg-blue-500"
       >
-        Reset Board
+        Clear Board
       </button>
       <button
         onClick={handleAlgo}
