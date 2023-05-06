@@ -9,14 +9,14 @@ const PathfindingVisualizer = ({ grid }: { grid: GridProps[][] }) => {
             {row.map((cell, cellIndex) => (
               <td
                 className={`h-7 w-7 border border-blue-300 ${
-                  cell.isStart ? ` green` : ``
-                } ${cell.isFinish ? ` red` : ``} ${
-                  cell.isVisited ? ` blue` : ``
+                  cell.isFinish ? ` isFinish` : ``
+                } ${cell.isVisited ? ` isVisited` : ``}  ${
+                  cell.isStart ? ` isStart` : ``
+                } ${cell.isPath ? ` isPath` : ``} ${
+                  cell.isWall ? ` isWall` : ``
                 }`}
                 key={`${rowIndex}-${cellIndex}`}
-              >
-                {cell.value}
-              </td>
+              ></td>
             ))}
           </tr>
         ))}

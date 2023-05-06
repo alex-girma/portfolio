@@ -7,7 +7,6 @@ export interface ArrayProp {
 }
 
 export interface GridProps {
-  value: string;
   isStart: boolean;
   isVisited: boolean;
   isWall: boolean;
@@ -127,11 +126,10 @@ export const creatRandomArray = (size: number) => {
 
 export const generateGrid = () => {
   const grid: GridProps[][] = [];
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 15; i++) {
     const col: GridProps[] = [];
-    for (let j = 0; j < 15; j++) {
+    for (let j = 0; j < 30; j++) {
       const cell: GridProps = {
-        value: '',
         isStart: false,
         isVisited: false,
         isWall: false,
@@ -139,23 +137,29 @@ export const generateGrid = () => {
         isPath: false,
         isInQueue: false,
       };
-      cell.value = '';
       cell.isStart = false;
       cell.isVisited = false;
       cell.isWall = false;
       cell.isFinish = false;
       cell.isPath = false;
       cell.isInQueue = false;
-      if (i === 1 && j === 1) {
-        cell.isStart = true;
-      }
-      if (i === 8 && j === 13) {
-        cell.isFinish = true;
-      }
+
       col.push(cell);
     }
     grid.push(col);
   }
+  //test
+  grid[6][5].isStart = true;
+  grid[6][24].isFinish = true;
+  grid[0][13].isWall = true;
+  grid[1][13].isWall = true;
+  grid[2][13].isWall = true;
+  grid[3][13].isWall = true;
+  grid[4][13].isWall = true;
+  grid[5][13].isWall = true;
+  grid[6][13].isWall = true;
+  grid[7][13].isWall = true;
+  grid[8][13].isWall = true;
 
   return grid;
 };

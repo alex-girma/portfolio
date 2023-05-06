@@ -141,7 +141,92 @@ code {
 .red {
   background-color: lightcoral;
 }
-
 .gap1 {
   gap: 1px;
+}
+
+.isStart::after {
+  content: '';
+  display: inline-block;
+  margin-left: 5px; /* adjust as needed */
+  border-right: 4px solid rgb(249 115 22);
+  border-bottom: 4px solid rgb(249 115 22);
+  height: 10px;
+  width: 10px;
+  transform: rotate(-45deg);
+}
+
+.isFinish {
+  position: relative;
+}
+
+.isFinish:before {
+  content: '';
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  border: 2px solid rgb(249 115 22);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.isFinish:after {
+  content: '';
+  display: inline-block;
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  background-color: rgb(249 115 22);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.isWall {
+  background-color: #002b5b;
+  border-color: #002b5b;
+}
+
+.isVisited {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  background-color: white;
+  overflow: hidden;
+}
+
+.isVisited:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0%;
+  height: 0%;
+  background-color: #159895;
+  animation: fill 1.5s ease-in-out forwards;
+}
+
+@keyframes fill {
+  0% {
+    background-color: #159895;
+    width: 100%;
+    height: 100%;
+  }
+  1% {
+    background-color: white;
+    width: 0%;
+    height: 0%;
+  }
+  100% {
+    width: 200%;
+    height: 200%;
+  }
+}
+
+.isPath {
+  background-color: #f6ffde;
 }

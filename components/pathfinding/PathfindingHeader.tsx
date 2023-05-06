@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { GridProps } from '../utility/functions';
+import { GridProps, generateGrid } from '../utility/functions';
 
 interface HeaderProps {
   grid: GridProps[][];
@@ -9,9 +9,9 @@ interface HeaderProps {
 const PathfindingHeader = ({ grid, setGrid }: HeaderProps) => {
   const [isSearching, setIsSearching] = useState(false);
   const [algo, setAlgo] = useState('BFS');
-  const [speed, setSpeed] = useState(40);
+  const [speed, setSpeed] = useState(20);
   const handleMaze = (): void => {
-    throw new Error('Function not implemented.');
+    setGrid(generateGrid());
   };
 
   const handleAddWall = (): void => {
@@ -42,7 +42,7 @@ const PathfindingHeader = ({ grid, setGrid }: HeaderProps) => {
 
   const BFS = async () => {
     setIsSearching(true);
-    let start = [1, 1];
+    let start = [6, 5]; // change to isStart
     const ROW = grid.length;
     const COL = grid[0].length;
     const queueToExplore: number[][] = [start];
@@ -69,8 +69,8 @@ const PathfindingHeader = ({ grid, setGrid }: HeaderProps) => {
           nextRow >= ROW ||
           nextCol >= COL ||
           grid[nextRow][nextCol].isVisited ||
-          grid[nextRow][nextCol].isInQueue
-          // grid[nextRow][nextCol] === 0 // for walles
+          grid[nextRow][nextCol].isInQueue ||
+          grid[nextRow][nextCol].isWall // for walles
         ) {
           continue;
         }
@@ -81,63 +81,23 @@ const PathfindingHeader = ({ grid, setGrid }: HeaderProps) => {
       }
       await new Promise((resolve) => setTimeout(resolve, speed));
       setGrid([...grid]);
-
-      // if (grid[start[0]][start[1]].isFinish) return;
-      // grid[start[0]][start[1]].isVisited = true;
-      // grid[start[0]][start[1]].isStart = true;
-      // start = queue.shift()!;
-      // topNode = [start[0] + -1, start[1]];
-      // rightNode = [start[0], start[1] + 1];
-      // bottomNode = [start[0] + 1, start[1]];
-      // leftNode = [start[0], start[1] + -1];
-      // if (
-      //   grid[topNode[0]] &&
-      //   grid[topNode[0]][topNode[1]] &&
-      //   !grid[topNode[0]][topNode[1]].isInQueue &&
-      //   !grid[topNode[0]][topNode[1]].isVisited
-      // ) {
-      //   grid[topNode[0]][topNode[1]].isInQueue = true;
-      //   queue.push(topNode);
-      // }
-      // if (
-      //   grid[rightNode[0]] &&
-      //   grid[rightNode[0]][rightNode[1]] &&
-      //   !grid[rightNode[0]][rightNode[1]].isInQueue &&
-      //   !grid[rightNode[0]][rightNode[1]].isVisited
-      // ) {
-      //   grid[rightNode[0]][rightNode[1]].isVisited = true;
-      //   queue.push(rightNode);
-      // }
-      // if (
-      //   grid[bottomNode[0]] &&
-      //   grid[bottomNode[0]][bottomNode[1]] &&
-      //   !grid[bottomNode[0]][bottomNode[1]].isInQueue &&
-      //   !grid[bottomNode[0]][bottomNode[1]].isVisited
-      // ) {
-      //   grid[bottomNode[0]][bottomNode[1]].isInQueue = true;
-      //   queue.push(bottomNode);
-      // }
-      // if (
-      //   grid[leftNode[0]] &&
-      //   grid[leftNode[0]][leftNode[1]] &&
-      //   !grid[leftNode[0]][leftNode[1]].isInQueue &&
-      //   !grid[leftNode[0]][leftNode[1]].isVisited
-      // ) {
-      //   grid[leftNode[0]][leftNode[1]].isInQueue = true;
-      //   queue.push(leftNode);
-      // }
-      // await new Promise((resolve) => setTimeout(resolve, speed));
-      // setGrid([...grid]);
     }
     const shortestPath = [];
-    let currNode = [8, 13];
+    let currNode = [6, 24]; // change to isFinish
     while (currNode !== null) {
       shortestPath.push(currNode);
       currNode = parents[currNode[0]][currNode[1]];
     }
-
     shortestPath.reverse();
-    console.log(shortestPath);
+
+    for (let i = 0; i < shortestPath.length; i++) {
+      if (shortestPath.length < 2) return;
+      grid[shortestPath[i][0]][shortestPath[i][1]].isVisited = false;
+      grid[shortestPath[i][0]][shortestPath[i][1]].isPath = true;
+      await new Promise((resolve) => setTimeout(resolve, speed));
+
+      setGrid([...grid]);
+    }
     setIsSearching(false);
   };
   const DFS = () => {
@@ -162,9 +122,9 @@ const PathfindingHeader = ({ grid, setGrid }: HeaderProps) => {
           value={speed}
           onChange={(e) => setSpeed(Number(e.target.value))}
         >
-          <option value="60">Slow</option>
-          <option value="40">Fast</option>
-          <option value="20">Very Fast</option>
+          <option value="50">Slow</option>
+          <option value="20">Fast</option>
+          <option value="10">Very Fast</option>
         </select>
       </div>
       <button
