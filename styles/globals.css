@@ -132,14 +132,14 @@ code {
   margin-top: -170px;
 }
 
-.green {
-  background-color: lightgreen;
+.isSorted {
+  background-color: #72b73e;
 }
-.blue {
-  background-color: lightblue;
+.isSemented {
+  background-color: #aac2fa;
 }
-.red {
-  background-color: lightcoral;
+.isSelected {
+  background-color: #cd5c9e;
 }
 .gap1 {
   gap: 1px;

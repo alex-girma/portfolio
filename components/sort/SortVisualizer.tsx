@@ -10,8 +10,8 @@ const SortVisualizer = ({
   return (
     <div
       className={`rotatex0 flex w-4 items-end justify-center bg-gray-400 text-xxxs text-gray-900 sm:w-6 sm:text-xs 
-        ${selected ? ' red' : ''} ${sorted ? ' green' : ''} ${
-        sement ? ' blue' : ''
+        ${selected ? ' isSelected' : ''} ${sorted ? ' isSorted' : ''} ${
+        sement ? ' isSemented' : ''
       } ${translateY ? ' translateY' : ''}`}
       id={String(value)}
       style={{
