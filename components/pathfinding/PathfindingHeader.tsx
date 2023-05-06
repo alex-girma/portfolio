@@ -177,7 +177,6 @@ const PathfindingHeader = ({
         parents[nextRow][nextCol] = [currRow, currCol];
       }
     }
-    console.log(parents);
     const shortestPath = [];
     let currNode = endPosition; // change to isFinish
     while (currNode !== null) {
