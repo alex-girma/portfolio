@@ -110,7 +110,74 @@ const PathfindingHeader = ({
       await new Promise((resolve) => setTimeout(resolve, speed));
       setGrid([...grid]);
     }
-    setIsSearching(false);
+    const shortestPath = [];
+    let currNode = endPosition; // change to isFinish
+    while (currNode !== null) {
+      shortestPath.push(currNode);
+      currNode = parents[currNode[0]][currNode[1]];
+    }
+    shortestPath.reverse();
+
+    for (let i = 0; i < shortestPath.length; i++) {
+      if (shortestPath.length < 2) return;
+      grid[shortestPath[i][0]][shortestPath[i][1]].isVisited = false;
+      grid[shortestPath[i][0]][shortestPath[i][1]].isPath = true;
+      await new Promise((resolve) => setTimeout(resolve, speed));
+
+      setGrid([...grid]);
+      setIsSearching(false);
+    }
+  };
+  const DFS = async () => {
+    setIsSearching(true);
+
+    const ROW = grid.length;
+    const COL = grid[0].length;
+    const start = startPosition;
+    const stack = [start];
+    const parents = Array.from({ length: ROW }, () => Array(COL).fill(null));
+
+    while (stack.length > 0) {
+      const [currRow, currCol] = stack.pop()!;
+      if (grid[currRow][currCol].isVisited) {
+        continue;
+      }
+      grid[currRow][currCol].isVisited = true;
+      await new Promise((resolve) => setTimeout(resolve, speed));
+      setGrid([...grid]);
+      if (grid[currRow][currCol].isFinish) {
+        setIsSearching(false);
+        break;
+      }
+
+      const directions = [
+        [0, -1],
+        [1, 0],
+        [0, 1],
+        [-1, 0],
+      ];
+
+      for (const [dx, dy] of directions) {
+        const nextRow = currRow + dx;
+        const nextCol = currCol + dy;
+
+        if (
+          nextRow < 0 ||
+          nextCol < 0 ||
+          nextRow >= ROW ||
+          nextCol >= COL ||
+          grid[nextRow][nextCol].isVisited ||
+          grid[nextRow][nextCol].isInQueue ||
+          grid[nextRow][nextCol].isWall
+        ) {
+          continue;
+        }
+
+        stack.push([nextRow, nextCol]);
+        parents[nextRow][nextCol] = [currRow, currCol];
+      }
+    }
+    console.log(parents);
     const shortestPath = [];
     let currNode = endPosition; // change to isFinish
     while (currNode !== null) {
@@ -127,10 +194,6 @@ const PathfindingHeader = ({
 
       setGrid([...grid]);
     }
-  };
-  const DFS = () => {
-    setIsSearching(true);
-    console.log('DFS');
     setIsSearching(false);
   };
 
