@@ -6,6 +6,8 @@ interface HeaderProps {
   endPosition: number[];
   wall: number[][];
   grid: GridProps[][];
+  setStartPosition: React.Dispatch<React.SetStateAction<number[]>>;
+  setEndPosition: React.Dispatch<React.SetStateAction<number[]>>;
   setWall: React.Dispatch<React.SetStateAction<number[][]>>;
   setGrid: React.Dispatch<React.SetStateAction<GridProps[][]>>;
 }
@@ -15,6 +17,8 @@ const PathfindingHeader = ({
   setGrid,
   startPosition,
   endPosition,
+  setEndPosition,
+  setStartPosition,
   wall,
   setWall,
 }: HeaderProps) => {
@@ -45,6 +49,8 @@ const PathfindingHeader = ({
 
   // reset the whole board to default with fixed starting and finish position and removes walls
   const handleResetBoard = (): void => {
+    setStartPosition(start);
+    setEndPosition(end);
     setGrid(generateGrid(start, end, []));
   };
 

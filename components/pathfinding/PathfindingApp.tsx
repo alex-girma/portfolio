@@ -25,10 +25,14 @@ const PathfindingApp = () => {
             endPosition={endPosition}
             wall={wall}
             setWall={setWall}
+            setEndPosition={setEndPosition}
+            setStartPosition={setStartPosition}
           />
           <div className="flex justify-center pt-10">
             <PathfindingVisualizer
               grid={grid}
+              wall={wall}
+              setWall={setWall}
               setGrid={setGrid}
               setEndPosition={setEndPosition}
               setStartPosition={setStartPosition}
