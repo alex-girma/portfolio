@@ -44,18 +44,19 @@ const PathfindingHeader = ({
 
   const handleClearWall = (): void => {
     setWall([]);
-    setGrid(generateGrid(startPosition, endPosition, []));
+    setGrid(generateGrid(startPosition, endPosition, wall));
   };
 
   // reset the whole board to default with fixed starting and finish position and removes walls
   const handleResetBoard = (): void => {
     setStartPosition(start);
     setEndPosition(end);
-    setGrid(generateGrid(start, end, []));
+    setWall([]);
+    setGrid(generateGrid(start, end, wall));
   };
 
   const handleAlgo = (): void => {
-    if (isSearching) return;
+    // if (isSearching) return;
     switch (algo) {
       case 'BFS':
         BFS();
@@ -157,30 +158,35 @@ const PathfindingHeader = ({
       </div>
       <button
         onClick={handleRandomMaze}
+        disabled={isSearching}
         className="rounded  bg-blue-400 px-4 py-1 duration-150 hover:bg-blue-500"
       >
         generate random Maze
       </button>
       <button
         onClick={handleClearPath}
+        disabled={isSearching}
         className="rounded  bg-blue-400 px-4 py-1 duration-150 hover:bg-blue-500"
       >
         Clear Path
       </button>
       <button
         onClick={handleClearWall}
+        disabled={isSearching}
         className="rounded  bg-blue-400 px-4 py-1 duration-150 hover:bg-blue-500"
       >
         Clear Wall
       </button>
       <button
         onClick={handleResetBoard}
+        disabled={isSearching}
         className="rounded  bg-blue-400 px-4 py-1 duration-150 hover:bg-blue-500"
       >
         Clear Board
       </button>
       <button
         onClick={handleAlgo}
+        disabled={isSearching}
         className="rounded  bg-green-400 px-4 py-1 duration-150 hover:bg-green-500"
       >
         Visualize {algo}
