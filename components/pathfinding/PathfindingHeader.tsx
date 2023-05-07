@@ -150,6 +150,7 @@ const PathfindingHeader = ({
         break;
       }
 
+      // up right left down
       const directions = [
         [0, -1],
         [1, 0],
