@@ -125,8 +125,8 @@ const PathfindingHeader = ({
       await new Promise((resolve) => setTimeout(resolve, speed));
 
       setGrid([...grid]);
-      setIsSearching(false);
     }
+    setIsSearching(false);
   };
   const DFS = async () => {
     setIsSearching(true);
