@@ -111,7 +111,7 @@ const PathfindingHeader = ({
       setGrid([...grid]);
     }
     const shortestPath = [];
-    let currNode = endPosition; // change to isFinish
+    let currNode = endPosition;
     while (currNode !== null) {
       shortestPath.push(currNode);
       currNode = parents[currNode[0]][currNode[1]];
@@ -119,13 +119,14 @@ const PathfindingHeader = ({
     shortestPath.reverse();
 
     for (let i = 0; i < shortestPath.length; i++) {
-      if (shortestPath.length < 2) return;
+      if (shortestPath.length < 2) break;
       grid[shortestPath[i][0]][shortestPath[i][1]].isVisited = false;
       grid[shortestPath[i][0]][shortestPath[i][1]].isPath = true;
       await new Promise((resolve) => setTimeout(resolve, speed));
 
       setGrid([...grid]);
     }
+    console.log('here');
     setIsSearching(false);
   };
   const DFS = async () => {
@@ -187,7 +188,7 @@ const PathfindingHeader = ({
     shortestPath.reverse();
 
     for (let i = 0; i < shortestPath.length; i++) {
-      if (shortestPath.length < 2) return;
+      if (shortestPath.length < 2) break;
       grid[shortestPath[i][0]][shortestPath[i][1]].isVisited = false;
       grid[shortestPath[i][0]][shortestPath[i][1]].isPath = true;
       await new Promise((resolve) => setTimeout(resolve, speed));
