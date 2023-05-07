@@ -126,7 +126,6 @@ const PathfindingHeader = ({
 
       setGrid([...grid]);
     }
-    console.log('here');
     setIsSearching(false);
   };
   const DFS = async () => {
