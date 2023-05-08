@@ -44,10 +44,7 @@ const BottomBarLayout = () => {
       name: 'Visualize Pathfinding',
       route: '/pathfinding',
     },
-    {
-      name: 'Github',
-      route: '/pokemon',
-    },
+
   ];
   return (
     <footer className="flex w-screen flex-wrap justify-center text-xxxs sm:text-xxs">
