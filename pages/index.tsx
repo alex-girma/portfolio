@@ -24,13 +24,20 @@ const Home: NextPageWithLayout = () => {
             <a
               className="pl-2 text-sm"
               href="https://linkedin.com/in/alexgirmaw"
+              target="_blank"
+              rel="noreferrer"
             >
               @alexgirmaw
             </a>
 
             <div className="invisible">Test</div>
             <div className=" fa fa-github pl-20 text-red-500 "></div>
-            <a className="px-2  text-sm" href="https://github.com/alex-girma">
+            <a
+              className="px-2  text-sm"
+              href="https://github.com/alex-girma"
+              target="_blank"
+              rel="noreferrer"
+            >
               @alex-girma
             </a>
           </div>
