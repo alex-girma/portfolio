@@ -198,7 +198,7 @@ const PathfindingHeader = ({
   };
 
   return (
-    <div className="flex flex-col gap-2 text-xxs text-gray-900 sm:flex-row sm:gap-3">
+    <div className="flex flex-col gap-2 text-xxxs text-gray-900 sm:flex-row sm:gap-3 sm:text-xxs">
       <div>
         <span className="font-medium text-blue-600 underline">Algorithm:</span>
         <select value={algo} onChange={(e) => setAlgo(e.target.value)}>
