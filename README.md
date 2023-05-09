@@ -8,7 +8,7 @@ This is my Portfolio using [Next.js](https://nextjs.org/)
 
 ## Projects
 
-- Calendar App: A calendar app with build it todo list that highlights todo dates. Formates date and time depending on clients location
+- Calendar App: A calendar app with built in todo list that highlights todo dates. Formates date and time depending on clients location
 - Todo App: Todo list.
 - Weather App: An app that shows weather depending on clients location. Uses [Openweather](https://openweathermap.org/)
 - Calculator App

@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import { useEffect } from 'react';
 import BottomBarLayout from '../bottombar/BottomBar';
 import TopBarLayout from '../topbar/TopBar';
