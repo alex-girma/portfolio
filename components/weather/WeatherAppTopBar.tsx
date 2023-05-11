@@ -12,15 +12,7 @@ const WeatherAppTopBar = () => {
         JSON.parse(sessionStorage.getItem('fetchedWeather') || '')
       );
     }
-    // navigator.geolocation.getCurrentPosition(
-    //   // if position allowed
-    //   ({ coords }) => {
-    //     const { latitude, longitude } = coords;
-    //     requestWeather(latitude, longitude);
-    //   },
-    //   // if position declined by client set germany
-    //   () => requestWeather(50, 8)
-    // );
+
     requestWeather(50, 8);
     async function requestWeather(latitude: number, longitude: number) {
       try {
