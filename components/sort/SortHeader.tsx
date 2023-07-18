@@ -90,7 +90,7 @@ const SortHeader = ({
       setDataArray([...dataArray]);
       await new Promise((resolve) => setTimeout(resolve, speed));
       for (let j = i + 1; j < dataArray.length; j++) {
-        dataArray[j].sorted = true;
+        dataArray[j].sorted = true; // using sorted to highlight the element being compared to smallest
         setDataArray([...dataArray]);
         await new Promise((resolve) => setTimeout(resolve, speed));
         if (dataArray[j].value < dataArray[smallest].value) {
@@ -103,6 +103,7 @@ const SortHeader = ({
         dataArray[j].sorted = false;
         setDataArray([...dataArray]);
       }
+      // change position of smallest value with i value
       if (i !== smallest) {
         let temp = dataArray[i].value;
         dataArray[i].value = dataArray[smallest].value;
