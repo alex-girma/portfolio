@@ -93,7 +93,7 @@ export const toIntlTimeFormat = (locale: string, time: Date) => {
 };
 
 const getDays = (year: number, month: number) => {
-  return new Date(year, month, 0).getDate();
+  return new Date(year, month, 0).getDate(); // passing 0 as the day of the month in the new Date constructor will give you the last day of the previous month. that is why we pass index + 1 as month.
 };
 
 export const creatRandomArray = (size: number) => {

@@ -16,7 +16,7 @@ const CalendarApp = () => {
   const [monthNames, setMonthNames] = useState<string[]>([]);
   const [year, setYear] = useState(new Date().getFullYear());
   const [todoDate, setTodoDate] = useState<string>('');
-  const [highlightTodoDays, setHighlightTodoDays] = useState(false);
+  const [highlightTodoDays, setHighlightTodoDays] = useState(false); // just a state if new todos are added to then rerender CalendarDaysCont
   const [currentMonthName, setCurrentMonthName] = useState('');
   const [monthIndex, setMonthIndex] = useState(new Date().getMonth());
 
@@ -60,7 +60,7 @@ const CalendarApp = () => {
               />
             </div>
           </div>
-          <div className=" hidden cursor-default grid-cols-4 grid-rows-3 gap-2 md:col-span-2 md:grid">
+          <div className="hidden cursor-default grid-cols-4 grid-rows-3 gap-2 md:col-span-2 md:grid">
             {monthNames.map((monthName, index) => {
               return (
                 <CalendarMonthContainer

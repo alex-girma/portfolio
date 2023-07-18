@@ -21,7 +21,7 @@ const TodoApp = ({
   setHighlightTodoDays,
 }: todoAppProps) => {
   const [allTodoList, setAllTodoList] = useState<AllTodoListProp>({});
-  const todoLists = allTodoList[todoDate]?.todos || [];
+  const todoLists = allTodoList[todoDate]?.todos || []; // todos of selected date
 
   return (
     <>

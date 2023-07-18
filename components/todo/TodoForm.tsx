@@ -34,9 +34,9 @@ const TodoForm = ({
 
     const newAllTodoList = { ...allTodoList };
     newAllTodoList[todoDate] = newTodoList;
-    setHighlightTodoDays(!highlightTodoDays);
     setAllTodoList(newAllTodoList);
     localStorage.setItem('allTodoList', JSON.stringify(newAllTodoList));
+    setHighlightTodoDays(!highlightTodoDays); // to trigger a rerender in CalendarDaysCont component
     setInputValue('');
   };
 

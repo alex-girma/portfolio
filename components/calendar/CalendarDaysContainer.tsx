@@ -37,6 +37,7 @@ const CalendarDaysContainer = ({
     return setAllTotoList(List);
   };
 
+  // rerender this component whenever todo is added to the List
   useEffect(() => {
     getTodoListFromStorage();
   }, [highlightTodoDays]);
