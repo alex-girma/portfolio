@@ -106,17 +106,12 @@ export const creatRandomArray = (size: number) => {
     if (!numbers.includes(number)) {
       numbers.push(number);
       const temp: ArrayProp = {
-        value: 0,
+        value: number,
         selected: false,
         sorted: false,
         translateY: false,
         sement: false,
       };
-      temp.value = number;
-      temp.selected = false;
-      temp.sorted = false;
-      temp.translateY = false;
-      temp.sement = false;
 
       array.push(temp);
     }
@@ -141,12 +136,6 @@ export const generateGrid = (
         isPath: false,
         isInQueue: false,
       };
-      cell.isStart = false;
-      cell.isVisited = false;
-      cell.isWall = false;
-      cell.isFinish = false;
-      cell.isPath = false;
-      cell.isInQueue = false;
 
       col.push(cell);
     }
