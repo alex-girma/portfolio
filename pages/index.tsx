@@ -20,7 +20,17 @@ const Home: NextPageWithLayout = () => {
             <span className="bg-red-500 px-2 py-1 text-white">Portfolio</span>
           </div>
           <div>
+            <div className="fa fa-linkedin  pl-14 text-red-500 sm:pl-20"></div>
+            <a
+              className="pl-2 sm:text-sm"
+              href="https://linkedin.com/in/alexgirmaw"
+              target="_blank"
+              rel="noreferrer"
+            >
+              @alexgirmaw
+            </a>
 
+            <div className="invisible">Hide</div>
             <div className=" fa fa-github pl-14 text-red-500 sm:pl-20 "></div>
             <a
               className="px-2  sm:text-sm"
